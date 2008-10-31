@@ -3,6 +3,6 @@
 	<classpathentry path="src" kind="src"/>
 	<classpathentry path="org.eclipse.jdt.launching.JRE_CONTAINER" kind="con"/>
 	<classpathentry path="com.genuitec.eclipse.j2eedt.core.J2EE14_CONTAINER" kind="con"/>
-	<classpathentry path="Root/WEB-INF/lib/spring-1.2.6.jar" kind="lib"/>
+	<classpathentry path="Root/WEB-INF/lib/spring.jar" kind="lib"/>
 	<classpathentry path="Root/WEB-INF/classes" kind="output"/>
 </classpath>
