@@ -5,5 +5,6 @@
 	<classpathentry path="com.genuitec.eclipse.j2eedt.core.J2EE14_CONTAINER" kind="con"/>
 	<classpathentry path="Root/WEB-INF/lib/spring.jar" kind="lib"/>
 	<classpathentry path="Root/WEB-INF/lib/ibatis-2.3.4.726.jar" kind="lib"/>
+	<classpathentry path="Root/WEB-INF/lib/lucene-core-2.4.0.jar" kind="lib"/>
 	<classpathentry path="Root/WEB-INF/classes" kind="output"/>
 </classpath>
