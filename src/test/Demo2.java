@@ -80,7 +80,7 @@ public class Demo2 {
 		}
 	}
 
-	// 分别读纯文本和链接
+	// 处理特定tag 该Demo处理span中class为tpc_content的内容管理
 
 	public static void readTextAndLink(String result) throws Exception {
 		Parser parser = new Parser("http://www.blogjava.net/51AOP/archive/2006/07/19/59064.html");
