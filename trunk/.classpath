@@ -8,8 +8,8 @@
 	<classpathentry path="Root/WEB-INF/lib/lucene-core-2.4.0.jar" kind="lib"/>
 	<classpathentry path="Root/WEB-INF/lib/filterbuilder.jar" kind="lib"/>
 	<classpathentry path="Root/WEB-INF/lib/htmllexer.jar" kind="lib"/>
-	<classpathentry path="Root/WEB-INF/lib/htmlparser.jar" kind="lib"/>
 	<classpathentry path="Root/WEB-INF/lib/sitecapturer.jar" kind="lib"/>
 	<classpathentry path="Root/WEB-INF/lib/thumbelina.jar" kind="lib"/>
+	<classpathentry path="Root/WEB-INF/lib/htmlparser.jar" kind="lib"/>
 	<classpathentry path="Root/WEB-INF/classes" kind="output"/>
 </classpath>
