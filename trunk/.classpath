@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="com.genuitec.eclipse.j2eedt.core.J2EE14_CONTAINER"/>
-	<classpathentry kind="lib" path="Root/WEB-INF/lib/spring.jar"/>
-	<classpathentry kind="lib" path="Root/WEB-INF/lib/ibatis-2.3.4.726.jar"/>
-	<classpathentry kind="lib" path="Root/WEB-INF/lib/lucene-core-2.4.0.jar"/>
-	<classpathentry kind="lib" path="Root/WEB-INF/lib/filterbuilder.jar"/>
-	<classpathentry kind="lib" path="Root/WEB-INF/lib/htmllexer.jar"/>
-	<classpathentry kind="lib" path="Root/WEB-INF/lib/htmlparser.jar"/>
-	<classpathentry kind="lib" path="Root/WEB-INF/lib/sitecapturer.jar"/>
-	<classpathentry kind="lib" path="Root/WEB-INF/lib/thumbelina.jar"/>
-	<classpathentry kind="output" path="Root/WEB-INF/classes"/>
+	<classpathentry path="src" kind="src"/>
+	<classpathentry path="org.eclipse.jdt.launching.JRE_CONTAINER" kind="con"/>
+	<classpathentry path="com.genuitec.eclipse.j2eedt.core.J2EE14_CONTAINER" kind="con"/>
+	<classpathentry path="Root/WEB-INF/lib/spring.jar" kind="lib"/>
+	<classpathentry path="Root/WEB-INF/lib/ibatis-2.3.4.726.jar" kind="lib"/>
+	<classpathentry path="Root/WEB-INF/lib/lucene-core-2.4.0.jar" kind="lib"/>
+	<classpathentry path="Root/WEB-INF/lib/filterbuilder.jar" kind="lib"/>
+	<classpathentry path="Root/WEB-INF/lib/htmllexer.jar" kind="lib"/>
+	<classpathentry path="Root/WEB-INF/lib/htmlparser.jar" kind="lib"/>
+	<classpathentry path="Root/WEB-INF/lib/sitecapturer.jar" kind="lib"/>
+	<classpathentry path="Root/WEB-INF/lib/thumbelina.jar" kind="lib"/>
+	<classpathentry path="Root/WEB-INF/classes" kind="output"/>
 </classpath>
