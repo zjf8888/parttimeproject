@@ -6,6 +6,7 @@ import org.htmlparser.Parser;
 import org.htmlparser.beans.StringBean;
 import org.htmlparser.filters.AndFilter;
 import org.htmlparser.filters.HasAttributeFilter;
+import org.htmlparser.filters.HasParentFilter;
 import org.htmlparser.filters.NodeClassFilter;
 import org.htmlparser.filters.OrFilter;
 import org.htmlparser.filters.TagNameFilter;
@@ -15,9 +16,6 @@ import org.htmlparser.tags.TableTag;
 import org.htmlparser.tags.TitleTag;
 import org.htmlparser.util.NodeList;
 import org.htmlparser.visitors.HtmlPage;
-import org.htmlparser.visitors.LinkFindingVisitor;
-
-import test.HyperLinkTrace.WmlGoTag;
 
 public class Demo3 {
 	public static void main(String args[]) throws Exception {
@@ -32,9 +30,10 @@ public class Demo3 {
 		result = sb.getStrings();
 		// System.out.println(result);
 		// readAll(result);
-		readTextAndLink(result);
+		//readTextAndLink(result);
 		// readByHtml(result);
 		// readTextAndTitle(result);
+		readLink();
 	}
 
 	// 按页面方式处理.解析标准的html页面
@@ -114,6 +113,40 @@ public class Demo3 {
 				}
 			}
 		}
+	}
+	/**
+	 * 处理所有连接，特别测试HasParentFilter
+	 * @param result
+	 * @throws Exception
+	 */
+	public static void readLink() throws Exception {
+		Parser parser = new Parser("http://10.0.2.200/");
+		NodeList nodelist;
+		parser.setEncoding("utf-8");
+		NodeClassFilter tableFilter = new NodeClassFilter(TableTag.class);
+		HasAttributeFilter tableAttribute1 = new HasAttributeFilter("id",
+				"Announcement");// hava the attribute "bgcolor"
+		HasAttributeFilter tableAttribute2 = new HasAttributeFilter("width",
+				"98%");
+		HasAttributeFilter tableAttribute3 = new HasAttributeFilter("border",
+				"0");
+		AndFilter Parentfilter = new AndFilter(new NodeFilter[] { tableFilter,
+				tableAttribute1, tableAttribute2, tableAttribute3 });
+		NodeFilter filter = new HasParentFilter(Parentfilter,true);
+		NodeFilter filterID = new HasAttributeFilter( "href" );
+		AndFilter endfilter = new AndFilter(filterID,filter);
+		nodelist = parser.extractAllNodesThatMatch(endfilter);
+		Node[] nodes = nodelist.toNodeArray();
+		
+			for(int j=0;j<nodes.length;j++){
+				Node bodyNode=nodes[j];
+				//System.out.println(bodyNode);
+				if (bodyNode instanceof LinkTag) {
+					LinkTag link = (LinkTag) bodyNode;
+					System.out.println("LINK: \t" + link.getLink());
+				}
+			}
+		
 	}
 
 	public static void readAll(String result) throws Exception {
