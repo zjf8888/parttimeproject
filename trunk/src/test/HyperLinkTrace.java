@@ -3,7 +3,6 @@ package test;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.net.URL;
 import org.htmlparser.Node;
 import org.htmlparser.nodes.TagNode;
 import org.htmlparser.NodeFilter;
@@ -36,7 +35,7 @@ public class HyperLinkTrace {
 			TagNode node = (TagNode) nlist.elementAt(i);
 			// System.out.println(node);
 			if (node instanceof LinkTag) {
-				LinkTag link = (LinkTag) node;
+				//LinkTag link = (LinkTag) node;
 				//System.out.println("LINK: \t" + link.getLink());
 			} else if (node instanceof WmlGoTag) {
 				NodeList charlist = node.getChildren();
@@ -51,7 +50,7 @@ public class HyperLinkTrace {
 						System.out.println(txt.getText());
 					}
 				}
-				WmlGoTag go = (WmlGoTag) node;
+				//WmlGoTag go = (WmlGoTag) node;
 				//System.out.println("GO: \t" + go.getLink());
 			}
 		}

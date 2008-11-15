@@ -17,6 +17,7 @@ import org.htmlparser.tags.TitleTag;
 import org.htmlparser.util.NodeList;
 import org.htmlparser.visitors.HtmlPage;
 
+
 public class Demo3 {
 	public static void main(String args[]) throws Exception {
 		String path = "http://www.blogjava.net/51AOP/archive/2006/07/19/59064.html";
