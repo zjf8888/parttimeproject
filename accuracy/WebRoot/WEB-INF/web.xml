@@ -9,6 +9,6 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>FlightInfoServlet</servlet-name>
-		<url-pattern>/flightInfoServlet</url-pattern>
+		<url-pattern>/spi/getflight.do</url-pattern>
 	</servlet-mapping>
 </web-app>
