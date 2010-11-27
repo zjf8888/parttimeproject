@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="com.genuitec.eclipse.j2eedt.core.J2EE14_CONTAINER"/>
-	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.ws.xfire.MYECLIPSE_XFIRE_CORE"/>
-	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.ws.xfire.MYECLIPSE_XFIRE_JAXB2"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json-lib-2.3-jdk15.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-httpclient-3.1.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-lang-2.4.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ezmorph-1.0.6.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-collections-3.2.1.jar"/>
-	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
+	<classpathentry path="src" kind="src"/>
+	<classpathentry path="org.eclipse.jdt.launching.JRE_CONTAINER" kind="con"/>
+	<classpathentry path="com.genuitec.eclipse.j2eedt.core.J2EE14_CONTAINER" kind="con"/>
+	<classpathentry path="WebRoot/WEB-INF/lib/commons-collections-3.2.1.jar" kind="lib"/>
+	<classpathentry path="WebRoot/WEB-INF/lib/commons-httpclient-3.1.jar" kind="lib"/>
+	<classpathentry path="WebRoot/WEB-INF/lib/commons-lang-2.4.jar" kind="lib"/>
+	<classpathentry path="WebRoot/WEB-INF/lib/ezmorph-1.0.6.jar" kind="lib"/>
+	<classpathentry path="WebRoot/WEB-INF/lib/json-lib-2.3-jdk15.jar" kind="lib"/>
+	<classpathentry path="WebRoot/WEB-INF/lib/xfire-aegis-1.2.2.jar" kind="lib"/>
+	<classpathentry path="WebRoot/WEB-INF/lib/xfire-annotations-1.2.2.jar" kind="lib"/>
+	<classpathentry path="WebRoot/WEB-INF/lib/xfire-core-1.2.2.jar" kind="lib"/>
+	<classpathentry path="WebRoot/WEB-INF/lib/xfire-java5-1.2.2.jar" kind="lib"/>
+	<classpathentry path="WebRoot/WEB-INF/lib/xfire-jaxb2-1.2.2.jar" kind="lib"/>
+	<classpathentry path="WebRoot/WEB-INF/lib/wsdl4j-1.6.1.jar" kind="lib"/>
+	<classpathentry path="WebRoot/WEB-INF/lib/jdom-1.1.jar" kind="lib"/>
+	<classpathentry path="WebRoot/WEB-INF/lib/commons-codec-1.4.jar" kind="lib"/>
+	<classpathentry path="WebRoot/WEB-INF/lib/commons-beanutils-1.8.0.jar" kind="lib"/>
+	<classpathentry path="WebRoot/WEB-INF/classes" kind="output"/>
 </classpath>
