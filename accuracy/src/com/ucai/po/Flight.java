@@ -1,5 +1,7 @@
 package com.ucai.po;
 
+import java.util.List;
+
 /**
  * 航班信息 一个航班包括多个航程
  * 
@@ -19,7 +21,7 @@ public class Flight {
 
 	public String startdate;// 出发日期
 
-	public Segment[] segmentList;// 航程列表
+	public List<Segment> segmentList;// 航程列表
 
 	public int totalNums;// 总记录数 总共应该有多少航班
 
@@ -59,11 +61,11 @@ public class Flight {
 		this.pageNo = pageNo;
 	}
 
-	public Segment[] getSegmentList() {
+	public List<Segment> getSegmentList() {
 		return segmentList;
 	}
 
-	public void setSegmentList(Segment[] segmentList) {
+	public void setSegmentList(List<Segment> segmentList) {
 		this.segmentList = segmentList;
 	}
 

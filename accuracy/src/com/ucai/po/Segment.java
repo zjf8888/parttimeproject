@@ -1,37 +1,37 @@
 package com.ucai.po;
 
+import java.util.List;
 
 /**
- * 航程信息PO
- * 一个航程信息包含多种仓位
+ * 航程信息PO 一个航程信息包含多种仓位
  * 
  * @author lixu
- *
+ * 
  */
 public class Segment {
-	public String fltno;//航班号
+	public String fltno;// 航班号
 
-	public String sc;//出发城市编码
+	public String sc;// 出发城市编码
 
 	public String scAirdrome;
 
-	public String ec;//到达城市编码
+	public String ec;// 到达城市编码
 
 	public String ecAirdrome;
 
-	public String deptime;//起飞时间
+	public String deptime;// 起飞时间
 
-	public String arrtime;//到达时间
+	public String arrtime;// 到达时间
 
-	public String planesty;//飞机型号
+	public String planesty;// 飞机型号
 
-	public String stopnum;//中途停降次数
+	public String stopnum;// 中途停降次数
 
-	public String etkt;//电子票
+	public String etkt;// 电子票
 
-	public String meal;//有餐
+	public String meal;// 有餐
 
-	public SeatClass[] classesList;//航班座位信息
+	public List<SeatClass> classesList;// 航班座位信息
 
 	public String getArrtime() {
 		return arrtime;
@@ -41,11 +41,11 @@ public class Segment {
 		this.arrtime = arrtime;
 	}
 
-	public SeatClass[] getClassesList() {
+	public List<SeatClass> getClassesList() {
 		return classesList;
 	}
 
-	public void setClassesList(SeatClass[] classesList) {
+	public void setClassesList(List<SeatClass> classesList) {
 		this.classesList = classesList;
 	}
 

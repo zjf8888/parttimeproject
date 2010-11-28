@@ -17,5 +17,6 @@
 	<classpathentry path="WebRoot/WEB-INF/lib/jdom-1.1.jar" kind="lib"/>
 	<classpathentry path="WebRoot/WEB-INF/lib/commons-codec-1.4.jar" kind="lib"/>
 	<classpathentry path="WebRoot/WEB-INF/lib/commons-beanutils-1.8.0.jar" kind="lib"/>
+	<classpathentry path="WebRoot/WEB-INF/lib/db4o-7.12.156.14667-all-java5.jar" kind="lib"/>
 	<classpathentry path="WebRoot/WEB-INF/classes" kind="output"/>
 </classpath>
