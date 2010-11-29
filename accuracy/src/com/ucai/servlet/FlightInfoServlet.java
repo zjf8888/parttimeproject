@@ -64,11 +64,11 @@ public class FlightInfoServlet extends HttpServlet {
 			String flightInfo = iFlightQueryPortType.getFlightInfo(org, dst,
 					date, airway, "jdtx", flightNo);
 			Flight flightpo = jDomParse(flightInfo);
-			flightpo.setTransId("21212");
+			flightpo.setTransId("54");
 			DbCache dbCache = new DbCache();
-			
+			dbCache.delete("54");
 			dbCache.insertFlight(flightpo);
-			dbCache.query("21212");
+			dbCache.query("54");
 			System.out.print(flightInfo); 
 			JSONObject jsonObject = JSONObject.fromObject("{abc:\""
 					+ flightInfo + "\"}");
