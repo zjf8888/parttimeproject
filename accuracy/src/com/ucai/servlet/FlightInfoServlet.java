@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
@@ -22,6 +23,7 @@ import com.ucai.po.Flight;
 import com.ucai.po.SeatClass;
 import com.ucai.po.Segment;
 import com.ucai.tool.DbCache;
+import com.ucai.tool.DbCount;
 import com.ucai.webservices.flightquery.IFlightQueryClient;
 import com.ucai.webservices.flightquery.IFlightQueryPortType;
 
@@ -64,11 +66,12 @@ public class FlightInfoServlet extends HttpServlet {
 			String flightInfo = iFlightQueryPortType.getFlightInfo(org, dst,
 					date, airway, "jdtx", flightNo);
 			Flight flightpo = jDomParse(flightInfo);
-			flightpo.setTransId("54");
+			DbCount dbCount=new DbCount();
+			flightpo.setTransId(""+dbCount.query());			
 			DbCache dbCache = new DbCache();
-			dbCache.delete("54");
+			dbCache.delete();
+			flightpo.setRightNow(Calendar.getInstance().getTime().getTime());
 			dbCache.insertFlight(flightpo);
-			dbCache.query("54");
 			System.out.print(flightInfo); 
 			JSONObject jsonObject = JSONObject.fromObject("{abc:\""
 					+ flightInfo + "\"}");

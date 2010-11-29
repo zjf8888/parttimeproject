@@ -9,6 +9,7 @@ import java.util.List;
  * 
  */
 public class Flight {
+
 	public String transId;// 事务ID 翻页的时候服务器可判断是那个缓存内容的翻页
 
 	public String errorCode;
@@ -28,6 +29,8 @@ public class Flight {
 	public int totalPages;// 总页数
 
 	public int pageNo;// 页号，从1开始 当前页
+
+	private long rightNow;
 
 	public String getEndcity() {
 		return endcity;
@@ -107,6 +110,14 @@ public class Flight {
 
 	public void setTransId(String transId) {
 		this.transId = transId;
+	}
+
+	public long getRightNow() {
+		return rightNow;
+	}
+
+	public void setRightNow(long rightNow) {
+		this.rightNow = rightNow;
 	}
 
 }
