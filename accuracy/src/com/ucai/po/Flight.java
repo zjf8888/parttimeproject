@@ -30,7 +30,7 @@ public class Flight {
 
 	public int pageNo;// 页号，从1开始 当前页
 
-	private long rightNow;
+	private long rightNow;//时间，用整数表示的时间。
 
 	public String getEndcity() {
 		return endcity;

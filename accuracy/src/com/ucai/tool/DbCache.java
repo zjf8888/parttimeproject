@@ -34,7 +34,7 @@ public class DbCache {
 	}
 
 	@SuppressWarnings("deprecation")
-	public void query(final String transId) {
+	public Flight query(final String transId) {
 		ObjectContainer db = Db4o.openFile(DB4OFILENAME);
 		try {
 			Flight flightpo = new Flight();
@@ -51,13 +51,14 @@ public class DbCache {
 
 			System.out.println(result.size());
 			flightpo = result.next();
-			System.out.println(flightpo.getSegmentList().size());
+			return flightpo;
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			db.close();
 		}
+		return null;
 	}
 
 	@SuppressWarnings("deprecation")

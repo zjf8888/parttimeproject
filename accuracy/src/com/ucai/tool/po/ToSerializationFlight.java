@@ -2,14 +2,13 @@ package com.ucai.tool.po;
 
 import java.util.List;
 
+import com.ucai.po.Errinfo;
 import com.ucai.po.Segment;
 
 public class ToSerializationFlight {
 	public String transId;// 事务ID 翻页的时候服务器可判断是那个缓存内容的翻页
 
-	public String errorCode;
-
-	public String errorTips;
+	private Errinfo errinfo;
 
 	public String startcity; // 出发城市编码
 
@@ -31,22 +30,6 @@ public class ToSerializationFlight {
 
 	public void setEndcity(String endcity) {
 		this.endcity = endcity;
-	}
-
-	public String getErrorCode() {
-		return errorCode;
-	}
-
-	public void setErrorCode(String errorCode) {
-		this.errorCode = errorCode;
-	}
-
-	public String getErrorTips() {
-		return errorTips;
-	}
-
-	public void setErrorTips(String errorTips) {
-		this.errorTips = errorTips;
 	}
 
 	public int getPageNo() {
@@ -103,5 +86,13 @@ public class ToSerializationFlight {
 
 	public void setTransId(String transId) {
 		this.transId = transId;
+	}
+
+	public Errinfo getErrinfo() {
+		return errinfo;
+	}
+
+	public void setErrinfo(Errinfo errinfo) {
+		this.errinfo = errinfo;
 	}
 }

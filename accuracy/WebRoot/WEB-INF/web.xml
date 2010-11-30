@@ -7,8 +7,16 @@
 		<servlet-name>FlightInfoServlet</servlet-name>
 		<servlet-class>com.ucai.servlet.FlightInfoServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>FlightInfoByPageServlet</servlet-name>
+		<servlet-class>com.ucai.servlet.FlightInfoByPageServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>FlightInfoServlet</servlet-name>
 		<url-pattern>/spi/getflight.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>FlightInfoByPageServlet</servlet-name>
+		<url-pattern>/spi/getflightbypage.do</url-pattern>
 	</servlet-mapping>
 </web-app>
