@@ -143,14 +143,14 @@ public class Xml2Flight {
 						String discount = cla.getChildTextTrim("discount");
 						seatClass.setDiscount(discount);
 						// 退票说明
-						String refund = cla.getChildTextTrim("refund");
-						seatClass.setRefund(refund);
+						// String refund = cla.getChildTextTrim("refund");
+						// seatClass.setRefund(refund);
 						// 免费变更
-						String cmt = cla.getChildTextTrim("cmt");
-						seatClass.setCmt(cmt);
+						// String cmt = cla.getChildTextTrim("cmt");
+						// seatClass.setCmt(cmt);
 						// 见舱销售，随订随售
-						String sale = cla.getChildTextTrim("sale");
-						seatClass.setSale(sale);
+						// String sale = cla.getChildTextTrim("sale");
+						// seatClass.setSale(sale);
 						classArraylist.add(seatClass);
 					}
 					if (classList.size() > 0) {

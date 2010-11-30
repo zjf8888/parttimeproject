@@ -2,6 +2,7 @@ package com.ucai.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Calendar;
 
 
 import javax.servlet.ServletConfig;
@@ -58,6 +59,7 @@ public class FlightInfoServlet extends HttpServlet {
 					.getIFlightQueryHttpPort();
 			String flightInfo = iFlightQueryPortType.getFlightInfo(org, dst,
 					date, airway, "jdtx", flightNo);
+			long haltHour=Calendar.getInstance().getTime().getTime()-1800000;
 			Flight flightpo = Xml2Flight.jDomParse(flightInfo);
 			ToSerializationFlight tsFlight=FlightFromPage.setFlightFromPage(flightpo, 1);
 			XStream xstream = new XStream();
@@ -68,6 +70,8 @@ public class FlightInfoServlet extends HttpServlet {
 			xstream.alias("class", SeatClass.class);
 	        String xml=xstream.toXML(tsFlight);			
 			PrintWriter pw = response.getWriter();
+			long haltHour2=Calendar.getInstance().getTime().getTime()-1800000;
+			System.out.println(haltHour2-haltHour);
 			pw.write(xml);
 			pw.flush();
 		} catch (IOException ioe) {
