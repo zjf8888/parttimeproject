@@ -1,6 +1,5 @@
 package com.ucai.tool;
 
-import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -9,7 +8,6 @@ import java.util.List;
 
 import org.jdom.Document;
 import org.jdom.Element;
-import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
 
 import com.ucai.po.Flight;
@@ -161,12 +159,15 @@ public class Xml2Flight {
 			}
 			flightpo.setSegmentList(segmentArrayList);
 			return flightpo;
-		} catch (JDOMException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+			flightpo.setErrorCode("104");
+			flightpo.setErrorTips("该页数据不存在!");
+			flightpo.setTotalNums(0);
+			flightpo.setTotalPages(0);
+			flightpo.setPageNo(1);
+			return flightpo;			
 		}
-		return null;
 	}
 
 }

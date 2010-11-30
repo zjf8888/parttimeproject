@@ -4,14 +4,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Calendar;
 
-
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import org.apache.commons.httpclient.params.HttpClientParams;
+import org.codehaus.xfire.client.Client;
+import org.codehaus.xfire.transport.http.CommonsHttpMessageSender;
 
 import com.thoughtworks.xstream.XStream;
 import com.ucai.po.Flight;
@@ -56,22 +57,26 @@ public class FlightInfoServlet extends HttpServlet {
 			}
 
 			IFlightQueryPortType iFlightQueryPortType = client
-					.getIFlightQueryHttpPort();
+					.getIFlightQueryHttpPort(); // 设置连接参数
+			setTimeOut(iFlightQueryPortType);
 			String flightInfo = iFlightQueryPortType.getFlightInfo(org, dst,
 					date, airway, "jdtx", flightNo);
-			long haltHour=Calendar.getInstance().getTime().getTime()-1800000;
+			System.out.println(flightInfo);
+			long haltHour = Calendar.getInstance().getTime().getTime() - 1800000;
 			Flight flightpo = Xml2Flight.jDomParse(flightInfo);
-			ToSerializationFlight tsFlight=FlightFromPage.setFlightFromPage(flightpo, 1);
+			ToSerializationFlight tsFlight = FlightFromPage.setFlightFromPage(
+					flightpo, 1);
 			XStream xstream = new XStream();
 			xstream.alias("flightdate", ToSerializationFlight.class);
-			xstream.aliasField("date", ToSerializationFlight.class, "segmentList");
+			xstream.aliasField("date", ToSerializationFlight.class,
+					"segmentList");
 			xstream.alias("segment", Segment.class);
 			xstream.aliasField("classs", Segment.class, "classesList");
 			xstream.alias("class", SeatClass.class);
-	        String xml=xstream.toXML(tsFlight);			
+			String xml = xstream.toXML(tsFlight);
 			PrintWriter pw = response.getWriter();
-			long haltHour2=Calendar.getInstance().getTime().getTime()-1800000;
-			System.out.println(haltHour2-haltHour);
+			long haltHour2 = Calendar.getInstance().getTime().getTime() - 1800000;
+			System.out.println(haltHour2 - haltHour);
 			pw.write(xml);
 			pw.flush();
 		} catch (IOException ioe) {
@@ -79,10 +84,21 @@ public class FlightInfoServlet extends HttpServlet {
 		}
 	}
 
+	private void setTimeOut(IFlightQueryPortType iFlightQueryPortType) {
+		HttpClientParams params = new HttpClientParams();
+		params
+				.setParameter(HttpClientParams.USE_EXPECT_CONTINUE,
+						Boolean.FALSE);
+		params.setParameter(HttpClientParams.CONNECTION_MANAGER_TIMEOUT,
+				new Long(10000));// 单位是毫秒
+		Client timeclient = Client.getInstance(iFlightQueryPortType);
+		timeclient.setProperty(CommonsHttpMessageSender.HTTP_CLIENT_PARAMS,
+				params);
+	}
+
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
 	}
 
-	
 }

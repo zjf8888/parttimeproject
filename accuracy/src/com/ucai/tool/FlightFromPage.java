@@ -14,12 +14,14 @@ public class FlightFromPage {
 		ToSerializationFlight setFilght = new ToSerializationFlight();
 		setFilght.setTransId(flightpo.getTransId());
 		Errinfo errinfo = new Errinfo();
-		if (flightpo.getSegmentList().size() > 0) {
+		if (flightpo.getSegmentList()!=null && flightpo.getSegmentList().size() > 0) {
 			errinfo.setCode(flightpo.getErrorCode());
 			errinfo.setDescription(flightpo.getErrorTips());
 		} else {
 			errinfo.setCode("104");
 			errinfo.setDescription("该页数据不存在!");
+			setFilght.setErrinfo(errinfo);
+			return setFilght;
 		}
 		setFilght.setErrinfo(errinfo);
 		setFilght.setStartcity(flightpo.getStartcity());
