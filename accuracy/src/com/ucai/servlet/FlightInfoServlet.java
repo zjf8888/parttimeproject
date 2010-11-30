@@ -67,6 +67,7 @@ public class FlightInfoServlet extends HttpServlet {
 			String flightInfo = iFlightQueryPortType.getFlightInfo(org, dst,
 					date, airway, "jdtx", flightNo);
 			Flight flightpo = Xml2Flight.jDomParse(flightInfo);
+			
 			JSONObject jsonObject = JSONObject.fromObject("{abc:\""
 					+ flightInfo + "\"}");
 			PrintWriter pw = response.getWriter();
