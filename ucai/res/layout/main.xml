@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<AbsoluteLayout android:orientation="horizontal"
+		android:layout_width="wrap_content" android:layout_height="wrap_content">
+		<Button android:id="@+id/joke" 	android:layout_x="0px" android:layout_y="190px" android:layout_width="wrap_content"
+			android:layout_height="wrap_content"></Button>
+		<Button android:id="@+id/riddles" android:layout_x="0px" android:layout_y="235px" android:layout_width="wrap_content"
+			android:layout_height="wrap_content"></Button>
+		<Button android:id="@+id/comic" android:layout_x="0px" android:layout_y="280px" android:layout_width="wrap_content"
+			android:layout_height="wrap_content"></Button>
+		<Button android:id="@+id/about" android:layout_x="0px" android:layout_y="325px" android:layout_width="wrap_content"
+			android:layout_height="wrap_content"></Button>
+	</AbsoluteLayout>
+</LinearLayout>
