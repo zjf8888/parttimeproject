@@ -11,6 +11,10 @@
 		<servlet-name>FlightInfoByPageServlet</servlet-name>
 		<servlet-class>com.ucai.servlet.FlightInfoByPageServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>FilghtInfoJsonServlet</servlet-name>
+		<servlet-class>com.ucai.servlet.FilghtInfoJsonServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>FlightInfoServlet</servlet-name>
 		<url-pattern>/spi/getflight.do</url-pattern>
@@ -18,5 +22,9 @@
 	<servlet-mapping>
 		<servlet-name>FlightInfoByPageServlet</servlet-name>
 		<url-pattern>/spi/getflightbypage.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>FilghtInfoJsonServlet</servlet-name>
+		<url-pattern>/filghtInfoJsonServlet</url-pattern>
 	</servlet-mapping>
 </web-app>
