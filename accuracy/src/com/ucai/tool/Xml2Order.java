@@ -1,7 +1,9 @@
 package com.ucai.tool;
 
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
+import java.io.IOException;
 import java.io.StringReader;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
@@ -12,12 +14,9 @@ import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 
 import com.ucai.po.Contact;
-import com.ucai.po.Flight;
 import com.ucai.po.FlyAir;
 import com.ucai.po.FlyOrder;
 import com.ucai.po.Passenger;
-import com.ucai.po.SeatClass;
-import com.ucai.po.Segment;
 
 public class Xml2Order {
 	/**
@@ -26,7 +25,8 @@ public class Xml2Order {
 	 * @param xml
 	 * @return
 	 */
-	private static FlyOrder xml2Seat(String xml) {
+	public static FlyOrder xml2Seat(byte[] a) {
+		String xml=getUTFStr(a);
 		FlyOrder flyOrder = new FlyOrder();
 		flyOrder.setClientId("SZX540");// 预设值--深航编号
 		flyOrder.setJDName("JD");// 标识为精度天下
@@ -81,24 +81,22 @@ public class Xml2Order {
 				// 起飞时间
 				String sTime = flyAirelement.getChildTextTrim("sTime");
 				flyAir.setsTime(sTime);
-				//抵达时间
-				String eTime=flyAirelement.getChildTextTrim("eTime");
+				// 抵达时间
+				String eTime = flyAirelement.getChildTextTrim("eTime");
 				flyAir.seteTime(eTime);
 				flyAirArrayList.add(flyAir);
-				
+
 			}
 			flyOrder.setFlyAirs(flyAirArrayList);
-			
-			
-			
+
 			List<Passenger> passengerArrayList = new ArrayList<Passenger>();
 			Element passengers = flight.getChild("passengers");
-			List passengersList = flyAirs.getChildren("passenger");
+			List passengersList = passengers.getChildren("passenger");
 
 			for (Iterator iter = passengersList.iterator(); iter.hasNext();) {
 				Element passengerelement = (Element) iter.next();
 				Passenger passenger = new Passenger();
-				// 乘客姓名   一定是简体中文，不包含生僻字 英文名 的格式 first name/ last name
+				// 乘客姓名 一定是简体中文，不包含生僻字 英文名 的格式 first name/ last name
 				String pasName = passengerelement.getChildTextTrim("pasName");
 				passenger.setPasName(pasName);
 				// 乘客类型 1/成人、2/儿童、3/婴儿
@@ -108,25 +106,28 @@ public class Xml2Order {
 				String pasYE = passengerelement.getChildTextTrim("pasYE");
 				passenger.setPasYE(pasYE);
 				// 证件类型 1、身份证，2、港澳通行证，3、护照，4、军官证，5、台胞证，6、国际海员证，7、回乡证，8、其他
-				String pasBirthday = passengerelement.getChildTextTrim("pasBirthday");
-				passenger.setPasBirthday(pasBirthday);				
+				String pasBirthday = passengerelement
+						.getChildTextTrim("pasBirthday");
+				passenger.setPasBirthday(pasBirthday);
 				// 证件号码
-				String pasBirthNo = passengerelement.getChildTextTrim("pasBirthNo");
+				String pasBirthNo = passengerelement
+						.getChildTextTrim("pasBirthNo");
 				passenger.setPasBirthNo(pasBirthNo);
 				// 保险数量
-				String insurance_num = passengerelement.getChildTextTrim("insurance_num");
+				String insurance_num = passengerelement
+						.getChildTextTrim("insurance_num");
 				passenger.setInsurance_num(insurance_num);
-				
+
 				passengerArrayList.add(passenger);
-				
+
 			}
-			flyOrder.setPassengers(passengerArrayList);	
-			
+			flyOrder.setPassengers(passengerArrayList);
+
 			Element contact = flight.getChild("contact");
-			Contact contactpo=new Contact();
+			Contact contactpo = new Contact();
 			// 姓名
 			String conName = contact.getChildTextTrim("conName");
-			contactpo.setConName(conName);				
+			contactpo.setConName(conName);
 			// 固定电话
 			String conTel = contact.getChildTextTrim("contact");
 			contactpo.setConTel(conTel);
@@ -138,16 +139,39 @@ public class Xml2Order {
 			contactpo.setConEmail(conEmail);
 			// 联系地址
 			String conAddress = contact.getChildTextTrim("conAddress");
-			contactpo.setConAddress(conAddress); 
+			contactpo.setConAddress(conAddress);
 			// 配送地址
 			String psAddress = contact.getChildTextTrim("psAddress");
-			contactpo.setPsAddress(psAddress); 
+			contactpo.setPsAddress(psAddress);
 			flyOrder.setContact(contactpo);
 			return flyOrder;
 		} catch (Exception e) {
 			e.printStackTrace();
 
 			return flyOrder;
+		}
+	}
+
+	private static String getUTFStr(byte[] utfbytes) {
+
+		int rdlen = utfbytes.length;
+
+		byte abyte2[] = new byte[rdlen + 2];
+		abyte2[0] = (byte) (rdlen >> 8);
+		abyte2[1] = (byte) rdlen;
+		System.arraycopy(utfbytes, 0, abyte2, 2, rdlen);
+		try {
+			ByteArrayInputStream bytearrayinputstream = new ByteArrayInputStream(
+					abyte2);
+			DataInputStream datainputstream = new DataInputStream(
+					bytearrayinputstream);
+
+			String utfstr = datainputstream.readUTF();
+			bytearrayinputstream = null;
+			datainputstream = null;
+			return utfstr;
+		} catch (IOException ioe) {
+			return null;
 		}
 	}
 }

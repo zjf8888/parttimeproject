@@ -10,15 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.httpclient.params.HttpClientParams;
-import org.codehaus.xfire.client.Client;
-import org.codehaus.xfire.transport.http.CommonsHttpMessageSender;
 
 import com.thoughtworks.xstream.XStream;
 import com.ucai.po.Flight;
 import com.ucai.po.SeatClass;
 import com.ucai.po.Segment;
 import com.ucai.tool.FlightFromPage;
+import com.ucai.tool.IFlightQueryTool;
 import com.ucai.tool.Xml2Flight;
 import com.ucai.tool.po.ToSerializationFlight;
 import com.ucai.webservices.flightquery.IFlightQueryClient;
@@ -58,7 +56,8 @@ public class FlightInfoServlet extends HttpServlet {
 
 			IFlightQueryPortType iFlightQueryPortType = client
 					.getIFlightQueryHttpPort(); // 设置连接参数
-			setTimeOut(iFlightQueryPortType);
+			IFlightQueryTool iFlightQueryTool=new IFlightQueryTool();
+			iFlightQueryTool.setTimeOut(iFlightQueryPortType);
 			String flightInfo = iFlightQueryPortType.getFlightInfo(org, dst,
 					date, airway, "jdtx", flightNo);
 			System.out.println(flightInfo);
@@ -84,17 +83,7 @@ public class FlightInfoServlet extends HttpServlet {
 		}
 	}
 
-	private void setTimeOut(IFlightQueryPortType iFlightQueryPortType) {
-		HttpClientParams params = new HttpClientParams();
-		params
-				.setParameter(HttpClientParams.USE_EXPECT_CONTINUE,
-						Boolean.FALSE);
-		params.setParameter(HttpClientParams.CONNECTION_MANAGER_TIMEOUT,
-				new Long(10000));// 单位是毫秒
-		Client timeclient = Client.getInstance(iFlightQueryPortType);
-		timeclient.setProperty(CommonsHttpMessageSender.HTTP_CLIENT_PARAMS,
-				params);
-	}
+	
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
