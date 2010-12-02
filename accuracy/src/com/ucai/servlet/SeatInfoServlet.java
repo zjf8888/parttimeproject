@@ -73,5 +73,5 @@ public class SeatInfoServlet extends HttpServlet {
 		} catch (IOException ioe) {
 			return null;
 		}
-	}
+	} 
 }

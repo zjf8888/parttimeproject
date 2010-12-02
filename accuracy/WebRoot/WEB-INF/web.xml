@@ -16,6 +16,10 @@
 		<servlet-class>com.ucai.servlet.FilghtInfoJsonServlet</servlet-class>
 	</servlet>
 	<servlet>
+		<servlet-name>FilghtInfoByPageJsonServlet</servlet-name>
+		<servlet-class>com.ucai.servlet.FilghtInfoByPageJsonServlet</servlet-class>
+	</servlet>
+	<servlet>
 		<servlet-name>SeatInfoServlet</servlet-name>
 		<servlet-class>com.ucai.servlet.SeatInfoServlet</servlet-class>
 	</servlet>
@@ -30,6 +34,10 @@
 	<servlet-mapping>
 		<servlet-name>FilghtInfoJsonServlet</servlet-name>
 		<url-pattern>/filghtInfoJsonServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>FilghtInfoByPageJsonServlet</servlet-name>
+		<url-pattern>/filghtInfoByPageJsonServlet</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>SeatInfoServlet</servlet-name>
