@@ -29,6 +29,8 @@ public class AirOrder {
 
 	private String a_FuelFee;
 
+	private String a_TGQ;
+
 	public String getA_BuildFee() {
 		return a_BuildFee;
 	}
@@ -139,5 +141,13 @@ public class AirOrder {
 
 	public void setA_Scity(String scity) {
 		a_Scity = scity;
+	}
+
+	public String getA_TGQ() {
+		return a_TGQ;
+	}
+
+	public void setA_TGQ(String a_tgq) {
+		a_TGQ = a_tgq;
 	}
 }

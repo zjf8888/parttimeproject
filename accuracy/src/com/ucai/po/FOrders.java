@@ -49,6 +49,16 @@ public class FOrders {
 
 	private String f_CPDate;
 
+	private String f_PeisongAddr;
+
+	public String getF_PeisongAddr() {
+		return f_PeisongAddr;
+	}
+
+	public void setF_PeisongAddr(String peisongAddr) {
+		f_PeisongAddr = peisongAddr;
+	}
+
 	public String getF_AddDateTime() {
 		return f_AddDateTime;
 	}
