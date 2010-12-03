@@ -26,14 +26,14 @@ public class Xml2Order {
 	 * @return
 	 */
 	public static FlyOrder xml2Seat(byte[] a) {
-		String xml=getUTFStr(a);
+		String xml = getUTFStr(a);
 		FlyOrder flyOrder = new FlyOrder();
 		flyOrder.setClientId("SZX540");// 预设值--深航编号
 		flyOrder.setJDName("JD");// 标识为精度天下
 		Calendar calendar = Calendar.getInstance();
 		flyOrder.setFOrder("F" + calendar.getTime().getTime());
 		flyOrder.setOrderDate(calendar.get(Calendar.YEAR) + "-"
-				+ calendar.get(Calendar.MONTH) + "-"
+				+ (calendar.get(Calendar.MONTH) + 1) + "-"
 				+ calendar.get(Calendar.DAY_OF_MONTH));
 		StringReader sr = new StringReader(xml);
 		SAXBuilder builder = new SAXBuilder(false);
