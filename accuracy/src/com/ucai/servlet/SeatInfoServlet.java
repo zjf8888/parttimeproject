@@ -55,6 +55,7 @@ public class SeatInfoServlet extends HttpServlet {
 		IFlightQueryTool iFlightQueryTool = new IFlightQueryTool();
 		iFlightQueryTool.setTimeOut(iFlightQueryPortType);
 		String reXml = iFlightQueryPortType.getOrderSeat(xml);
+		System.out.println(reXml);
 		PrintWriter pw = response.getWriter();
 		pw.write(reXml);
 		pw.flush();
