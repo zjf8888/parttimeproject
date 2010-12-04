@@ -10,6 +10,8 @@ import com.ucai.po.FlyAir;
 import com.ucai.po.FlyOrder;
 import com.ucai.po.Order;
 import com.ucai.po.Orders;
+import com.ucai.po.Passenger;
+import com.ucai.po.Passenger2;
 import com.ucai.po.ReturnPo;
 
 public class FlyOrder2JDOrder {
@@ -75,6 +77,11 @@ public class FlyOrder2JDOrder {
 		orders.setFOrders(fOrders);
 		
 		List<AirOrder> AirOrders=new ArrayList<AirOrder>();
+		
+		List<Passenger2> Passengers2=new ArrayList<Passenger2>();
+		List<Passenger> passengers=flyOrder.getPassengers();
+		
+		
 		for(int i=0;i<flyAirs.size();i++){
 			FlyAir flyAir=flyAirs.get(i);
 			AirOrder airOrder=new AirOrder();
@@ -94,8 +101,31 @@ public class FlyOrder2JDOrder {
 			airOrder.setA_FuelFee(flyAir.getFuelfee());
 			airOrder.setA_TGQ("");
 			AirOrders.add(airOrder);
+			
+			
+			//由于需要记录票价，而且订单跟个人信息相同，故在同一循环里处理。
+			Passenger pa1=passengers.get(i);
+			Passenger2 ppo=new Passenger2();
+			ppo.setP_Name(pa1.getPasName());
+			ppo.setP_TypeID(pa1.getPasType());
+			ppo.setP_CardType(pa1.getPasBirthday());
+			ppo.setP_CardNo(pa1.getPasBirthNo());
+			ppo.setP_InsurType("");//该字段在之前没有提及
+			ppo.setP_InsurBuyNumber(pa1.getInsurance_num());
+			ppo.setP_InsurZSNumber("0");//该字段在之前没有提及
+			ppo.setP_TicketNo("");
+			ppo.setP_CPDate("1900-01-01");
+			ppo.setP_Status("1");
+			ppo.setP_TicketPrice(airOrder.getA_ClassPrice());
+			ppo.setP_RTicketFee(airOrder.getA_ClassPrice());
+			ppo.setP_BuildFee(airOrder.getA_BuildFee());
+			ppo.setP_FuelFee(airOrder.getA_FuelFee());
+			ppo.setP_TicketState("1");
+			Passengers2.add(ppo);
 		}
+		
 		orders.setAirOrders(AirOrders);
+		orders.setPassengers(Passengers2);
 		return orders;
 
 	}
