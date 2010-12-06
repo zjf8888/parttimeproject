@@ -10,10 +10,10 @@ import com.ucai.po.ReturnPo;
 
 public class ReturnXml2Po {
 	public static ReturnPo getReturnPo(String xml) {
-		ReturnPo po = new ReturnPo();
-		StringReader sr = new StringReader(xml);
-		SAXBuilder builder = new SAXBuilder(false);
+		ReturnPo po = new ReturnPo();		
 		try {
+			StringReader sr = new StringReader(xml);
+			SAXBuilder builder = new SAXBuilder(false);
 			Document doc = builder.build(sr);
 			Element returnxml = doc.getRootElement();
 			// 获取状态码

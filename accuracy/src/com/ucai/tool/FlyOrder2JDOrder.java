@@ -17,7 +17,7 @@ import com.ucai.po.Passenger2;
 import com.ucai.po.ReturnPo;
 
 public class FlyOrder2JDOrder {
-	public Orders getJDOrderFromFlyOrder(FlyOrder flyOrder, ReturnPo rpo) {
+	public static Orders getJDOrderFromFlyOrder(FlyOrder flyOrder, ReturnPo rpo) {
 		Orders orders = new Orders();
 		long id = Calendar.getInstance().getTime().getTime();
 		Order order = new Order();

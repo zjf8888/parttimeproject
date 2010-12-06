@@ -147,8 +147,9 @@ public class Xml2Order {
 			return flyOrder;
 		} catch (Exception e) {
 			e.printStackTrace();
-
 			return flyOrder;
+		}finally{
+			sr.close();
 		}
 	}
 
