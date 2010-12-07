@@ -2,25 +2,23 @@ package com.ucai.webservices.ucai;
 
 import org.apache.axis.client.Call;
 import org.apache.axis.client.Service;
+
+import com.ucai.www.FlyOrderResponseFlyOrderResult;
+import com.ucai.www.SetOrdersSoapProxy;
+
 import javax.xml.namespace.QName;
 
 public class SetOrderImp {
 
-	public byte[] FlyOrder(String orderxml) {
+	public String FlyOrder(String orderxml) {
 		
-		String endpoint = "http://www.ucai.com/FlyWebService/SetOrders.asmx?WSDL";
+		
 		try {
-			Service service = new Service();
-			Call call = (Call)service.createCall();
-			call.setTargetEndpointAddress(new java.net.URL(endpoint));
-			call.setOperationName(new QName("http://www.ucai.com","FlyOrder"));
-			call.addParameter("name",org.apache.axis.encoding.XMLType.XSD_DATE,javax.xml.rpc.ParameterMode.IN);
-			call.setReturnType(org.apache.axis.encoding.XMLType.XSD_STRING);
-			call.setUseSOAPAction(true);
-			call.setSOAPActionURI("http://www.ucai.com/FlyOrder");
-			byte[] bytexml =(byte[])call.invoke(new Object[]{orderxml});
-			System.out.println(bytexml.length);
-			return bytexml;
+			SetOrdersSoapProxy SetOrdersSoapProxy=new SetOrdersSoapProxy();
+			FlyOrderResponseFlyOrderResult FlyOrderResponseFlyOrderResult=SetOrdersSoapProxy.flyOrder(orderxml);
+			
+			System.out.println(FlyOrderResponseFlyOrderResult.toString());
+			return FlyOrderResponseFlyOrderResult.toString();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

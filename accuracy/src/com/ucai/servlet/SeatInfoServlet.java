@@ -95,10 +95,9 @@ public class SeatInfoServlet extends HttpServlet {
 		String jdReXml = xstream.toXML(Orders);
 		System.out.println(jdReXml);
 		SetOrderImp SetOrderImp=new SetOrderImp();
-		byte[] rexml=SetOrderImp.FlyOrder(jdReXml);
-		String re=getUTFStr(rexml);
+		String rexml=SetOrderImp.FlyOrder(jdReXml);;
 		
-		System.out.println(re);
+		System.out.println(rexml);
 		PrintWriter pw = response.getWriter();
 		pw.write(reXml);
 		pw.flush();
