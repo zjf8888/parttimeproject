@@ -1,7 +1,5 @@
 package com.ucai.servlet;
 
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -28,8 +26,6 @@ import com.ucai.tool.Xml2Order;
 import com.ucai.webservices.flightquery.IFlightQueryClient;
 import com.ucai.webservices.flightquery.IFlightQueryPortType;
 import com.ucai.webservices.ucai.SetOrderImp;
-import com.ucai.webservices.ucaisetorders.SetOrdersClient;
-import com.ucai.webservices.ucaisetorders.SetOrdersSoap;
 
 public class SeatInfoServlet extends HttpServlet {
 	private static final String CONTENT_TYPE = "text/xml;charset=UTF-8";
@@ -88,15 +84,23 @@ public class SeatInfoServlet extends HttpServlet {
 			rpo.setInfo("ok");
 			rpo.setPrice("1750");
 		}
+		System.out.println("--------------");	 	
+		rpo.setPnr("HE9CJL");
 		Orders Orders = FlyOrder2JDOrder.getJDOrderFromFlyOrder(flyOrder, rpo);
+		System.out.println("================"); 
+		
+		Orders.getOrder().setTotalPrice("0");
+		Orders.getFOrders().setF_Payprice("0"); 
+		Orders.getFOrders().setF_FuelFees("0");
+		Orders.getFOrders().setF_BuildFees("0");
+		
 		xstream.alias("Orders", Orders.class);
 		xstream.alias("airOrder", AirOrder.class);
 		xstream.alias("passenger", Passenger2.class);
 		String jdReXml = xstream.toXML(Orders);
-		System.out.println(jdReXml);
+		System.out.println(jdReXml); 		
 		SetOrderImp SetOrderImp=new SetOrderImp();
-		String rexml=SetOrderImp.FlyOrder(jdReXml);;
-		
+		String rexml=SetOrderImp.FlyOrder(jdReXml);;		
 		System.out.println(rexml);
 		PrintWriter pw = response.getWriter();
 		pw.write(reXml);
@@ -107,26 +111,5 @@ public class SeatInfoServlet extends HttpServlet {
 			throws ServletException, IOException {
 		doPost(request, response);
 	}
-	private static String getUTFStr(byte[] utfbytes) {
-
-		int rdlen = utfbytes.length;
-
-		byte abyte2[] = new byte[rdlen + 2];
-		abyte2[0] = (byte) (rdlen >> 8);
-		abyte2[1] = (byte) rdlen;
-		System.arraycopy(utfbytes, 0, abyte2, 2, rdlen);
-		try {
-			ByteArrayInputStream bytearrayinputstream = new ByteArrayInputStream(
-					abyte2);
-			DataInputStream datainputstream = new DataInputStream(
-					bytearrayinputstream);
-
-			String utfstr = datainputstream.readUTF();
-			bytearrayinputstream = null;
-			datainputstream = null;
-			return utfstr;
-		} catch (IOException ioe) {
-			return null;
-		}
-	}
+	
 }
