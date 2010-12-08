@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ucai.FlyOrder;
-
 import com.thoughtworks.xstream.XStream;
 import com.ucai.po.AirOrder;
 import com.ucai.po.FlyAir;
@@ -56,7 +54,7 @@ public class SeatInfoServlet extends HttpServlet {
 		byte[] a = os.toByteArray();
 		com.ucai.po.FlyOrder flyOrder = Xml2Order.xml2Seat(a);
 		XStream xstream = new XStream();
-		xstream.alias("flyOrder", FlyOrder.class);
+		xstream.alias("flyOrder", com.ucai.po.FlyOrder.class);
 		xstream.alias("flyAir", FlyAir.class);
 		xstream.alias("passenger", Passenger.class);
 		String xml = xstream.toXML(flyOrder);
@@ -66,7 +64,7 @@ public class SeatInfoServlet extends HttpServlet {
 				.getIFlightQueryHttpPort(); // 设置连接参数
 		IFlightQueryTool iFlightQueryTool = new IFlightQueryTool();
 		iFlightQueryTool.setTimeOut(iFlightQueryPortType);
-		String reXml=null;
+		String reXml = null;
 		try {
 			reXml = iFlightQueryPortType.getOrderSeat(xml);
 			System.out.println(reXml);
@@ -74,34 +72,19 @@ public class SeatInfoServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		ReturnPo rpo = ReturnXml2Po.getReturnPo(reXml);
-		if(rpo.getPrice()==null){
-			rpo.setCode("1");
-			rpo.setFlyConpany("MU");
-			rpo.setFuel("50");
-			rpo.setTax("70");
-			rpo.setPnr("HE9CJL");
-			rpo.setTicketPrice("1870");
-			rpo.setInfo("ok");
-			rpo.setPrice("1750");
-		}
-		System.out.println("--------------");	 	
-		rpo.setPnr("HE9CJL");
-		Orders Orders = FlyOrder2JDOrder.getJDOrderFromFlyOrder(flyOrder, rpo);
-		System.out.println("================"); 
 		
-		Orders.getOrder().setTotalPrice("0");
-		Orders.getFOrders().setF_Payprice("0"); 
-		Orders.getFOrders().setF_FuelFees("0");
-		Orders.getFOrders().setF_BuildFees("0");
+			Orders Orders = FlyOrder2JDOrder.getJDOrderFromFlyOrder(flyOrder,
+					rpo);
+			xstream.alias("Orders", Orders.class);
+			xstream.alias("airOrder", AirOrder.class);
+			xstream.alias("passenger", Passenger2.class);
+			String jdReXml = xstream.toXML(Orders);
+			System.out.println(jdReXml);
+			SetOrderImp SetOrderImp = new SetOrderImp();
+			String rexml = SetOrderImp.FlyOrder(jdReXml);
+			System.out.println(rexml);
 		
-		xstream.alias("Orders", Orders.class);
-		xstream.alias("airOrder", AirOrder.class);
-		xstream.alias("passenger", Passenger2.class);
-		String jdReXml = xstream.toXML(Orders);
-		System.out.println(jdReXml); 		
-		SetOrderImp SetOrderImp=new SetOrderImp();
-		String rexml=SetOrderImp.FlyOrder(jdReXml);;		
-		System.out.println(rexml);
+		
 		PrintWriter pw = response.getWriter();
 		pw.write(reXml);
 		pw.flush();
@@ -111,5 +94,5 @@ public class SeatInfoServlet extends HttpServlet {
 			throws ServletException, IOException {
 		doPost(request, response);
 	}
-	
+
 }
