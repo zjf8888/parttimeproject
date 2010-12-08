@@ -6,6 +6,7 @@ import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 
+import com.ucai.po.JDResInfo;
 import com.ucai.po.ReturnPo;
 
 public class ReturnXml2Po {
@@ -33,6 +34,23 @@ public class ReturnXml2Po {
 			po.setFuel(fuel);
 			String price = returnxml.getChildTextTrim("price");
 			po.setPrice(price);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return po;
+	}
+	public static JDResInfo getJDResInfoFromXml(String xml){
+		JDResInfo po=new JDResInfo();
+		try {
+			StringReader sr = new StringReader(xml);
+			SAXBuilder builder = new SAXBuilder(false);
+			Document doc = builder.build(sr);
+			Element returnxml = doc.getRootElement();
+			Element ResInfo = returnxml.getChild("ResInfo");
+			String code = ResInfo.getChildTextTrim("code");
+			String description=ResInfo.getChildTextTrim("description");
+			po.setCode(code);
+			po.setDescription(description);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
