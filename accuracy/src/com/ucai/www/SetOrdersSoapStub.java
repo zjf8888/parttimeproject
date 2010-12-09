@@ -25,12 +25,12 @@ public class SetOrdersSoapStub extends org.apache.axis.client.Stub implements co
         org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("FlyOrder");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://www.ucai.com/FlyOrder", "orderxml"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://www.ucai.com", "orderxml"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         param.setOmittable(true);
         oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("http://www.ucai.com/FlyOrder", ">>FlyOrderResponse>FlyOrderResult"));
+        oper.setReturnType(new javax.xml.namespace.QName("http://www.ucai.com", ">>FlyOrderResponse>FlyOrderResult"));
         oper.setReturnClass(com.ucai.www.FlyOrderResponseFlyOrderResult.class);
-        oper.setReturnQName(new javax.xml.namespace.QName("http://www.ucai.com/FlyOrder", "FlyOrderResult"));
+        oper.setReturnQName(new javax.xml.namespace.QName("http://www.ucai.com", "FlyOrderResult"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[0] = oper;
@@ -96,7 +96,7 @@ public class SetOrdersSoapStub extends org.apache.axis.client.Stub implements co
             java.lang.Class simpledf = org.apache.axis.encoding.ser.SimpleDeserializerFactory.class;
             java.lang.Class simplelistsf = org.apache.axis.encoding.ser.SimpleListSerializerFactory.class;
             java.lang.Class simplelistdf = org.apache.axis.encoding.ser.SimpleListDeserializerFactory.class;
-            qName = new javax.xml.namespace.QName("http://www.ucai.com/FlyOrder", ">>FlyOrderResponse>FlyOrderResult");
+            qName = new javax.xml.namespace.QName("http://www.ucai.com", ">>FlyOrderResponse>FlyOrderResult");
             cachedSerQNames.add(qName);
             cls = com.ucai.www.FlyOrderResponseFlyOrderResult.class;
             cachedSerClasses.add(cls);
@@ -223,7 +223,7 @@ public class SetOrdersSoapStub extends org.apache.axis.client.Stub implements co
         _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
         _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://www.ucai.com/FlyOrder", "FlyOrder"));
+        _call.setOperationName(new javax.xml.namespace.QName("http://www.ucai.com", "FlyOrder"));
         setRequestHeaders(_call);
         setAttachments(_call);
  try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {"abc"});
