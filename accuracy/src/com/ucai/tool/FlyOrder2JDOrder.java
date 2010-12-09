@@ -61,6 +61,7 @@ public class FlyOrder2JDOrder {
 		fOrders.setF_PayType("-1");
 		fOrders.setF_PayTime("1900-01-01");
 		fOrders.setF_PayStatus("0");
+		fOrders.setF_PayRemark(" ");
 		fOrders.setF_TicketNum("1");
 		fOrders.setF_Operator("");
 		fOrders.setF_SourceId("2");
@@ -75,7 +76,7 @@ public class FlyOrder2JDOrder {
 		fOrders.setF_Payprice(rpo.getPrice());
 		// 取票方式:1、不需要行程单，通过有效证件办理登机2、机场自取：深圳宝安机场B楼深航柜台3、邮寄地址
 		// 这个没有传过来，需要进一步协商。
-		fOrders.setF_PeisongAddr("1");
+		fOrders.setF_PeisongAddr("(不需要行程单 )凭有效证件直接办理登机手续");
 		orders.setFOrders(fOrders);
 
 		List<AirOrder> AirOrders = new ArrayList<AirOrder>();
@@ -96,11 +97,11 @@ public class FlyOrder2JDOrder {
 			airOrder.setA_FlyDate(flyAir.getsDate());
 			airOrder.setA_PlaneType(flyAir.getPlanesty());
 			airOrder.setA_Pnr(rpo.getPnr());
-			airOrder.setA_PnrState(rpo.getCode());
+			airOrder.setA_PnrState("HK");
 			airOrder.setA_ClassPrice(flyAir.getFlyPrice());
 			airOrder.setA_BuildFee(flyAir.getBuildfee());
 			airOrder.setA_FuelFee(flyAir.getFuelfee());
-			airOrder.setA_TGQ("");
+			airOrder.setA_TGQ("收取20%退票费-收取10%变更费-不得签转-见舱销售，随订随售");
 			AirOrders.add(airOrder);
 
 			// 由于需要记录票价，而且订单跟个人信息相同，故在同一循环里处理。
@@ -131,7 +132,7 @@ public class FlyOrder2JDOrder {
 		Contact contact = flyOrder.getContact();
 		LinkMan.setL_Name(contact.getConName());
 		LinkMan.setL_Mobile(contact.getConMobile());
-		LinkMan.setL_Phone(contact.getConTel());
+		LinkMan.setL_Phone(" ");
 		LinkMan.setL_Email(contact.getConEmail());
 		LinkMan.setL_Address(contact.getConAddress());
 		LinkMan.setL_UserId("0");
