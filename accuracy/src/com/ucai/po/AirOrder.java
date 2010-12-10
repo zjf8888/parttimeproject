@@ -1,35 +1,41 @@
 package com.ucai.po;
 
+/**
+ * 飞行订单类
+ * 
+ * @author lin
+ * 
+ */
 public class AirOrder {
-	private String a_Company;
+	private String a_Company;// 航班号前面的两条字母（航空公司二字简码）
 
-	private String a_FlyNo;
+	private String a_FlyNo;// 航班号
 
-	private String a_Scity;
+	private String a_Scity;// 出发城市三字编码
 
-	private String a_Ecity;
+	private String a_Ecity;// 目标城市三字编码
 
-	private String a_Class;
+	private String a_Class;// 舱位码
 
-	private String a_FlySTime;
+	private String a_FlySTime;// 出发时间
 
-	private String a_FlyETime;
+	private String a_FlyETime;// 到达时间
 
-	private String a_FlyDate;
+	private String a_FlyDate;// 起飞日期
 
-	private String a_PlaneType;
+	private String a_PlaneType;// 机型
 
-	private String a_Pnr;
+	private String a_Pnr;// 订座编码
 
-	private String a_PnrState;
+	private String a_PnrState;// PNR状态
 
-	private String a_ClassPrice;
+	private String a_ClassPrice;// 舱位的票价
 
-	private String a_BuildFee;
+	private String a_BuildFee;// 对应航程的价格
 
-	private String a_FuelFee;
+	private String a_FuelFee;// 对应航程的价格
 
-	private String a_TGQ;
+	private String a_TGQ;// 退改签规定
 
 	public String getA_BuildFee() {
 		return a_BuildFee;

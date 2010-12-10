@@ -1,9 +1,14 @@
 package com.ucai.po;
 
+/**
+ * 错误信息存储类
+ * @author lin
+ *
+ */
 public class Errinfo {
-	private String code;
+	private String code;//错误码
 
-	private String description;
+	private String description;//描述信息
 
 	public String getCode() {
 		return code;

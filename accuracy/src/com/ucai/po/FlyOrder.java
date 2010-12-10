@@ -1,21 +1,25 @@
 package com.ucai.po;
 
 import java.util.List;
-
+/**
+ * 机票扣位参数存储类
+ * @author lin
+ *
+ */
 public class FlyOrder {
-	private String clientId;
+	private String clientId;//航空公司客户ID
 
-	private String JDName;
+	private String JDName;//标识为精度天下
 
-	private String FOrder;
+	private String FOrder;//订单号
 
-	private String OrderDate;
+	private String OrderDate;//下单时间
 
-	private List<FlyAir> flyAirs;
+	private List<FlyAir> flyAirs;//航段集合
 
-	private List<Passenger> passengers;
+	private List<Passenger> passengers;//乘客集合
 
-	private Contact contact;
+	private Contact contact;//联系人信息
 
 	public List<Passenger> getPassengers() {
 		return passengers;
