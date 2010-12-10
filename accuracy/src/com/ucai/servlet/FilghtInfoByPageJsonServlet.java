@@ -15,7 +15,11 @@ import com.ucai.po.Flight;
 import com.ucai.tool.DbCache;
 import com.ucai.tool.FlightFromPage;
 import com.ucai.tool.po.ToSerializationFlight;
-
+/**
+ * 获取json分页信息
+ * @author lin
+ *
+ */
 public class FilghtInfoByPageJsonServlet extends HttpServlet {
 
 	/**

@@ -2,7 +2,6 @@ package com.ucai.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Calendar;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -23,11 +22,14 @@ import com.ucai.tool.po.ToSerializationFlight;
 import com.ucai.webservices.flightquery.IFlightQueryClient;
 import com.ucai.webservices.flightquery.IFlightQueryPortType;
 
+/**
+ * 机票查询Servlet 这个类是针对以json为传输介质处理的
+ * 
+ * @author lin
+ * 
+ */
 public class FilghtInfoJsonServlet extends HttpServlet {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private static final String CONTENT_TYPE = "application/json;charset=UTF-8";
@@ -36,6 +38,9 @@ public class FilghtInfoJsonServlet extends HttpServlet {
 		super.init(config);
 	}
 
+	/**
+	 * get访问处理
+	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType(CONTENT_TYPE);
@@ -59,19 +64,17 @@ public class FilghtInfoJsonServlet extends HttpServlet {
 			IFlightQueryPortType iFlightQueryPortType = client
 					.getIFlightQueryHttpPort(); // 设置连接参数
 			setTimeOut(iFlightQueryPortType);
+			// 调用查询机票信息接口
 			String flightInfo = iFlightQueryPortType.getFlightInfo(org, dst,
 					date, airway, "jdtx", flightNo);
-			System.out.println(flightInfo);
-			long haltHour = Calendar.getInstance().getTime().getTime() - 1800000;
+			// 打包返回信息
 			Flight flightpo = Xml2Flight.jDomParse(flightInfo);
+			// 获取第一页查询信息
 			ToSerializationFlight tsFlight = FlightFromPage.setFlightFromPage(
 					flightpo, 1);
-			
+			// 转换成json开始
 			JSONObject jsonObject = JSONObject.fromObject(tsFlight);
 			PrintWriter pw = response.getWriter();
-			long haltHour2 = Calendar.getInstance().getTime().getTime() - 1800000;
-			System.out.println(haltHour2 - haltHour);
-			System.out.println(jsonObject.toString());
 			pw.write(jsonObject.toString());
 			pw.flush();
 		} catch (IOException ioe) {

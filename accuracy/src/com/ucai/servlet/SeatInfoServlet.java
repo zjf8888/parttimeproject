@@ -25,6 +25,12 @@ import com.ucai.webservices.flightquery.IFlightQueryClient;
 import com.ucai.webservices.flightquery.IFlightQueryPortType;
 import com.ucai.webservices.ucai.SetOrderImp;
 
+/**
+ * 扣位信息处理Servlet
+ * 
+ * @author lin
+ * 
+ */
 public class SeatInfoServlet extends HttpServlet {
 	private static final String CONTENT_TYPE = "text/xml;charset=UTF-8";
 
@@ -37,12 +43,15 @@ public class SeatInfoServlet extends HttpServlet {
 		super.init(config);
 	}
 
+	/**
+	 * 订单处理方法
+	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType(CONTENT_TYPE);
 		response.setCharacterEncoding("UTF-8");
 		InputStream inputStream = request.getInputStream();
-
+		// 获取订单xml开始
 		java.io.ByteArrayOutputStream os = new java.io.ByteArrayOutputStream();
 		byte[] buffer = new byte[64 * 1024];
 		for (;;) {
@@ -52,13 +61,15 @@ public class SeatInfoServlet extends HttpServlet {
 			os.write(buffer, 0, count);
 		}
 		byte[] a = os.toByteArray();
-		com.ucai.po.FlyOrder flyOrder = Xml2Order.xml2Seat(a);
+		// 获取订单xml结束
+		com.ucai.po.FlyOrder flyOrder = Xml2Order.xml2Seat(a);// 打包订单对象
+		// 转换扣位xml开始
 		XStream xstream = new XStream();
 		xstream.alias("flyOrder", com.ucai.po.FlyOrder.class);
 		xstream.alias("flyAir", FlyAir.class);
 		xstream.alias("passenger", Passenger.class);
 		String xml = xstream.toXML(flyOrder);
-		System.out.println(xml);
+		// 转换扣位xml结束
 		IFlightQueryClient client = new IFlightQueryClient();
 		IFlightQueryPortType iFlightQueryPortType = client
 				.getIFlightQueryHttpPort(); // 设置连接参数
@@ -66,25 +77,27 @@ public class SeatInfoServlet extends HttpServlet {
 		iFlightQueryTool.setTimeOut(iFlightQueryPortType);
 		String reXml = null;
 		try {
+			// 调用扣位远程接口
 			reXml = iFlightQueryPortType.getOrderSeat(xml);
 			System.out.println(reXml);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		ReturnPo rpo = ReturnXml2Po.getReturnPo(reXml);
-		
+		ReturnPo rpo = ReturnXml2Po.getReturnPo(reXml);// 打包返回信息对象
+		// 判断扣位是否成功，扣位成功就下单
+		if (rpo != null && rpo.getCode() != null && rpo.getCode().equals("1")) {
 			Orders Orders = FlyOrder2JDOrder.getJDOrderFromFlyOrder(flyOrder,
 					rpo);
 			xstream.alias("Orders", Orders.class);
 			xstream.alias("airOrder", AirOrder.class);
 			xstream.alias("passenger", Passenger2.class);
-			String jdReXml = xstream.toXML(Orders);
+			String jdReXml = xstream.toXML(Orders);// 生成订单xml
 			System.out.println(jdReXml);
 			SetOrderImp SetOrderImp = new SetOrderImp();
+			// 下单
 			String rexml = SetOrderImp.FlyOrder(jdReXml);
 			System.out.println(rexml);
-		
-		
+		}
 		PrintWriter pw = response.getWriter();
 		pw.write(reXml);
 		pw.flush();

@@ -16,7 +16,11 @@ import com.ucai.po.Segment;
 import com.ucai.tool.DbCache;
 import com.ucai.tool.FlightFromPage;
 import com.ucai.tool.po.ToSerializationFlight;
-
+/**
+ * 获取xml分页信息
+ * @author lin
+ *
+ */
 public class FlightInfoByPageServlet extends HttpServlet {
 	private static final String CONTENT_TYPE = "text/xml;charset=UTF-8";
 
