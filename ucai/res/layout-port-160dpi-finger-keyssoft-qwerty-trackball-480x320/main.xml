@@ -7,18 +7,24 @@
 		<LinearLayout android:layout_x="0px" android:orientation="vertical"
 			android:layout_y="120px" android:layout_width="fill_parent"
 			android:layout_height="wrap_content">
-			<Button android:id="@+id/travel" android:layout_width="176px"
-				android:layout_height="wrap_content" android:text="旅游"></Button>
-			<Button android:id="@+id/hotel" android:layout_width="176px"
-				android:layout_height="wrap_content" android:text="酒店"></Button>
-			<Button android:id="@+id/ticket" android:layout_width="176px"
-				android:layout_height="wrap_content" android:text="机票"></Button>
-			<Button android:id="@+id/train" android:layout_width="176px"
-				android:layout_height="wrap_content" android:text="火车票务"></Button>
-				<Button android:id="@+id/bus" android:layout_width="176px"
-				android:layout_height="wrap_content" android:text="公交"></Button>
-				<Button android:id="@+id/set" android:layout_width="176px"
-				android:layout_height="wrap_content" android:text="系统设置"></Button>
+			<RelativeLayout android:layout_width="fill_parent"
+				android:layout_height="wrap_content">
+				<LinearLayout android:orientation="vertical"
+					android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_centerInParent="true">
+					<Button android:id="@+id/travel" android:layout_width="176px"
+						android:layout_height="wrap_content" android:text="旅游"></Button>
+					<Button android:id="@+id/hotel" android:layout_width="176px"
+						android:layout_height="wrap_content" android:text="酒店"></Button>
+					<Button android:id="@+id/ticket" android:layout_width="176px"
+						android:layout_height="wrap_content" android:text="机票"></Button>
+					<Button android:id="@+id/train" android:layout_width="176px"
+						android:layout_height="wrap_content" android:text="火车票务"></Button>
+					<Button android:id="@+id/bus" android:layout_width="176px"
+						android:layout_height="wrap_content" android:text="公交"></Button>
+					<Button android:id="@+id/set" android:layout_width="176px"
+						android:layout_height="wrap_content" android:text="系统设置"></Button>
+				</LinearLayout>
+			</RelativeLayout>
 		</LinearLayout>
 	</AbsoluteLayout>
 </LinearLayout>
