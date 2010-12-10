@@ -21,6 +21,11 @@ public class DbCache {
 	final static String DB4OFILENAME = System.getProperty("user.home")
 			+ "/auto.yap";
 
+	/**
+	 * 插入查询飞机信息
+	 * 
+	 * @param flightpo
+	 */
 	@SuppressWarnings("deprecation")
 	public void insertFlight(Flight flightpo) {
 		ObjectContainer db = Db4o.openFile(DB4OFILENAME);
@@ -33,6 +38,12 @@ public class DbCache {
 		}
 	}
 
+	/**
+	 * 通过transId查询飞机信息
+	 * 
+	 * @param transId
+	 * @return
+	 */
 	@SuppressWarnings("deprecation")
 	public Flight query(final String transId) {
 		ObjectContainer db = Db4o.openFile(DB4OFILENAME);
@@ -61,13 +72,18 @@ public class DbCache {
 		return null;
 	}
 
+	/**
+	 * 删除过期查询信息
+	 * 
+	 */
 	@SuppressWarnings("deprecation")
 	public void delete() {
 		Db4o.configure().objectClass("com.ucai.po.Flight")
 				.cascadeOnDelete(true);
 		ObjectContainer db = Db4o.openFile(DB4OFILENAME);
 		try {
-			System.out.println("haltHour:"+Calendar.getInstance().getTime().getTime());
+			System.out.println("haltHour:"
+					+ Calendar.getInstance().getTime().getTime());
 			ObjectSet<Flight> result = db.query(new Predicate<Flight>() {
 				/**
 				 * 
@@ -75,13 +91,13 @@ public class DbCache {
 				private static final long serialVersionUID = 1L;
 
 				public boolean match(Flight arg0) {
-					long haltHour=Calendar.getInstance().getTime().getTime()-1800000;
-					return arg0.getRightNow()<haltHour;
+					long haltHour = Calendar.getInstance().getTime().getTime() - 1800000;
+					return arg0.getRightNow() < haltHour;
 				}
 			});
 			while (result.hasNext()) {
 				Flight flightpo = result.next();
-				deleteSeatClass(db,flightpo.getSegmentList());//删除机票座位信息
+				deleteSeatClass(db, flightpo.getSegmentList());// 删除机票座位信息
 				db.delete(flightpo);
 			}
 
@@ -92,18 +108,25 @@ public class DbCache {
 			db.close();
 		}
 	}
-	private void deleteSeatClass(ObjectContainer db,List<Segment> segmentList){
-		try{
-			for(int i=0;i<segmentList.size();i++){
-				Segment segment=segmentList.get(i);
-				List<SeatClass> seatClassList=segment.getClassesList();
-				for(int j=0;j<seatClassList.size();j++){
-					SeatClass seatClass=seatClassList.get(j);
+
+	/**
+	 * 一并删除座位信息
+	 * 
+	 * @param db
+	 * @param segmentList
+	 */
+	private void deleteSeatClass(ObjectContainer db, List<Segment> segmentList) {
+		try {
+			for (int i = 0; i < segmentList.size(); i++) {
+				Segment segment = segmentList.get(i);
+				List<SeatClass> seatClassList = segment.getClassesList();
+				for (int j = 0; j < seatClassList.size(); j++) {
+					SeatClass seatClass = seatClassList.get(j);
 					db.delete(seatClass);
 				}
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		}
 	}
 }

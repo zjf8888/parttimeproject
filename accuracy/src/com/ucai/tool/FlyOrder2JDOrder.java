@@ -15,8 +15,18 @@ import com.ucai.po.Orders;
 import com.ucai.po.Passenger;
 import com.ucai.po.Passenger2;
 import com.ucai.po.ReturnPo;
-
+/**
+ * 把扣位信息转换成订单信息类
+ * @author lin
+ *
+ */
 public class FlyOrder2JDOrder {
+	/**
+	 * 把扣位信息转换成订单信息类
+	 * @param flyOrder扣位信息
+	 * @param rpo扣位操作后返回的对象
+	 * @return返回订单信息类
+	 */
 	public static Orders getJDOrderFromFlyOrder(FlyOrder flyOrder, ReturnPo rpo) {
 		Orders orders = new Orders();
 		long id = Calendar.getInstance().getTime().getTime();
@@ -87,7 +97,7 @@ public class FlyOrder2JDOrder {
 		for (int i = 0; i < flyAirs.size(); i++) {
 			FlyAir flyAir = flyAirs.get(i);
 			AirOrder airOrder = new AirOrder();
-			airOrder.setA_Company("");
+			airOrder.setA_Company(rpo.getFlyConpany());
 			airOrder.setA_FlyNo(flyAir.getFlyNo());
 			airOrder.setA_Scity(flyAir.getSc());
 			airOrder.setA_Ecity(flyAir.getEc());

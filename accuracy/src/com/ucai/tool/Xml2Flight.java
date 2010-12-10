@@ -31,9 +31,9 @@ public class Xml2Flight {
 		DbCount dbCount = new DbCount();
 		flightpo.setTransId("" + dbCount.query());
 		DbCache dbCache = new DbCache();
-		dbCache.delete();
 		flightpo.setRightNow(Calendar.getInstance().getTime().getTime());
 		dbCache.insertFlight(flightpo);
+		dbCache.delete();
 	}
 
 	/**
@@ -166,7 +166,7 @@ public class Xml2Flight {
 			flightpo.setTotalNums(0);
 			flightpo.setTotalPages(0);
 			flightpo.setPageNo(1);
-			return flightpo;			
+			return flightpo;
 		}
 	}
 

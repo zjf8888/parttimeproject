@@ -9,6 +9,11 @@ public class DbCount {
 	final static String DB4OFILENAME = System.getProperty("user.home")
 			+ "/auto.yap";
 
+	/**
+	 * 获取查询流水号
+	 * 
+	 * @return
+	 */
 	@SuppressWarnings("deprecation")
 	public int query() {
 		ObjectContainer db = Db4o.openFile(DB4OFILENAME);

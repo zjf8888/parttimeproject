@@ -5,7 +5,11 @@ import org.codehaus.xfire.client.Client;
 import org.codehaus.xfire.transport.http.CommonsHttpMessageSender;
 
 import com.ucai.webservices.flightquery.IFlightQueryPortType;
-
+/**
+ * 设置超时类
+ * @author lin
+ *
+ */
 public class IFlightQueryTool {
 	public void setTimeOut(IFlightQueryPortType iFlightQueryPortType) {
 		HttpClientParams params = new HttpClientParams();

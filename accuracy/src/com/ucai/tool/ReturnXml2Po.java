@@ -9,9 +9,21 @@ import org.jdom.input.SAXBuilder;
 import com.ucai.po.JDResInfo;
 import com.ucai.po.ReturnPo;
 
+/**
+ * 返回信息打包类
+ * 
+ * @author lin
+ * 
+ */
 public class ReturnXml2Po {
+	/**
+	 * 扣位返回信息打包对象处理方示
+	 * 
+	 * @param xml
+	 * @return
+	 */
 	public static ReturnPo getReturnPo(String xml) {
-		ReturnPo po = new ReturnPo();		
+		ReturnPo po = new ReturnPo();
 		try {
 			StringReader sr = new StringReader(xml);
 			SAXBuilder builder = new SAXBuilder(false);
@@ -39,8 +51,15 @@ public class ReturnXml2Po {
 		}
 		return po;
 	}
-	public static JDResInfo getJDResInfoFromXml(String xml){
-		JDResInfo po=new JDResInfo();
+
+	/**
+	 * 下订单返回信息打包类
+	 * 
+	 * @param xml
+	 * @return
+	 */
+	public static JDResInfo getJDResInfoFromXml(String xml) {
+		JDResInfo po = new JDResInfo();
 		try {
 			StringReader sr = new StringReader(xml);
 			SAXBuilder builder = new SAXBuilder(false);
@@ -48,7 +67,7 @@ public class ReturnXml2Po {
 			Element returnxml = doc.getRootElement();
 			Element ResInfo = returnxml.getChild("ResInfo");
 			String code = ResInfo.getChildTextTrim("code");
-			String description=ResInfo.getChildTextTrim("description");
+			String description = ResInfo.getChildTextTrim("description");
 			po.setCode(code);
 			po.setDescription(description);
 		} catch (Exception e) {

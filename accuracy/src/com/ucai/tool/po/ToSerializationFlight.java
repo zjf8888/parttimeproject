@@ -5,6 +5,12 @@ import java.util.List;
 import com.ucai.po.Errinfo;
 import com.ucai.po.Segment;
 
+/**
+ * 航班信息 没有时间字段
+ * 
+ * @author lin
+ * 
+ */
 public class ToSerializationFlight {
 	public String transId;// 事务ID 翻页的时候服务器可判断是那个缓存内容的翻页
 
