@@ -1,19 +1,23 @@
 package com.ucai.po;
-
+/**
+ * 联系人信息类
+ * @author lin
+ *
+ */
 public class LinkMan {
-	private String l_Name;
+	private String l_Name;//联系人姓名 
 
-	private String l_Mobile;
+	private String l_Mobile;//移动电话
 
-	private String l_Phone;
+	private String l_Phone;//固定电话
 
-	private String l_Email;
+	private String l_Email;//e_mail
 
-	private String l_Address;
+	private String l_Address;//联系地址
 
-	private String l_UserId;
+	private String l_UserId;//联系人会员号
 
-	private String l_Remark;
+	private String l_Remark;//联系人备注
 
 	public String getL_Address() {
 		return l_Address;

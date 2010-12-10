@@ -1,21 +1,27 @@
 package com.ucai.po;
 
+/**
+ * 扣位返回信息类
+ * 
+ * @author lin
+ * 
+ */
 public class ReturnPo {
-	private String code;
+	private String code;// 状态码
 
-	private String info;
+	private String info;// 描述信息
 
-	private String pnr;
+	private String pnr;// 机票订单号
 
-	private String FlyConpany;
+	private String FlyConpany;// 航运公司二字码
 
-	private String ticketPrice;
+	private String ticketPrice;// 机票价格
 
-	private String tax;
+	private String tax;// 机场建设费
 
-	private String fuel;
+	private String fuel;// 燃油附加费
 
-	private String price;
+	private String price;// 总价
 
 	public String getCode() {
 		return code;

@@ -1,15 +1,21 @@
 package com.ucai.po;
 
+/**
+ * 下单订单基本信息
+ * 
+ * @author lin
+ * 
+ */
 public class Order {
-	private String order_NO;
+	private String order_NO;// 总订单号
 
-	private String TotalPrice;
+	private String TotalPrice;// 订单总价
 
-	private String orderdate;
+	private String orderdate;// 下订单时间
 
-	private String userId;
+	private String userId;// 会员ID
 
-	private String aserialnumber;
+	private String aserialnumber;// 总订单流水号
 
 	public String getAserialnumber() {
 		return aserialnumber;

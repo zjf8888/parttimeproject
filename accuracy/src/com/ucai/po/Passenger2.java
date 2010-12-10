@@ -1,35 +1,42 @@
 package com.ucai.po;
 
+/**
+ * 扣位乘客信息类
+ * 
+ * @author lin
+ * 
+ */
 public class Passenger2 {
-	private String p_Name;
+	private String p_Name;// 乘客姓名
 
-	private String p_TypeID;
+	private String p_TypeID;// 乘客类型ID
 
-	private String p_CardType;
+	private String p_CardType;// 证件类型ID
 
-	private String p_CardNo;
+	private String p_CardNo;// 证件号码
 
-	private String p_InsurType;
+	private String p_InsurType;// 保险类型。0-送;1-买
 
-	private String p_InsurBuyNumber;
+	private String p_InsurBuyNumber;// 购买保险数量
 
-	private String p_InsurZSNumber;
+	private String p_InsurZSNumber;// 赠送保险数量
 
-	private String p_TicketNo;
+	private String p_TicketNo;// 票号
 
-	private String p_CPDate;
+	private String p_CPDate;// 出票时间
 
-	private String p_Status;
+	private String p_Status;// 票状态 票状态 1正常状态 2申请退3申请废4申请改签5申请升仓
+							// 12驳回退13驳回废14驳回改签15驳回升仓 22同意退23同意废24同意改签25同意升仓
 
-	private String p_TicketPrice;
+	private String p_TicketPrice;// 票价
 
-	private String p_RTicketFee;
+	private String p_RTicketFee;// 实收票价
 
-	private String p_BuildFee;
+	private String p_BuildFee;// 机建费
 
-	private String p_FuelFee;
+	private String p_FuelFee;// 燃油费
 
-	private String p_TicketState;
+	private String p_TicketState;// 机票状态
 
 	public String getP_BuildFee() {
 		return p_BuildFee;
