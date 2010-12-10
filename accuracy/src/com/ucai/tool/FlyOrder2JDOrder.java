@@ -97,7 +97,9 @@ public class FlyOrder2JDOrder {
 		for (int i = 0; i < flyAirs.size(); i++) {
 			FlyAir flyAir = flyAirs.get(i);
 			AirOrder airOrder = new AirOrder();
-			airOrder.setA_Company(rpo.getFlyConpany());
+			String flyNo=flyAir.getFlyNo();
+			String flyConpany=flyNo.substring(0,2);
+			airOrder.setA_Company(flyConpany);
 			airOrder.setA_FlyNo(flyAir.getFlyNo());
 			airOrder.setA_Scity(flyAir.getSc());
 			airOrder.setA_Ecity(flyAir.getEc());
