@@ -21,7 +21,7 @@
 						android:layout_height="wrap_content" android:text="火车票务"></Button>
 					<Button android:id="@+id/bus" android:layout_width="176px"
 						android:layout_height="wrap_content" android:text="公交"></Button>
-					<Button android:id="@+id/set" android:layout_width="176px"
+					<Button android:id="@+id/config" android:layout_width="176px"
 						android:layout_height="wrap_content" android:text="系统设置"></Button>
 				</LinearLayout>
 			</RelativeLayout>

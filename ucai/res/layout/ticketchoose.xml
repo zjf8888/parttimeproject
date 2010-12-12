@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<AbsoluteLayout android:orientation="horizontal"
+		android:layout_height="fill_parent" android:layout_width="fill_parent">
+		<LinearLayout android:layout_x="0px" android:orientation="vertical"
+			android:layout_y="120px" android:layout_width="fill_parent"
+			android:layout_height="wrap_content">
+			<RelativeLayout android:layout_width="fill_parent"
+				android:layout_height="wrap_content">
+				<LinearLayout android:orientation="vertical"
+					android:layout_width="wrap_content" android:layout_height="fill_parent"
+					android:layout_centerInParent="true">
+					<Button android:id="@+id/ticketquery" android:layout_width="176px"
+						android:layout_height="wrap_content" android:text="机票查询"></Button>
+					<Button android:id="@+id/ticketdeal" android:layout_width="176px"
+						android:layout_height="wrap_content" android:text="票务处理"></Button>
+				</LinearLayout>
+			</RelativeLayout>
+		</LinearLayout>
+	</AbsoluteLayout>
+</LinearLayout>
