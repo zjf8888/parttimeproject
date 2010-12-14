@@ -1,6 +1,5 @@
 package com.ucai.ui;
 
-import com.ucai.Main;
 import com.ucai.R;
 
 import android.app.Activity;
@@ -22,6 +21,13 @@ public class TicketChoose extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.ticketchoose);
+		ticketquery = (Button) findViewById(R.id.ticketquery);
+		ticketquery.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent i = new Intent(TicketChoose.this, SearchTab.class);
+				startActivity(i);
+			}
+		});
 		ticketdeal = (Button) findViewById(R.id.ticketdeal);
 		ticketdeal.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
