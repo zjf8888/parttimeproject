@@ -8,12 +8,20 @@ import com.ucai.R;
 import com.ucai.tool.CityCode;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.PixelFormat;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.WindowManager.LayoutParams;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class SearchFightCity extends Activity {
@@ -22,12 +30,45 @@ public class SearchFightCity extends Activity {
 	private ListView citylist = null;
 	private ArrayList<Map<String, String>> data = null;
 
+	private RemoveWindow mRemoveWindow = new RemoveWindow();
+	Handler mHandler = new Handler();
+	private WindowManager mWindowManager;
+	private TextView mDialogText;
+	private boolean mShowing;
+	private boolean mReady;
+	private String mPrevLetter;
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.searchfightcity);
+
 		citylist = (ListView) findViewById(R.id.citylist);
+
+		mWindowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+		citylist.setOnScrollListener(scrollListener);
+
+		LayoutInflater inflate = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+		mDialogText = (TextView) inflate.inflate(R.layout.list_position, null);
+		mDialogText.setVisibility(View.INVISIBLE);
+
+		mHandler.post(new Runnable() {
+
+			public void run() {
+				mReady = true;
+				WindowManager.LayoutParams lp = new WindowManager.LayoutParams(
+						LayoutParams.WRAP_CONTENT,
+						LayoutParams.WRAP_CONTENT,
+						WindowManager.LayoutParams.TYPE_APPLICATION,
+						WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+								| WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+						PixelFormat.TRANSLUCENT);
+				mWindowManager.addView(mDialogText, lp);
+			}
+		});
+
 		PrepareData();
 		setView();
 	}
@@ -70,4 +111,87 @@ public class SearchFightCity extends Activity {
 			finish();
 		}
 	};
+
+	private final class RemoveWindow implements Runnable {
+		public void run() {
+			removeWindow();
+		}
+	}
+
+	private void removeWindow() {
+		if (mShowing) {
+			mShowing = false;
+			mDialogText.setVisibility(View.INVISIBLE);
+		}
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		mReady = true;
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		removeWindow();
+		mReady = false;
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		mWindowManager.removeView(mDialogText);
+		mReady = false;
+	}
+
+	ListView.OnScrollListener scrollListener = new ListView.OnScrollListener() {
+		public void onScroll(AbsListView view, int firstVisibleItem,
+				int visibleItemCount, int totalItemCount) {
+			if (data != null) {
+				Map<String, String> map = data.get(firstVisibleItem);
+				String firstLetter;
+				if (mReady) {
+					if (firstVisibleItem > 20) {
+						char a = 'A';
+						int b = (int) a;
+						String code = map.get(CODE);
+						int num = searchFromCode(code);
+						char letter = (char) (num - 1 + b);
+						firstLetter = ((Character) letter).toString();
+					} else {
+						firstLetter = "热门";
+					}
+					if (!mShowing && firstLetter.equals(mPrevLetter)) {
+
+						mShowing = true;
+						mDialogText.setVisibility(View.VISIBLE);
+
+					}
+					mDialogText.setText(firstLetter);
+					mHandler.removeCallbacks(mRemoveWindow);
+					mHandler.postDelayed(mRemoveWindow, 3000);
+					mPrevLetter = firstLetter;
+				}
+			}
+
+		}
+
+		public void onScrollStateChanged(AbsListView view, int scrollState) {
+		}
+
+	};
+
+	private int searchFromCode(String code) {
+		String cityMa[][] = CityCode.cityMa;
+		for (int j = 1; j < cityMa.length; j++) {
+			for (int i = 0; i < cityMa[j].length; i++) {
+				if (cityMa[j][i].indexOf(code) != -1) {
+					return j;
+				}
+
+			}
+		}
+		return 0;
+	}
 }
