@@ -12,15 +12,15 @@ public class SearchTab extends TabActivity {
 
 		final TabHost tabHost = getTabHost();
 
-		tabHost.addTab(tabHost.newTabSpec("tab1").setIndicator("µ¥³Ì")
+		tabHost.addTab(tabHost.newTabSpec("tab1").setIndicator("å•ç¨‹")
 				.setContent(new Intent(this, SearchSimple.class)));
 
-		tabHost.addTab(tabHost.newTabSpec("tab2").setIndicator("Íù·µ")
+		tabHost.addTab(tabHost.newTabSpec("tab2").setIndicator("å¾€è¿”")
 				.setContent(new Intent(this, SearchSimple.class)));
 
 		// This tab sets the intent flag so that it is recreated each time
 		// the tab is clicked.
-		tabHost.addTab(tabHost.newTabSpec("tab3").setIndicator("Áª³Ì")
+		tabHost.addTab(tabHost.newTabSpec("tab3").setIndicator("è”ç¨‹")
 				.setContent(new Intent(this, SearchSimple.class)));
 	}
 }

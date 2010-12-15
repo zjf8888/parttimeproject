@@ -67,7 +67,7 @@ public class Main extends Activity {
 	protected void showToastCollectioned(int type) {
 		View view = inflateView(R.layout.toast);
 		TextView tv = (TextView) view.findViewById(R.id.tips);
-		tv.setText("ÕıÔÚÑĞ·¢ÖĞ");
+		tv.setText("æ­£åœ¨ç ”å‘ä¸­");
 		Toast toast = new Toast(this);
 		toast.setView(view);
 		toast.setDuration(type);

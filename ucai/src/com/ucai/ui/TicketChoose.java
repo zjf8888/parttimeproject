@@ -38,12 +38,12 @@ public class TicketChoose extends Activity {
 
 	protected void dialog() {
 		AlertDialog.Builder builder = new Builder(TicketChoose.this);
-		builder.setMessage("º½°àµÄÍËÆ±¸ÄÇ©¹¦ÄÜÄ¿Ç°ÉĞ²»ÄÜÔÚÏßÉÏÍê³É,Çë²¦´òµç»°:4006840060Íê³ÉÍËÆ±¸ÄÇ©³ÌĞò");
-		builder.setTitle("ÌáÊ¾");
-		builder.setPositiveButton("È·ÈÏ", new OnClickListener() {
+		builder.setMessage("èˆªç­çš„é€€ç¥¨æ”¹ç­¾åŠŸèƒ½ç›®å‰å°šä¸èƒ½åœ¨çº¿ä¸Šå®Œæˆ,è¯·æ‹¨æ‰“ç”µè¯:4006840060å®Œæˆæ”¹ç­¾ç¨‹åº");
+		builder.setTitle("æç¤º");
+		builder.setPositiveButton("ç¡®å®š", new OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.dismiss();
-				dialog.dismiss();
+
 			}
 		});
 		builder.create().show();
