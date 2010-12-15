@@ -13,12 +13,15 @@ import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -28,6 +31,7 @@ public class SearchFightCity extends Activity {
 	public static final String NAME = "name";
 	public static final String CODE = "code";
 	private ListView citylist = null;
+	private EditText searchfightcitytext = null;
 	private ArrayList<Map<String, String>> data = null;
 
 	private RemoveWindow mRemoveWindow = new RemoveWindow();
@@ -45,6 +49,8 @@ public class SearchFightCity extends Activity {
 		setContentView(R.layout.searchfightcity);
 
 		citylist = (ListView) findViewById(R.id.citylist);
+		searchfightcitytext = (EditText) findViewById(R.id.searchfightcitytext);
+		searchfightcitytext.addTextChangedListener(textWatcher);
 
 		mWindowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
 		citylist.setOnScrollListener(scrollListener);
@@ -148,7 +154,8 @@ public class SearchFightCity extends Activity {
 	ListView.OnScrollListener scrollListener = new ListView.OnScrollListener() {
 		public void onScroll(AbsListView view, int firstVisibleItem,
 				int visibleItemCount, int totalItemCount) {
-			if (data != null) {
+			String s = searchfightcitytext.getText().toString();
+			if (data != null && s.trim().length() < 1) {
 				Map<String, String> map = data.get(firstVisibleItem);
 				String firstLetter;
 				if (mReady) {
@@ -193,5 +200,46 @@ public class SearchFightCity extends Activity {
 			}
 		}
 		return 0;
+	}
+
+	TextWatcher textWatcher = new TextWatcher() {
+
+		@Override
+		public void afterTextChanged(Editable s) {
+			searchName();
+		}
+
+		@Override
+		public void beforeTextChanged(CharSequence s, int start, int count,
+				int after) {
+		}
+
+		@Override
+		public void onTextChanged(CharSequence s, int start, int before,
+				int count) {
+		}
+	};
+
+	private void searchName() {
+		String cityMa[][] = CityCode.cityMa;
+		String CityString[][] = CityCode.CityString;
+		String s = searchfightcitytext.getText().toString();
+		data = new ArrayList<Map<String, String>>();
+		for (int j = 0; j < CityString.length; j++) {
+			for (int i = 0; i < CityString[j].length; i++) {
+				String city = CityString[j][i];
+				if (city.indexOf(s) != -1) {
+					Map<String, String> item = new HashMap<String, String>();
+					item.put(CODE, cityMa[j][i]);
+					item.put(NAME, CityString[j][i]);
+					data.add(item);
+				}
+			}
+		}
+		SimpleAdapter adapter = new SimpleAdapter(this, data,
+				R.layout.list_item, new String[] { NAME },
+				new int[] { R.id.content });
+		citylist.setAdapter(adapter);
+		citylist.setOnItemClickListener(listListener);
 	}
 }
