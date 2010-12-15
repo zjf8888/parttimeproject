@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="wrap_content" android:layout_height="wrap_content">
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:background="@drawable/blue_in" android:orientation="horizontal">
+
+
+	<EditText android:text="" android:id="@+id/searchfightcitytext"
+		android:layout_width="fill_parent" android:layout_height="40px"
+		android:layout_marginLeft="20px" android:layout_marginRight="20px"
+		android:layout_marginBottom="7px" android:layout_marginTop="7px"></EditText>
+	<ListView android:id="@+id/citylist" android:layout_width="fill_parent"
+		android:layout_height="wrap_content"></ListView>
 </LinearLayout>
