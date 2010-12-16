@@ -1,8 +1,9 @@
 package com.ucai.tool;
 
-import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
+import com.db4o.ObjectServer;
 import com.db4o.ObjectSet;
+import com.db4o.cs.Db4oClientServer;
 import com.ucai.po.Count;
 
 public class DbCount {
@@ -16,24 +17,27 @@ public class DbCount {
 	 */
 	@SuppressWarnings("deprecation")
 	public int query() {
-		ObjectContainer db = Db4o.openFile(DB4OFILENAME);
+		ObjectServer server = Db4oClientServer.openServer(Db4oClientServer
+				.newServerConfiguration(), DB4OFILENAME, 0);
 		int i = 0;
 		try {
+			ObjectContainer client = server.openClient();
 			Count count = new Count();
-			ObjectSet<Count> result = db.get(count);
+			ObjectSet<Count> result = client.get(count);
 			if (result.size() > 0) {
 				count = result.next();
 				i = count.getId();
 				count.setId(count.getId() + 1);
-				db.set(count);
+				client.set(count);
 
 			} else {
-				return insert(db);
+				return insert(client);
 			}
+			client.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			db.close();
+			server.close();
 		}
 		return i;
 	}

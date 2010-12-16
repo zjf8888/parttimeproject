@@ -3,9 +3,12 @@ package com.ucai.tool;
 import java.util.Calendar;
 import java.util.List;
 
-import com.db4o.Db4o;
+import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
+import com.db4o.ObjectServer;
 import com.db4o.ObjectSet;
+import com.db4o.config.EmbeddedConfiguration;
+import com.db4o.cs.Db4oClientServer;
 import com.db4o.query.Predicate;
 import com.ucai.po.Flight;
 import com.ucai.po.SeatClass;
@@ -26,15 +29,19 @@ public class DbCache {
 	 * 
 	 * @param flightpo
 	 */
-	@SuppressWarnings("deprecation")
 	public void insertFlight(Flight flightpo) {
-		ObjectContainer db = Db4o.openFile(DB4OFILENAME);
+		ObjectServer server = Db4oClientServer.openServer(Db4oClientServer
+				.newServerConfiguration(), DB4OFILENAME, 0);
+		// ObjectContainer db = Db4o.openFile(DB4OFILENAME);
 		try {
-			db.set(flightpo);
+			ObjectContainer client = server.openClient();
+			client.store(flightpo);
+			client.close();
+			// db.set(flightpo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			db.close();
+			server.close();
 		}
 	}
 
@@ -44,12 +51,13 @@ public class DbCache {
 	 * @param transId
 	 * @return
 	 */
-	@SuppressWarnings("deprecation")
 	public Flight query(final String transId) {
-		ObjectContainer db = Db4o.openFile(DB4OFILENAME);
+		ObjectServer server = Db4oClientServer.openServer(Db4oClientServer
+				.newServerConfiguration(), DB4OFILENAME, 0);
 		try {
+			ObjectContainer client = server.openClient();
 			Flight flightpo = new Flight();
-			ObjectSet<Flight> result = db.query(new Predicate<Flight>() {
+			ObjectSet<Flight> result = client.query(new Predicate<Flight>() {
 
 				private static final long serialVersionUID = 1L;
 
@@ -62,12 +70,13 @@ public class DbCache {
 
 			System.out.println(result.size());
 			flightpo = result.next();
+			client.close();
 			return flightpo;
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			db.close();
+			server.close();
 		}
 		return null;
 	}
@@ -76,11 +85,11 @@ public class DbCache {
 	 * 删除过期查询信息
 	 * 
 	 */
-	@SuppressWarnings("deprecation")
-	public void delete() {
-		Db4o.configure().objectClass("com.ucai.po.Flight")
-				.cascadeOnDelete(true);
-		ObjectContainer db = Db4o.openFile(DB4OFILENAME);
+
+	public synchronized void delete() {
+		EmbeddedConfiguration config = Db4oEmbedded.newConfiguration();
+		config.common().objectClass("com.ucai.po.Flight").cascadeOnDelete(true);
+		ObjectContainer db = Db4oEmbedded.openFile(config, DB4OFILENAME);
 		try {
 			System.out.println("haltHour:"
 					+ Calendar.getInstance().getTime().getTime());
