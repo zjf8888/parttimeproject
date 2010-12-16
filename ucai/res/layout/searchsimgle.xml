@@ -47,5 +47,16 @@
 			<EditText android:text="" android:id="@+id/airlines"
 				android:layout_width="176px" android:layout_height="wrap_content"></EditText>
 		</LinearLayout>
+		<RelativeLayout android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:layout_marginBottom="13px"
+			android:layout_marginLeft="13px" android:layout_marginRight="13px"
+			android:orientation="horizontal">
+			<Button android:text="查询" android:id="@+id/search"
+				android:layout_width="100px" android:layout_height="wrap_content"
+				android:layout_marginLeft="20px"></Button>
+			<Button android:text="返回" android:id="@+id/back"
+				android:layout_width="100px" android:layout_height="wrap_content"
+				android:layout_marginLeft="150px"></Button>
+		</RelativeLayout>
 	</LinearLayout>
 </LinearLayout>
