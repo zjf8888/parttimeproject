@@ -72,7 +72,7 @@ public class SearchHangKong extends Activity {
 			String code = map.get(CODE);
 			String name = map.get(NAME);
 			bundle.putString(CODE, code);
-			bundle.putString(NAME, name+"航空");
+			bundle.putString(NAME, name);
 			i.putExtras(bundle);
 			setResult(RESULT_OK, i);
 			finish();

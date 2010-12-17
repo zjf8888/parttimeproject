@@ -19,7 +19,8 @@
 			android:screenOrientation="portrait" />
 		<activity android:name=".ui.SearchHangKong" android:label="@string/app_name"
 			android:screenOrientation="portrait" />
+		<activity android:name=".ui.SearchFightView" android:label="@string/app_name"
+			android:screenOrientation="portrait" />
 	</application>
-
-
+	<uses-permission android:name="android.permission.INTERNET" />
 </manifest> 

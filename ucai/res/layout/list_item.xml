@@ -3,6 +3,6 @@
 	android:orientation="vertical" android:layout_width="fill_parent"
 	android:layout_height="wrap_content" android:padding="5dip">	
 	<TextView android:id="@+id/content" android:layout_width="wrap_content"
-		android:layout_height="49dip" android:layout_marginLeft="15dip"
+		android:layout_height="27dip" android:layout_marginLeft="15dip"
 		android:textColor="#000000" />
 </LinearLayout>
