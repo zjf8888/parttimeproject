@@ -51,8 +51,10 @@ public class Xml2Flight {
 			Element flight = doc.getRootElement();
 			// 获取错误编码
 			Element errinfo = flight.getChild("errinfo");
-			String code = errinfo.getChildTextTrim("code");
-			flightpo.setErrorCode(code);
+			if (errinfo != null) {
+				String code = errinfo.getChildTextTrim("code");
+				flightpo.setErrorCode(code);
+			}
 			// 获取出发城市编码
 			String startcity = flight.getChildTextTrim("startcity");
 			flightpo.setStartcity(startcity);

@@ -54,10 +54,11 @@ public class FilghtInfoJsonServlet extends HttpServlet {
 			String flightNo = request.getParameter("flightNo");
 			IFlightQueryClient client = new IFlightQueryClient();
 
-			if (airway == null || airway.length() < 1) {
+			if (airway == null || airway.length() < 1 || airway.equals("null")) {
 				airway = "";
 			}
-			if (flightNo == null || flightNo.length() < 1) {
+			if (flightNo == null || flightNo.length() < 1
+					|| airway.equals("null")) {
 				flightNo = "";
 			}
 
