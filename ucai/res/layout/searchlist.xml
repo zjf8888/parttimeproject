@@ -10,10 +10,17 @@
 		android:layout_gravity="bottom" android:layout_height="wrap_content"
 		android:orientation="horizontal" android:layout_alignParentBottom="true">
 		<Button android:text="上一页" android:id="@+id/previous"
-			android:layout_width="100px" android:layout_height="wrap_content"
+			android:layout_width="90px" android:layout_height="wrap_content"
 			android:layout_marginLeft="20px"></Button>
+		<TextView android:layout_width="wrap_content" android:id="@+id/pageNo"
+			android:layout_centerHorizontal="true" android:layout_height="wrap_content"></TextView>
+		<TextView android:layout_width="wrap_content" android:id="@+id/totalPages"
+			android:layout_centerHorizontal="true" android:layout_below="@+id/pageNo"
+			android:layout_height="wrap_content" android:text=""></TextView>
 		<Button android:text="下一页" android:id="@+id/next"
-			android:layout_width="100px" android:layout_height="wrap_content"
+			android:layout_width="90px" android:layout_height="wrap_content"
 			android:layout_alignParentRight="true" android:layout_marginRight="20px"></Button>
-	</RelativeLayout>
+	
+
+</RelativeLayout>
 </LinearLayout>

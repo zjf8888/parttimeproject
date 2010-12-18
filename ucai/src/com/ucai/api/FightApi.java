@@ -18,13 +18,23 @@ import com.ucai.po.Flight;
 import com.ucai.po.SeatClass;
 import com.ucai.po.Segment;
 
-
 public class FightApi {
 	private static final String BASE_URL = "http://192.168.1.102:8081/filghtInfoJsonServlet";
+	private static final String CACHE_URL = "http://192.168.1.102:8081/filghtInfoByPageJsonServlet";
 
 	/**
-	 * 需ID参数获取具体菜谱信息
+	 * 获取查询航班数据流
 	 * 
+	 * @param startcity
+	 *            , 出发城市
+	 * @param endcity
+	 *            ,到达城市
+	 * @param date
+	 *            ,出发日期
+	 * @param airway
+	 *            ,航空公司
+	 * @param flightNo航班号
+	 *            return 航班数据流
 	 */
 	public InputStream openViewConn(String startcity, String endcity,
 			String date, String airway, String flightNo) {
@@ -54,6 +64,90 @@ public class FightApi {
 			e.printStackTrace();
 		}
 		return is;
+	}
+
+	/**
+	 * 分页查询 String tid 查询ID String pn 查询页面
+	 */
+	public InputStream openViewConn(String tid, String pn) {
+		InputStream is = null;
+		try {
+			URL realUrl = new URL(CACHE_URL);
+			// 打开和URL之间的连接
+			URLConnection conn = realUrl.openConnection();
+			// 设置通用的请求属性
+			conn.setRequestProperty("accept", "*/*");
+			conn.setRequestProperty("connection", "Keep-Alive");
+			conn.setRequestProperty("user-agent",
+					"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)");
+			// 发送POST请求必须设置如下两行
+			conn.setDoOutput(true);
+			conn.setDoInput(true);
+			// 获取URLConnection对象对应的输出流
+			PrintWriter out = new PrintWriter(new OutputStreamWriter(conn
+					.getOutputStream(), "utf-8"));
+			// 发送请求参数
+			out.print("tid=" + tid + "&pn=" + pn);
+			// flush输出流的缓冲
+			out.flush();
+			is = conn.getInputStream();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return is;
+	}
+
+	/**
+	 * 查询缓存数年据
+	 * 
+	 * @param tid
+	 *            缓存ID
+	 * @param pn
+	 *            第几页
+	 * @return 航班信息对象
+	 */
+	public Flight getCacheFlightPo(String tid, String pn) {
+		try {
+			Flight po = new Flight();
+			InputStream is = openViewConn(tid, pn);
+			BufferedReader in = new BufferedReader(new InputStreamReader(is,
+					"UTF-8"));
+			String line = in.readLine();
+			JSONObject jsonObject = new JSONObject(line);
+			JSONObject errinfo = jsonObject.getJSONObject("errinfo");
+			String errorCode = errinfo.getString("code");
+			String errorTips = errinfo.getString("description");
+			String transId = jsonObject.getString("transId");
+			String scity = jsonObject.getString("startcity");
+			String ecity = jsonObject.getString("endcity");
+			String startdate = jsonObject.getString("startdate");
+			String totalNums = jsonObject.getString("totalNums");
+			String totalPages = jsonObject.getString("totalPages");
+			String pageNo = jsonObject.getString("pageNo");
+			List<Segment> segmentList = new ArrayList<Segment>();
+
+			JSONArray al = jsonObject.getJSONArray("segmentList");
+			for (int i = 0; i < al.length(); i++) {
+				JSONObject contentbo = al.getJSONObject(i);
+				Segment cb = jsonToSegment(contentbo);
+				segmentList.add(cb);
+			}
+
+			po.setTransId(transId);
+			po.setErrorCode(errorCode);
+			po.setErrorTips(errorTips);
+			po.setStartcity(scity);
+			po.setEndcity(ecity);
+			po.setStartdate(startdate);
+			po.setTotalNums(new Integer(totalNums));
+			po.setTotalPages(new Integer(totalPages));
+			po.setPageNo(new Integer(pageNo));
+			po.setSegmentList(segmentList);
+			return po;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public Flight getFlightPo(String startcity, String endcity, String date,
