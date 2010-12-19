@@ -8,12 +8,16 @@ import com.ucai.R;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class SearchSimple extends Activity {
 
@@ -87,12 +91,21 @@ public class SearchSimple extends Activity {
 		search = (Button) findViewById(R.id.search);
 		search.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Intent i = new Intent(SearchSimple.this, SearchFightView.class);
-				i.putExtra("startcity", scode);
-				i.putExtra("endcity", ecode);
-				i.putExtra("date", sdate.getText().toString());
-				i.putExtra("airway", acode);
-				startActivity(i);
+				if (sctiy.getText().toString().length() == 0) {
+					showToastCollectioned(Toast.LENGTH_SHORT, "请选择出发城市");
+				} else if (ectiy.getText().toString().length() == 0) {
+					showToastCollectioned(Toast.LENGTH_SHORT, "请选择到达城市");
+				} else if (sdate.getText().toString().length() == 0) {
+					showToastCollectioned(Toast.LENGTH_SHORT, "请选择出发日期");
+				} else {
+					Intent i = new Intent(SearchSimple.this,
+							SearchFightView.class);
+					i.putExtra("startcity", scode);
+					i.putExtra("endcity", ecode);
+					i.putExtra("date", sdate.getText().toString());
+					i.putExtra("airway", acode);
+					startActivity(i);
+				}
 			}
 		});
 
@@ -149,6 +162,20 @@ public class SearchSimple extends Activity {
 	private void updateDisplay() {
 		sdate.setText(new StringBuilder().append(mYear).append("-").append(
 				mMonth + 1).append("-").append(mDay));
+	}
 
+	protected void showToastCollectioned(int type, String message) {
+		View view = inflateView(R.layout.toast);
+		TextView tv = (TextView) view.findViewById(R.id.tips);
+		tv.setText(message);
+		Toast toast = new Toast(this);
+		toast.setView(view);
+		toast.setDuration(type);
+		toast.show();
+	}
+
+	private View inflateView(int resource) {
+		LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		return vi.inflate(resource, null);
 	}
 }

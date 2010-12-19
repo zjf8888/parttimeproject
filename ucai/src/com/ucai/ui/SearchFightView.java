@@ -37,6 +37,7 @@ public class SearchFightView extends Activity {
 	private Button previous;
 	private TextView pageNo;
 	private TextView totalPages;
+	private TextView errorinfo;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -73,6 +74,7 @@ public class SearchFightView extends Activity {
 		});
 		pageNo = (TextView) findViewById(R.id.pageNo);
 		totalPages = (TextView) findViewById(R.id.totalPages);
+		errorinfo = (TextView) findViewById(R.id.errorinfo);
 		doSearch();
 	}
 
@@ -121,14 +123,18 @@ public class SearchFightView extends Activity {
 	}
 
 	private void setView() {
-		SimpleAdapter adapter = new SimpleAdapter(this, data,
-				R.layout.searchlist_item, new String[] { "name", "stime",
-						"etime", "price" }, new int[] { R.id.airname,
-						R.id.stime, R.id.etime, R.id.price });
-		listView.setAdapter(adapter);
-		totalPages.setText("共" + flightpo.getTotalPages() + "页");
-		pageNo.setText("第" + flightpo.getPageNo() + "页");
-		
+		if (flightpo.getErrorCode().trim().equals("0")) {
+			SimpleAdapter adapter = new SimpleAdapter(this, data,
+					R.layout.searchlist_item, new String[] { "name", "stime",
+							"etime", "price" }, new int[] { R.id.airname,
+							R.id.stime, R.id.etime, R.id.price });
+			listView.setAdapter(adapter);
+			totalPages.setText("共" + flightpo.getTotalPages() + "页");
+			pageNo.setText("第" + flightpo.getPageNo() + "页");
+		} else {
+			errorinfo.setText(flightpo.getErrorTips());
+		}
+
 	}
 
 	private void setDate() {
