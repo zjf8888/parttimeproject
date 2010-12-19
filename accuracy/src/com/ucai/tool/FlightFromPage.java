@@ -33,8 +33,8 @@ public class FlightFromPage {
 			errinfo.setCode(flightpo.getErrorCode());
 			errinfo.setDescription(flightpo.getErrorTips());
 		} else {
-			errinfo.setCode("104");
-			errinfo.setDescription("该页数据不存在!");
+			errinfo.setCode(flightpo.getErrorCode());
+			errinfo.setDescription(flightpo.getErrorTips());
 			setFilght.setErrinfo(errinfo);
 			return setFilght;
 		}

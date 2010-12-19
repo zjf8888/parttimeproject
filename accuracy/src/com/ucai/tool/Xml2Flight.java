@@ -54,6 +54,12 @@ public class Xml2Flight {
 			if (errinfo != null) {
 				String code = errinfo.getChildTextTrim("code");
 				flightpo.setErrorCode(code);
+			}else{
+				String code = flight.getChildTextTrim("result");
+				flightpo.setErrorCode(code);
+				String info=flight.getChildTextTrim("info");
+				flightpo.setErrorTips(info);
+				
 			}
 			// 获取出发城市编码
 			String startcity = flight.getChildTextTrim("startcity");
@@ -68,94 +74,99 @@ public class Xml2Flight {
 			// 获取航班信息
 			List<Segment> segmentArrayList = new ArrayList<Segment>();
 			Element date = flight.getChild("date");
-			List segmentList = date.getChildren("segment");
-			for (Iterator iter = segmentList.iterator(); iter.hasNext();) {
-				Element segment = (Element) iter.next();
-				Segment segmentpo = new Segment();
-				// 获取飞机航班号
-				String fltno = segment.getChildTextTrim("fltno");
-				segmentpo.setFltno(fltno);
-				// 获取出发城市编码
-				String sc = segment.getChildTextTrim("sc");
-				segmentpo.setSc(sc);
-				// 获取出发机场名称
-				String scAirdrome = segment.getChildTextTrim("scAirdrome");
-				segmentpo.setScAirdrome(scAirdrome);
-				// 获取到达城市编码
-				String ec = segment.getChildTextTrim("ec");
-				segmentpo.setEc(ec);
-				// 获取到达机场名称
-				String ecAirdrome = segment.getChildTextTrim("ecAirdrome");
-				segmentpo.setEcAirdrome(ecAirdrome);
-				// 起飞时间
-				String deptime = segment.getChildTextTrim("deptime");
-				segmentpo.setDeptime(deptime);
-				// 到达时间
-				String arrtime = segment.getChildTextTrim("arrtime");
-				segmentpo.setArrtime(arrtime);
-				// 飞机型号
-				String planesty = segment.getChildTextTrim("planesty");
-				segmentpo.setPlanesty(planesty);
-				// 中途停降次数
-				String stopnum = segment.getChildTextTrim("stopnum");
-				segmentpo.setStopnum(stopnum);
-				// 电子票
-				String etkt = segment.getChildTextTrim("etkt");
-				segmentpo.setEtkt(etkt);
-				// 有餐否
-				String meal = segment.getChildTextTrim("meal");
-				segmentpo.setMeal(meal);
+			if (flightpo.getErrorCode().trim().equals("0")) {
+				List segmentList = date.getChildren("segment");
+				for (Iterator iter = segmentList.iterator(); iter.hasNext();) {
+					Element segment = (Element) iter.next();
+					Segment segmentpo = new Segment();
+					// 获取飞机航班号
+					String fltno = segment.getChildTextTrim("fltno");
+					segmentpo.setFltno(fltno);
+					// 获取出发城市编码
+					String sc = segment.getChildTextTrim("sc");
+					segmentpo.setSc(sc);
+					// 获取出发机场名称
+					String scAirdrome = segment.getChildTextTrim("scAirdrome");
+					segmentpo.setScAirdrome(scAirdrome);
+					// 获取到达城市编码
+					String ec = segment.getChildTextTrim("ec");
+					segmentpo.setEc(ec);
+					// 获取到达机场名称
+					String ecAirdrome = segment.getChildTextTrim("ecAirdrome");
+					segmentpo.setEcAirdrome(ecAirdrome);
+					// 起飞时间
+					String deptime = segment.getChildTextTrim("deptime");
+					segmentpo.setDeptime(deptime);
+					// 到达时间
+					String arrtime = segment.getChildTextTrim("arrtime");
+					segmentpo.setArrtime(arrtime);
+					// 飞机型号
+					String planesty = segment.getChildTextTrim("planesty");
+					segmentpo.setPlanesty(planesty);
+					// 中途停降次数
+					String stopnum = segment.getChildTextTrim("stopnum");
+					segmentpo.setStopnum(stopnum);
+					// 电子票
+					String etkt = segment.getChildTextTrim("etkt");
+					segmentpo.setEtkt(etkt);
+					// 有餐否
+					String meal = segment.getChildTextTrim("meal");
+					segmentpo.setMeal(meal);
 
-				// 以下为处理航班座位信息
+					// 以下为处理航班座位信息
 
-				Element classs = segment.getChild("classs");
-				if (classs != null) {
-					List<SeatClass> classArraylist = new ArrayList<SeatClass>();
-					List classList = null;
-					System.out.println(classs);
-					classList = classs.getChildren("class");
-					for (Iterator classiter = classList.iterator(); classiter
-							.hasNext();) {
-						SeatClass seatClass = new SeatClass();
-						Element cla = (Element) classiter.next();
-						// 座位等级名称
-						String classname = cla.getChildTextTrim("classname");
-						seatClass.setClassname(classname);
-						// 剩余的座位数，大于等于9时为A
-						String num = cla.getChildTextTrim("num");
-						seatClass.setNum(num);
-						// 价格
-						String saleprice = cla.getChildTextTrim("saleprice");
-						seatClass.setSaleprice(saleprice);
-						// 座位等级码
-						String classcode = cla.getChildTextTrim("classcode");
-						seatClass.setClasscode(classcode);
-						// 机场建设费
-						String buildfee = cla.getChildTextTrim("buildfee");
-						seatClass.setBuildfee(buildfee);
-						// 燃油费
-						String fuelfee = cla.getChildTextTrim("fuelfee");
-						seatClass.setFuelfee(fuelfee);
-						// 可否申请电子票
-						String isApply = cla.getChildTextTrim("isApply");
-						seatClass.setIsApply(isApply);
-						// 办理说明
-						String discount = cla.getChildTextTrim("discount");
-						seatClass.setDiscount(discount);
-						// 退票说明
-						// String refund = cla.getChildTextTrim("refund");
-						// seatClass.setRefund(refund);
-						// 免费变更
-						// String cmt = cla.getChildTextTrim("cmt");
-						// seatClass.setCmt(cmt);
-						// 见舱销售，随订随售
-						// String sale = cla.getChildTextTrim("sale");
-						// seatClass.setSale(sale);
-						classArraylist.add(seatClass);
-					}
-					if (classList.size() > 0) {
-						segmentpo.setClassesList(classArraylist);
-						segmentArrayList.add(segmentpo);
+					Element classs = segment.getChild("classs");
+					if (classs != null) {
+						List<SeatClass> classArraylist = new ArrayList<SeatClass>();
+						List classList = null;
+						System.out.println(classs);
+						classList = classs.getChildren("class");
+						for (Iterator classiter = classList.iterator(); classiter
+								.hasNext();) {
+							SeatClass seatClass = new SeatClass();
+							Element cla = (Element) classiter.next();
+							// 座位等级名称
+							String classname = cla
+									.getChildTextTrim("classname");
+							seatClass.setClassname(classname);
+							// 剩余的座位数，大于等于9时为A
+							String num = cla.getChildTextTrim("num");
+							seatClass.setNum(num);
+							// 价格
+							String saleprice = cla
+									.getChildTextTrim("saleprice");
+							seatClass.setSaleprice(saleprice);
+							// 座位等级码
+							String classcode = cla
+									.getChildTextTrim("classcode");
+							seatClass.setClasscode(classcode);
+							// 机场建设费
+							String buildfee = cla.getChildTextTrim("buildfee");
+							seatClass.setBuildfee(buildfee);
+							// 燃油费
+							String fuelfee = cla.getChildTextTrim("fuelfee");
+							seatClass.setFuelfee(fuelfee);
+							// 可否申请电子票
+							String isApply = cla.getChildTextTrim("isApply");
+							seatClass.setIsApply(isApply);
+							// 办理说明
+							String discount = cla.getChildTextTrim("discount");
+							seatClass.setDiscount(discount);
+							// 退票说明
+							// String refund = cla.getChildTextTrim("refund");
+							// seatClass.setRefund(refund);
+							// 免费变更
+							// String cmt = cla.getChildTextTrim("cmt");
+							// seatClass.setCmt(cmt);
+							// 见舱销售，随订随售
+							// String sale = cla.getChildTextTrim("sale");
+							// seatClass.setSale(sale);
+							classArraylist.add(seatClass);
+						}
+						if (classList.size() > 0) {
+							segmentpo.setClassesList(classArraylist);
+							segmentArrayList.add(segmentpo);
+						}
 					}
 				}
 			}
@@ -163,8 +174,6 @@ public class Xml2Flight {
 			return flightpo;
 		} catch (Exception e) {
 			e.printStackTrace();
-			flightpo.setErrorCode("104");
-			flightpo.setErrorTips("该页数据不存在!");
 			flightpo.setTotalNums(0);
 			flightpo.setTotalPages(0);
 			flightpo.setPageNo(1);
