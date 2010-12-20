@@ -2,4 +2,5 @@
 <resources>
   <drawable name="blue">#FF2000ff</drawable>
   <drawable name="blue_in">#ff2060c0</drawable>
+   <drawable name="white">#ffffffff</drawable>
 </resources> 

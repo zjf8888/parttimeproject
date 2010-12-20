@@ -15,13 +15,15 @@
 			android:screenOrientation="portrait" />
 		<activity android:name=".ui.SearchSimple" android:label="@string/app_name"
 			android:screenOrientation="portrait" />
-		<activity android:name=".ui.SearchBackAndForth" android:label="@string/app_name"
-			android:screenOrientation="portrait" />
+		<activity android:name=".ui.SearchBackAndForth"
+			android:label="@string/app_name" android:screenOrientation="portrait" />
 		<activity android:name=".ui.SearchFightCity" android:label="@string/app_name"
 			android:screenOrientation="portrait" />
 		<activity android:name=".ui.SearchHangKong" android:label="@string/app_name"
 			android:screenOrientation="portrait" />
 		<activity android:name=".ui.SearchFightView" android:label="@string/app_name"
+			android:screenOrientation="portrait" />
+		<activity android:name=".ui.FightView" android:label="@string/app_name"
 			android:screenOrientation="portrait" />
 	</application>
 	<uses-sdk android:minSdkVersion="3" />

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical" android:background="@drawable/blue">
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_marginBottom="13px" android:layout_marginLeft="13px"
+		android:layout_marginRight="13px" android:layout_marginTop="13px"
+		android:layout_height="fill_parent" android:orientation="vertical"
+		android:background="@drawable/blue_in">
+		<TextView android:text="@+id/hkName" android:id="@+id/hkName"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_marginBottom="13dip" android:layout_marginLeft="13dip"
+			android:layout_marginTop="13dip"></TextView>
+		<TextView android:text="@+id/fightno" android:id="@+id/fightno"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_alignParentRight="true" android:layout_marginLeft="13dip"
+			android:layout_marginBottom="13dip"></TextView>
+		<LinearLayout android:orientation="horizontal"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_marginBottom="13dip" android:layout_marginLeft="13dip">
+			<TextView android:text="出发:" android:id="@+id/TextView01"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+			<LinearLayout android:layout_width="wrap_content"
+				android:orientation="horizontal" android:layout_height="wrap_content">
+				<TextView android:text="@+id/stime" android:id="@+id/stime"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+				<TextView android:text="@+id/scAirdrome" android:id="@+id/scAirdrome"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+			</LinearLayout>
+		</LinearLayout>
+		<LinearLayout android:orientation="horizontal"
+			android:layout_alignParentRight="true" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:paddingLeft="13dip"
+			android:paddingBottom="13dip">
+			<TextView android:text="到达:" android:id="@+id/TextView02"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+			<LinearLayout android:layout_width="wrap_content"
+				android:orientation="horizontal" android:layout_height="wrap_content">
+				<TextView android:text="@+id/etime" android:id="@+id/etime"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+				<TextView android:text="@+id/ecAirdrome" android:id="@+id/ecAirdrome"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+			</LinearLayout>
+		</LinearLayout>
+		<RelativeLayout android:layout_width="fill_parent"
+			android:layout_marginLeft="13dip" android:layout_marginRight="13dip"
+			android:layout_height="wrap_content">
+			<TextView android:text="座位等级" android:id="@+id/level"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+			<TextView android:text="票数量" android:id="@+id/count"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_centerHorizontal="true"></TextView>
+			<TextView android:text="价格" android:id="@+id/price"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"></TextView>
+		</RelativeLayout>
+		<ListView android:id="@+id/seatList" android:layout_width="fill_parent"
+			android:layout_marginLeft="13dip" android:layout_marginRight="13dip"
+			android:layout_height="wrap_content" android:cacheColorHint="#00000000"></ListView>
+	</LinearLayout>
+</LinearLayout>

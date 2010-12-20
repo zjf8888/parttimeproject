@@ -1,12 +1,19 @@
 package com.ucai.po;
 
+import java.io.Serializable;
+
 /**
  * 仓位信息
  * 
  * @author lixu
  * 
  */
-public class SeatClass {
+public class SeatClass implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public String classname;// 座位等级名称
 
 	public String num;// 剩余的座位数，大于等于9时为A

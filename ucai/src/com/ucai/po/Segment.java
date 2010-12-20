@@ -1,5 +1,6 @@
 package com.ucai.po;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,7 +9,12 @@ import java.util.List;
  * @author lixu
  * 
  */
-public class Segment {
+public class Segment implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public String fltno;// 航班号
 
 	public String sc;// 出发城市编码
