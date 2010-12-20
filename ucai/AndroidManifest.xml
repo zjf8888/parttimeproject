@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	package="com.ucai" android:versionCode="1" android:versionName="1.0">
 	<application android:icon="@drawable/icon" android:label="@string/app_name">
-		<activity android:name=".Main" android:screenOrientation="portrait"
-			android:label="@string/app_name">
+		<activity android:name=".Main" android:label="@string/app_name">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
@@ -17,6 +16,8 @@
 			android:screenOrientation="portrait" />
 		<activity android:name=".ui.SearchBackAndForth"
 			android:label="@string/app_name" android:screenOrientation="portrait" />
+		<activity android:name=".ui.SearchConnect" android:label="@string/app_name"
+			android:screenOrientation="portrait" />
 		<activity android:name=".ui.SearchFightCity" android:label="@string/app_name"
 			android:screenOrientation="portrait" />
 		<activity android:name=".ui.SearchHangKong" android:label="@string/app_name"
@@ -25,6 +26,7 @@
 			android:screenOrientation="portrait" />
 		<activity android:name=".ui.FightView" android:label="@string/app_name"
 			android:screenOrientation="portrait" />
+
 	</application>
 	<uses-sdk android:minSdkVersion="3" />
 	<uses-permission android:name="android.permission.INTERNET" />

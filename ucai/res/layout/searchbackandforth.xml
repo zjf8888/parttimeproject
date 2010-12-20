@@ -8,7 +8,7 @@
 		android:layout_marginTop="13px" android:background="@drawable/blue_in"
 		android:orientation="vertical">
 		<LinearLayout android:layout_width="fill_parent"
-			android:layout_height="wrap_content" android:layout_marginBottom="13px"
+			android:layout_height="wrap_content" android:layout_marginBottom="8dip"
 			android:layout_marginLeft="13px" android:layout_marginRight="13px"
 			android:layout_marginTop="13px" android:orientation="horizontal">
 			<TextView android:text="出发城市" android:id="@+id/text1"
@@ -18,7 +18,7 @@
 				android:layout_width="176px" android:layout_height="wrap_content"></EditText>
 		</LinearLayout>
 		<LinearLayout android:layout_width="fill_parent"
-			android:layout_height="wrap_content" android:layout_marginBottom="13px"
+			android:layout_height="wrap_content" android:layout_marginBottom="8dip"
 			android:layout_marginLeft="13px" android:layout_marginRight="13px"
 			android:orientation="horizontal">
 			<TextView android:text="到达城市" android:id="@+id/text2"
@@ -28,7 +28,7 @@
 				android:layout_width="176px" android:layout_height="wrap_content"></EditText>
 		</LinearLayout>
 		<LinearLayout android:layout_width="fill_parent"
-			android:layout_height="wrap_content" android:layout_marginBottom="13px"
+			android:layout_height="wrap_content" android:layout_marginBottom="8dip"
 			android:layout_marginLeft="13px" android:layout_marginRight="13px"
 			android:orientation="horizontal">
 			<TextView android:text="出发日期" android:id="@+id/text3"
@@ -38,7 +38,7 @@
 				android:layout_width="176px" android:layout_height="wrap_content"></EditText>
 		</LinearLayout>
 		<LinearLayout android:layout_width="fill_parent"
-			android:layout_height="wrap_content" android:layout_marginBottom="13px"
+			android:layout_height="wrap_content" android:layout_marginBottom="8dip"
 			android:layout_marginLeft="13px" android:layout_marginRight="13px"
 			android:orientation="horizontal">
 			<TextView android:text="返回日期" android:id="@+id/text4"
@@ -48,7 +48,7 @@
 				android:layout_width="176px" android:layout_height="wrap_content"></EditText>
 		</LinearLayout>
 		<RelativeLayout android:layout_width="fill_parent"
-			android:layout_height="wrap_content" android:layout_marginBottom="13px"
+			android:layout_height="wrap_content" android:layout_marginBottom="8dip"
 			android:layout_marginLeft="13px" android:layout_marginRight="13px"
 			android:orientation="horizontal">
 			<Button android:text="查询" android:id="@+id/search"

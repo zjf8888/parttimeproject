@@ -1,29 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical" android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
+	android:layout_height="fill_parent" android:background="@drawable/blue">
 	<AbsoluteLayout android:orientation="horizontal"
 		android:layout_height="fill_parent" android:layout_width="fill_parent">
+		<ImageView android:layout_x="12dip" android:id="@+id/ImageView01"
+			android:layout_y="2dip" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:src="@drawable/logo"></ImageView>
+		<TextView android:text="手机游天下" android:layout_y="38dip"
+			android:layout_height="wrap_content" android:layout_x="159dip"
+			android:layout_width="wrap_content" android:id="@+id/TextView01"
+			android:textSize="25dip"></TextView>
+		<TextView android:text="吃喝玩乐行" android:layout_y="68dip"
+			android:layout_height="wrap_content" android:layout_x="159dip"
+			android:layout_width="wrap_content" android:id="@+id/TextView01"
+			android:textSize="25dip"></TextView>
 		<LinearLayout android:layout_x="0px" android:orientation="vertical"
-			android:layout_y="120px" android:layout_width="fill_parent"
+			android:layout_y="130px" android:layout_width="fill_parent"
 			android:layout_height="wrap_content">
 			<RelativeLayout android:layout_width="fill_parent"
 				android:layout_height="wrap_content">
+
 				<LinearLayout android:orientation="vertical"
-					android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_centerInParent="true">
-					<Button android:id="@+id/travel" android:layout_width="176px"
-						android:layout_height="wrap_content" android:text="旅游"></Button>
-					<Button android:id="@+id/hotel" android:layout_width="176px"
-						android:layout_height="wrap_content" android:text="酒店"></Button>
-					<Button android:id="@+id/ticket" android:layout_width="176px"
-						android:layout_height="wrap_content" android:text="机票"></Button>
-					<Button android:id="@+id/train" android:layout_width="176px"
-						android:layout_height="wrap_content" android:text="火车票务"></Button>
-					<Button android:id="@+id/bus" android:layout_width="176px"
-						android:layout_height="wrap_content" android:text="公交"></Button>
-					<Button android:id="@+id/config" android:layout_width="176px"
-						android:layout_height="wrap_content" android:text="系统设置"></Button>
+					android:layout_width="wrap_content" android:layout_height="fill_parent"
+					android:layout_centerInParent="true">
+					<ScrollView android:id="@+id/ScrollView01"
+						android:layout_width="fill_parent" android:layout_height="fill_parent">
+						<LinearLayout android:orientation="vertical"
+							android:layout_width="wrap_content" android:layout_height="fill_parent">
+							<Button android:id="@+id/ticket" android:layout_width="176px"
+								android:layout_height="wrap_content" android:text="机票"></Button>
+							<Button android:id="@+id/hotel" android:layout_width="176px"
+								android:layout_height="wrap_content" android:text="酒店"></Button>
+							<Button android:id="@+id/travel" android:layout_width="176px"
+								android:layout_height="wrap_content" android:text="旅游"></Button>
+							<Button android:id="@+id/train" android:layout_width="176px"
+								android:layout_height="wrap_content" android:text="火车票务"></Button>
+							<Button android:id="@+id/bus" android:layout_width="176px"
+								android:layout_height="wrap_content" android:text="公交"></Button>
+							<Button android:id="@+id/config" android:layout_width="176px"
+								android:layout_height="wrap_content" android:text="系统设置"></Button>
+						</LinearLayout>
+					</ScrollView>
 				</LinearLayout>
+
 			</RelativeLayout>
 		</LinearLayout>
 	</AbsoluteLayout>

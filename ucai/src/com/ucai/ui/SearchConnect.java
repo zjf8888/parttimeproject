@@ -11,8 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class SearchBackAndForth extends Activity {
-
+public class SearchConnect extends Activity {
 	private Button search;
 	private Button back;
 
@@ -20,7 +19,7 @@ public class SearchBackAndForth extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.searchbackandforth);
+		setContentView(R.layout.searchconnect);
 		search = (Button) findViewById(R.id.search);
 		search.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {

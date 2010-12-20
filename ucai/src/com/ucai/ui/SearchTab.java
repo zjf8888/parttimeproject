@@ -21,6 +21,6 @@ public class SearchTab extends TabActivity {
 		// This tab sets the intent flag so that it is recreated each time
 		// the tab is clicked.
 		tabHost.addTab(tabHost.newTabSpec("tab3").setIndicator("联程")
-				.setContent(new Intent(this, SearchSimple.class)));
+				.setContent(new Intent(this, SearchConnect.class)));
 	}
 }
