@@ -5,19 +5,27 @@
 	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 	<servlet>
 		<servlet-name>FlightInfoServlet</servlet-name>
-		<servlet-class>com.ucai.servlet.FlightInfoServlet</servlet-class>
+		<servlet-class>
+			com.ucai.servlet.FlightInfoServlet
+		</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>FlightInfoByPageServlet</servlet-name>
-		<servlet-class>com.ucai.servlet.FlightInfoByPageServlet</servlet-class>
+		<servlet-class>
+			com.ucai.servlet.FlightInfoByPageServlet
+		</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>FilghtInfoJsonServlet</servlet-name>
-		<servlet-class>com.ucai.servlet.FilghtInfoJsonServlet</servlet-class>
+		<servlet-class>
+			com.ucai.servlet.FilghtInfoJsonServlet
+		</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>FilghtInfoByPageJsonServlet</servlet-name>
-		<servlet-class>com.ucai.servlet.FilghtInfoByPageJsonServlet</servlet-class>
+		<servlet-class>
+			com.ucai.servlet.FilghtInfoByPageJsonServlet
+		</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>SeatInfoServlet</servlet-name>
@@ -25,7 +33,9 @@
 	</servlet>
 	<servlet>
 		<servlet-name>SeatInfoAndroidServlet</servlet-name>
-		<servlet-class>com.ucai.servlet.SeatInfoAndroidServlet</servlet-class>
+		<servlet-class>
+			com.ucai.servlet.SeatInfoAndroidServlet
+		</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>FlightInfoServlet</servlet-name>
@@ -51,4 +61,18 @@
 		<servlet-name>SeatInfoAndroidServlet</servlet-name>
 		<url-pattern>/seatInfoAndroidServlet</url-pattern>
 	</servlet-mapping>
+	<filter>
+		<filter-name>Set Character Encoding</filter-name>
+		<filter-class>
+			com.ucai.tool.SetCharacterEncodingFilter
+		</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>Set Character Encoding</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 </web-app>

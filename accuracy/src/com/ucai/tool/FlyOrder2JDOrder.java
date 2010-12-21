@@ -15,14 +15,17 @@ import com.ucai.po.Orders;
 import com.ucai.po.Passenger;
 import com.ucai.po.Passenger2;
 import com.ucai.po.ReturnPo;
+
 /**
  * 把扣位信息转换成订单信息类
+ * 
  * @author lin
- *
+ * 
  */
 public class FlyOrder2JDOrder {
 	/**
 	 * 把扣位信息转换成订单信息类
+	 * 
 	 * @param flyOrder扣位信息
 	 * @param rpo扣位操作后返回的对象
 	 * @return返回订单信息类
@@ -93,29 +96,28 @@ public class FlyOrder2JDOrder {
 
 		List<Passenger2> Passengers2 = new ArrayList<Passenger2>();
 		List<Passenger> passengers = flyOrder.getPassengers();
-
-		for (int i = 0; i < flyAirs.size(); i++) {
-			FlyAir flyAir = flyAirs.get(i);
-			AirOrder airOrder = new AirOrder();
-			String flyNo=flyAir.getFlyNo();
-			String flyConpany=flyNo.substring(0,2);
-			airOrder.setA_Company(flyConpany);
-			airOrder.setA_FlyNo(flyAir.getFlyNo());
-			airOrder.setA_Scity(flyAir.getSc());
-			airOrder.setA_Ecity(flyAir.getEc());
-			airOrder.setA_Class(flyAir.getFlyClass());
-			airOrder.setA_FlySTime(flyAir.getsTime());
-			airOrder.setA_FlyETime(flyAir.geteTime());
-			airOrder.setA_FlyDate(flyAir.getsDate());
-			airOrder.setA_PlaneType(flyAir.getPlanesty());
-			airOrder.setA_Pnr(rpo.getPnr());
-			airOrder.setA_PnrState("HK");
-			airOrder.setA_ClassPrice(flyAir.getFlyPrice());
-			airOrder.setA_BuildFee(flyAir.getBuildfee());
-			airOrder.setA_FuelFee(flyAir.getFuelfee());
-			airOrder.setA_TGQ("收取20%退票费-收取10%变更费-不得签转-见舱销售，随订随售");
-			AirOrders.add(airOrder);
-
+		FlyAir flyAir = flyAirs.get(0);
+		AirOrder airOrder = new AirOrder();
+		String flyNo = flyAir.getFlyNo();
+		String flyConpany = flyNo.substring(0, 2);
+		airOrder.setA_Company(flyConpany);
+		airOrder.setA_FlyNo(flyAir.getFlyNo());
+		airOrder.setA_Scity(flyAir.getSc());
+		airOrder.setA_Ecity(flyAir.getEc());
+		airOrder.setA_Class(flyAir.getFlyClass());
+		airOrder.setA_FlySTime(flyAir.getsTime());
+		airOrder.setA_FlyETime(flyAir.geteTime());
+		airOrder.setA_FlyDate(flyAir.getsDate());
+		airOrder.setA_PlaneType(flyAir.getPlanesty());
+		airOrder.setA_Pnr(rpo.getPnr());
+		airOrder.setA_PnrState("HK");
+		airOrder.setA_ClassPrice(flyAir.getFlyPrice());
+		airOrder.setA_BuildFee(flyAir.getBuildfee());
+		airOrder.setA_FuelFee(flyAir.getFuelfee());
+		airOrder.setA_TGQ("收取20%退票费-收取10%变更费-不得签转-见舱销售，随订随售");
+		AirOrders.add(airOrder);
+		orders.setAirOrders(AirOrders);
+		for (int i = 0; i < passengers.size(); i++) {
 			// 由于需要记录票价，而且订单跟个人信息相同，故在同一循环里处理。
 			Passenger pa1 = passengers.get(i);
 			Passenger2 ppo = new Passenger2();
@@ -137,9 +139,7 @@ public class FlyOrder2JDOrder {
 			Passengers2.add(ppo);
 		}
 
-		orders.setAirOrders(AirOrders);
 		orders.setPassengers(Passengers2);
-
 		LinkMan LinkMan = new LinkMan();
 		Contact contact = flyOrder.getContact();
 		LinkMan.setL_Name(contact.getConName());
