@@ -211,6 +211,7 @@ public class SearchFightView extends Activity {
 				long id) {
 			Intent i = new Intent(SearchFightView.this, FightView.class);
 			Segment segmentpo=segmentList.get(position);
+			segmentpo.setDate(date);
 			i.putExtra("segmentpo", segmentpo);
 			startActivity(i);
 		}

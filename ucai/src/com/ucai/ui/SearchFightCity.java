@@ -50,6 +50,14 @@ public class SearchFightCity extends Activity {
 
 		citylist = (ListView) findViewById(R.id.citylist);
 		searchfightcitytext = (EditText) findViewById(R.id.searchfightcitytext);
+		searchfightcitytext.setFocusable(false);
+		searchfightcitytext.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				searchfightcitytext.setFocusable(true);
+				searchfightcitytext.setFocusableInTouchMode(true);
+				searchfightcitytext.requestFocus();
+			}
+		});
 		searchfightcitytext.addTextChangedListener(textWatcher);
 
 		mWindowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);

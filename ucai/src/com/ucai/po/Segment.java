@@ -9,7 +9,7 @@ import java.util.List;
  * @author lixu
  * 
  */
-public class Segment implements Serializable{
+public class Segment implements Serializable {
 	/**
 	 * 
 	 */
@@ -36,6 +36,15 @@ public class Segment implements Serializable{
 	public String etkt;// 电子票
 
 	public String meal;// 有餐
+	private String date;
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
 
 	public List<SeatClass> classesList;// 航班座位信息
 

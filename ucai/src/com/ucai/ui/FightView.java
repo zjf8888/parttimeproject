@@ -11,10 +11,14 @@ import com.ucai.po.Segment;
 import com.ucai.tool.MethodTool;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class FightView extends Activity {
 
@@ -62,6 +66,7 @@ public class FightView extends Activity {
 				R.layout.fight_item, new String[] { CLASSNAME, NUM, PRICE },
 				new int[] { R.id.level, R.id.count, R.id.price });
 		seatlist.setAdapter(adapter);
+		seatlist.setOnItemClickListener(listListener);
 	}
 
 	private void PrepareData() {
@@ -77,4 +82,14 @@ public class FightView extends Activity {
 			data.add(item);
 		}
 	}
+	private OnItemClickListener listListener = new OnItemClickListener() {
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
+			Intent i = new Intent(FightView.this, SeatView.class);
+			SeatClass seatClasspo=classesList.get(position);
+			i.putExtra("seatClasspo", seatClasspo);
+			i.putExtra("segmentpo", segmentpo);
+			startActivity(i);
+		}
+	};
 }
