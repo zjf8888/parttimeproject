@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -69,6 +70,24 @@ public class SearchHangKong extends Activity {
 			data.add(item);
 		}
 
+	}
+	/**
+	 * 捕获返回按键,使流转更规范
+	 */
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) { // 按下的如果是BACK，同时没有重复
+			Intent i = new Intent();
+			Bundle bundle = new Bundle();
+			String code = "";
+			String name = "";
+			bundle.putString(CODE, code);
+			bundle.putString(NAME, name);
+			i.putExtras(bundle);
+			setResult(RESULT_OK, i);
+			finish();
+		}
+
+		return super.onKeyDown(keyCode, event);
 	}
 
 	private OnItemClickListener listListener = new OnItemClickListener() {

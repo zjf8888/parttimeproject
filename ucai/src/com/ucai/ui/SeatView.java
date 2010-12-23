@@ -78,7 +78,9 @@ public class SeatView extends Activity {
 	private ArrayList<LinearLayout> fourList = null;
 	private ProgressDialog progressDialog = null;
 
-	/** Called when the activity is first created. */
+	/**
+	 * 界面主入口
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -123,6 +125,9 @@ public class SeatView extends Activity {
 		setView();
 	}
 
+	/**
+	 * 把第二个旅客对象抱
+	 */
 	private void setTravelerPo2() {
 		travelerView2 = new TravelerView();
 		travelerView2
@@ -135,6 +140,9 @@ public class SeatView extends Activity {
 				.setInsurancenumber((Spinner) findViewById(R.id.insurancenumber2));
 	}
 
+	/**
+	 * 把第三个旅客对象抱
+	 */
 	private void setTravelerPo3() {
 		travelerView3 = new TravelerView();
 		travelerView3
@@ -147,6 +155,9 @@ public class SeatView extends Activity {
 				.setInsurancenumber((Spinner) findViewById(R.id.insurancenumber3));
 	}
 
+	/**
+	 * 把第四个旅客对象抱
+	 */
 	private void setTravelerPo4() {
 		travelerView4 = new TravelerView();
 		travelerView4
@@ -159,6 +170,9 @@ public class SeatView extends Activity {
 				.setInsurancenumber((Spinner) findViewById(R.id.insurancenumber4));
 	}
 
+	/**
+	 * 对旅客类型的下接列表初始化
+	 */
 	private void setTravelertype() {
 		Spinner travelertype2 = (Spinner) findViewById(R.id.travelertype2);
 		Spinner travelertype3 = (Spinner) findViewById(R.id.travelertype3);
@@ -171,6 +185,9 @@ public class SeatView extends Activity {
 		travelertype4.setSelection(0);
 	}
 
+	/**
+	 * 对证件类型的下接列表初始化
+	 */
 	private void setIDtype() {
 		Spinner idtype2 = (Spinner) findViewById(R.id.idtype2);
 		Spinner idtype3 = (Spinner) findViewById(R.id.idtype3);
@@ -183,6 +200,9 @@ public class SeatView extends Activity {
 		idtype4.setSelection(0);
 	}
 
+	/**
+	 * 对保险数量的下接列表初始化
+	 */
 	private void setInsurancenumber() {
 		Spinner insurancenumber2 = (Spinner) findViewById(R.id.insurancenumber2);
 		Spinner insurancenumber3 = (Spinner) findViewById(R.id.insurancenumber3);
@@ -195,6 +215,9 @@ public class SeatView extends Activity {
 		insurancenumber4.setSelection(0);
 	}
 
+	/**
+	 * 把第二个旅客的显示位置封装起来
+	 */
 	private void setTwoList() {
 		twoList = new ArrayList<LinearLayout>();
 		LinearLayout two1 = (LinearLayout) findViewById(R.id.two1);
@@ -209,6 +232,9 @@ public class SeatView extends Activity {
 		twoList.add(two5);
 	}
 
+	/**
+	 * 把第三个旅客的显示位置封装起来
+	 */
 	private void setThreeList() {
 		threeList = new ArrayList<LinearLayout>();
 		LinearLayout three1 = (LinearLayout) findViewById(R.id.three1);
@@ -223,6 +249,9 @@ public class SeatView extends Activity {
 		threeList.add(three5);
 	}
 
+	/**
+	 * 把第四个旅客的显示位置封装起来
+	 */
 	private void setFourList() {
 		fourList = new ArrayList<LinearLayout>();
 		LinearLayout four1 = (LinearLayout) findViewById(R.id.four1);
@@ -237,6 +266,9 @@ public class SeatView extends Activity {
 		fourList.add(four5);
 	}
 
+	/**
+	 * 设置显示内容
+	 */
 	private void setView() {
 		level.setText("座位等级:" + seatClasspo.getClassname());
 		count.setText("座位数量:"
@@ -290,16 +322,21 @@ public class SeatView extends Activity {
 				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		insurancenumber.setAdapter(insuranceAdapter);
 		insurancenumber.setSelection(0);
-		setTravelertype();
-		setIDtype();
-		setInsurancenumber();
+		setTravelertype();// 对旅客类型的下接列表初始化
+		setIDtype();// 初始化证件类型
+		setInsurancenumber();// 初始化保险数量
 	}
 
+	/**
+	 * 提交处理
+	 * 
+	 * @return
+	 */
 	private ReturnPo commit() {
 		FlyOrder flyOrderpo = new FlyOrder();
 		List<FlyAir> flyAirs = new ArrayList<FlyAir>();
 		flyOrderpo.setFlyAirs(flyAirs);
-
+		// 设置航程数据开始
 		FlyAir flyAir = new FlyAir();
 		flyAir.setFlyNo(segmentpo.getFltno());
 		flyAir.setFlyClass(seatClasspo.getClasscode());
@@ -314,7 +351,8 @@ public class SeatView extends Activity {
 		flyAir.setsTime(segmentpo.getDeptime());
 		flyAir.seteTime(segmentpo.getArrtime());
 		flyAirs.add(flyAir);
-
+		// 设置航程数据结束
+		// 设置第一个旅客数据
 		Passenger paser = new Passenger();
 		paser.setPasName(nameoftraveler.getText().toString().trim());
 		paser.setPasType((travelertype.getSelectedItemPosition() + 1) + "");
@@ -329,7 +367,7 @@ public class SeatView extends Activity {
 		List<Passenger> passengers = new ArrayList<Passenger>();
 		passengers.add(paser);
 
-		// 这里是在动态生成字段后处理预留的地方.
+		// 当多个旅客时外理
 		if (numSpinner.getSelectedItemPosition() > 0) {
 			for (int i = 2; i <= numSpinner.getSelectedItemPosition() + 1; i++) {
 				Passenger pas = new Passenger();
@@ -394,6 +432,7 @@ public class SeatView extends Activity {
 			}
 		}
 		flyOrderpo.setPassengers(passengers);
+		// 封装联系人
 		Contact contact = new Contact();
 		contact.setConName(name.getText().toString().trim());
 		contact.setConTel(tel.getText().toString().trim());
@@ -406,20 +445,23 @@ public class SeatView extends Activity {
 		xstream.alias("flyOrder", com.ucai.po.FlyOrder.class);
 		xstream.alias("flyAir", FlyAir.class);
 		xstream.alias("passenger", Passenger.class);
-		String xml = xstream.toXML(flyOrderpo);
+		String xml = xstream.toXML(flyOrderpo);// 生成相应的xml
 		System.out.println(xml);
 		SeatApi api = new SeatApi();
-		ReturnPo rpo = api.setSeat(xml);
+		ReturnPo rpo = api.setSeat(xml);// 调用扣位方法
 		return rpo;
 	}
 
+	/**
+	 * 提交方法
+	 */
 	private void doCommit() {
 		progressDialog = ProgressDialog.show(SeatView.this, "请稍等...",
 				"正在提交内容...", true);
 		new Thread() {
 			public void run() {
 				try {
-					ReturnPo rpo = commit();
+					ReturnPo rpo = commit();//得到返回对象
 					Intent i = new Intent(SeatView.this, ToastView.class);
 					i.putExtra("rpo", rpo);
 					startActivity(i);
@@ -431,6 +473,11 @@ public class SeatView extends Activity {
 		}.start();
 	}
 
+	/**
+	 * 
+	 * @param type
+	 * @param message
+	 */
 	protected void showToastCollectioned(int type, String message) {
 		View view = inflateView(R.layout.toast);
 		TextView tv = (TextView) view.findViewById(R.id.tips);
