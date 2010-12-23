@@ -11,7 +11,11 @@ import java.net.URLConnection;
 import org.json.JSONObject;
 
 import com.ucai.po.ReturnPo;
-
+/**
+ * 扣位对应的api
+ * @author lin
+ *
+ */
 public class SeatApi {
 	private static final String BASE_URL = "http://www.ecook.cn/accuracy/seatInfoAndroidServlet";
 

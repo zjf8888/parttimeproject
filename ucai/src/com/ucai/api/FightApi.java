@@ -18,6 +18,12 @@ import com.ucai.po.Flight;
 import com.ucai.po.SeatClass;
 import com.ucai.po.Segment;
 
+/**
+ * 航空查询api
+ * 
+ * @author lin
+ * 
+ */
 public class FightApi {
 	private static final String BASE_URL = "http://www.ecook.cn/accuracy/filghtInfoJsonServlet";
 	private static final String CACHE_URL = "http://www.ecook.cn/accuracy/filghtInfoByPageJsonServlet";

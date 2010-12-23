@@ -2,7 +2,7 @@ package com.ucai.tool;
 
 public class CityCode {
 	/**
-	 * ���ж��ձ�
+	 * 
 	 */
 	public static String CityString[][] = {
 			{ "北京", "上海", "广州", "深圳", "成都", "杭州", "武汉", "西安", "重庆", "青岛", "长沙",

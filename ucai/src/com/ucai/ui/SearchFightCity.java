@@ -27,6 +27,12 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
+/**
+ * 查询不同城市的界面
+ * 
+ * @author lin
+ * 
+ */
 public class SearchFightCity extends Activity {
 	public static final String NAME = "name";
 	public static final String CODE = "code";
@@ -110,6 +116,9 @@ public class SearchFightCity extends Activity {
 		}
 	}
 
+	/**
+	 * 点击选择时监听
+	 */
 	private OnItemClickListener listListener = new OnItemClickListener() {
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
@@ -126,12 +135,21 @@ public class SearchFightCity extends Activity {
 		}
 	};
 
+	/**
+	 * 内部类，对移动时移除小窗口
+	 * 
+	 * @author lin
+	 * 
+	 */
 	private final class RemoveWindow implements Runnable {
 		public void run() {
 			removeWindow();
 		}
 	}
 
+	/**
+	 * 设置标志位，隐藏字母显示
+	 */
 	private void removeWindow() {
 		if (mShowing) {
 			mShowing = false;
@@ -159,6 +177,9 @@ public class SearchFightCity extends Activity {
 		mReady = false;
 	}
 
+	/**
+	 * 列表移动的监听，根据到达相应的位置，显示相应的字母
+	 */
 	ListView.OnScrollListener scrollListener = new ListView.OnScrollListener() {
 		public void onScroll(AbsListView view, int firstVisibleItem,
 				int visibleItemCount, int totalItemCount) {
@@ -197,6 +218,12 @@ public class SearchFightCity extends Activity {
 
 	};
 
+	/**
+	 * 查询相应的三字码
+	 * 
+	 * @param code
+	 * @return
+	 */
 	private int searchFromCode(String code) {
 		String cityMa[][] = CityCode.cityMa;
 		for (int j = 1; j < cityMa.length; j++) {
@@ -210,6 +237,9 @@ public class SearchFightCity extends Activity {
 		return 0;
 	}
 
+	/**
+	 * 文本框变化监听
+	 */
 	TextWatcher textWatcher = new TextWatcher() {
 
 		@Override
@@ -228,6 +258,9 @@ public class SearchFightCity extends Activity {
 		}
 	};
 
+	/**
+	 * 查询相应的名字
+	 */
 	private void searchName() {
 		String cityMa[][] = CityCode.cityMa;
 		String CityString[][] = CityCode.CityString;

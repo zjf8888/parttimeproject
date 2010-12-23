@@ -18,7 +18,11 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
+/**
+ * 单程查询界面
+ * @author lin
+ *
+ */
 public class SearchSimple extends Activity {
 
 	private static final int SCITY_REQUEST_CODE = 1;

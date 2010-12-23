@@ -24,6 +24,12 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
+/**
+ * 搜索航班类
+ * 
+ * @author lin
+ * 
+ */
 public class SearchFightView extends Activity {
 	private String startcity;
 	private String endcity;
@@ -81,6 +87,9 @@ public class SearchFightView extends Activity {
 		doSearch();
 	}
 
+	/**
+	 * 第一次进入该类时调用的查询方法
+	 */
 	private void doSearch() {
 		progressDialog = ProgressDialog.show(SearchFightView.this, "请稍等...",
 				"获取查询内容...", true);
@@ -97,6 +106,14 @@ public class SearchFightView extends Activity {
 		}.start();
 	}
 
+	/**
+	 * 下一页调用的查询方法
+	 * 
+	 * @param transid
+	 *            查询流水号
+	 * @param pn
+	 *            页码
+	 */
 	private void doNextPage(final String transid, final String pn) {
 		progressDialog = ProgressDialog.show(SearchFightView.this, "请稍等...",
 				"获取查询内容...", true);
@@ -113,6 +130,9 @@ public class SearchFightView extends Activity {
 		}.start();
 	}
 
+	/**
+	 * 更新界面
+	 */
 	private void updateView() {
 		handler.post(new Runnable() {
 			public void run() {
@@ -125,6 +145,9 @@ public class SearchFightView extends Activity {
 		});
 	}
 
+	/**
+	 * 具体更新界面方法
+	 */
 	private void setView() {
 		if (flightpo.getErrorCode().trim().equals("0")) {
 			SimpleAdapter adapter = new SimpleAdapter(this, data,
@@ -141,6 +164,9 @@ public class SearchFightView extends Activity {
 
 	}
 
+	/**
+	 * 设置数据
+	 */
 	private void setDate() {
 		data = new ArrayList<Map<String, Object>>();
 		FightApi api = new FightApi();
@@ -161,13 +187,19 @@ public class SearchFightView extends Activity {
 				data.add(item);
 			}
 		} catch (Exception e) {
-			flightpo=new Flight();
+			flightpo = new Flight();
 			flightpo.setErrorCode("104");
 			flightpo.setErrorTips("网络未连通");
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * 设置下一页时调用的方法
+	 * 
+	 * @param transid
+	 * @param pn
+	 */
 	private void setNextPageDate(String transid, String pn) {
 		data = new ArrayList<Map<String, Object>>();
 		FightApi api = new FightApi();
@@ -192,8 +224,12 @@ public class SearchFightView extends Activity {
 		}
 	}
 
-	
-
+	/**
+	 * 查询每航班中价格最低的座位
+	 * 
+	 * @param classesList
+	 * @return
+	 */
 	private String searchMinPrice(List<SeatClass> classesList) {
 		int minPrice = 10000000;
 		if (classesList != null && classesList.size() > 0) {
@@ -206,11 +242,15 @@ public class SearchFightView extends Activity {
 		}
 		return "" + minPrice;
 	}
+
+	/**
+	 * 点击航班列表相应的监听
+	 */
 	private OnItemClickListener listListener = new OnItemClickListener() {
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
 			Intent i = new Intent(SearchFightView.this, FightView.class);
-			Segment segmentpo=segmentList.get(position);
+			Segment segmentpo = segmentList.get(position);
 			segmentpo.setDate(date);
 			i.putExtra("segmentpo", segmentpo);
 			startActivity(i);

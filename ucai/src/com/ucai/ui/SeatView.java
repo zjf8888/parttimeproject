@@ -33,6 +33,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
+/**
+ * 扣位界面
+ * 
+ * @author lin
+ * 
+ */
 public class SeatView extends Activity {
 	private TextView level;
 	private TextView count;
@@ -461,7 +467,7 @@ public class SeatView extends Activity {
 		new Thread() {
 			public void run() {
 				try {
-					ReturnPo rpo = commit();//得到返回对象
+					ReturnPo rpo = commit();// 得到返回对象
 					Intent i = new Intent(SeatView.this, ToastView.class);
 					i.putExtra("rpo", rpo);
 					startActivity(i);

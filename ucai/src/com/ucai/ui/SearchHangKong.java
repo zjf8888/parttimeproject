@@ -21,6 +21,12 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.AdapterView.OnItemClickListener;
 
+/**
+ * 选择相应航空公司的类
+ * 
+ * @author lin
+ * 
+ */
 public class SearchHangKong extends Activity {
 	public static final String NAME = "name";
 	public static final String CODE = "code";
@@ -51,6 +57,9 @@ public class SearchHangKong extends Activity {
 		setView();
 	}
 
+	/**
+	 * 初始化界相
+	 */
 	private void setView() {
 		SimpleAdapter adapter = new SimpleAdapter(this, data,
 				R.layout.list_item, new String[] { NAME },
@@ -59,6 +68,9 @@ public class SearchHangKong extends Activity {
 		hangKonglist.setOnItemClickListener(listListener);
 	}
 
+	/**
+	 * 设置数据
+	 */
 	private void PrepareData() {
 		data = new ArrayList<Map<String, String>>();
 		String[] hangKong = CityCode.hangKongName;
@@ -66,11 +78,12 @@ public class SearchHangKong extends Activity {
 		for (int i = 0; i < hangKong.length; i++) {
 			Map<String, String> item = new HashMap<String, String>();
 			item.put(CODE, code[i]);
-			item.put(NAME, hangKong[i]+"航空");
+			item.put(NAME, hangKong[i] + "航空");
 			data.add(item);
 		}
 
 	}
+
 	/**
 	 * 捕获返回按键,使流转更规范
 	 */
@@ -90,6 +103,9 @@ public class SearchHangKong extends Activity {
 		return super.onKeyDown(keyCode, event);
 	}
 
+	/**
+	 * 相应的列表单击监听
+	 */
 	private OnItemClickListener listListener = new OnItemClickListener() {
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
@@ -105,7 +121,9 @@ public class SearchHangKong extends Activity {
 			finish();
 		}
 	};
-
+	/**
+	 * 对文本框内容变化的监听
+	 */
 	TextWatcher textWatcher = new TextWatcher() {
 
 		@Override
@@ -124,6 +142,9 @@ public class SearchHangKong extends Activity {
 		}
 	};
 
+	/**
+	 * 搜索相应内容
+	 */
 	private void searchName() {
 		String hangKongCode[] = CityCode.hangKongCode;
 		String hangKongName[] = CityCode.hangKongName;
@@ -135,7 +156,7 @@ public class SearchHangKong extends Activity {
 			if (city.indexOf(s) != -1) {
 				Map<String, String> item = new HashMap<String, String>();
 				item.put(CODE, hangKongCode[i]);
-				item.put(NAME, hangKongName[i]+"航空");
+				item.put(NAME, hangKongName[i] + "航空");
 				data.add(item);
 			}
 		}

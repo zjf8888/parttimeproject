@@ -11,6 +11,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * 联程查询界面，开发中。。。。
+ * 
+ * @author lin
+ * 
+ */
 public class SearchConnect extends Activity {
 	private Button search;
 	private Button back;

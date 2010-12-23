@@ -19,7 +19,11 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
-
+/**
+ * 航班显示界面
+ * @author lin
+ *
+ */
 public class FightView extends Activity {
 
 	private static final String PRICE = "price";

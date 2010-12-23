@@ -11,6 +11,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/***
+ * 往返查询界面，开发中。。。。。
+ * 
+ * @author lin
+ * 
+ */
 public class SearchBackAndForth extends Activity {
 
 	private Button search;
