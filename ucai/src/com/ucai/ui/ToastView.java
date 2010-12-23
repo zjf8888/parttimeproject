@@ -14,6 +14,7 @@ import android.widget.TextView;
 public class ToastView extends Activity {
 	private TextView info;
 	private Button button;
+	private Button back;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -33,6 +34,12 @@ public class ToastView extends Activity {
 			public void onClick(View v) {
 				Intent i = new Intent(ToastView.this, Main.class);
 				startActivity(i);
+			}
+		});
+		back = (Button) findViewById(R.id.back);
+		back.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				finish();
 			}
 		});
 	}

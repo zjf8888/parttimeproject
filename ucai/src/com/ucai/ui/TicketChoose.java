@@ -16,7 +16,10 @@ public class TicketChoose extends Activity {
 	private Button ticketquery;
 	private Button ticketdeal;
 
-	/** Called when the activity is first created. */
+	/**
+	 * TicketChoose程序主入口
+	 * 
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -36,6 +39,9 @@ public class TicketChoose extends Activity {
 		});
 	}
 
+	/**
+	 * 提示窗口
+	 */
 	protected void dialog() {
 		AlertDialog.Builder builder = new Builder(TicketChoose.this);
 		builder.setMessage("航班的退票改签功能目前尚不能在线上完成,请拨打电话:4006840060完成改签程序");

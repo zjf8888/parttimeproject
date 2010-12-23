@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.widget.TabHost;
 
 public class SearchTab extends TabActivity {
+	/**
+	 * 程序入口
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -18,8 +21,6 @@ public class SearchTab extends TabActivity {
 		tabHost.addTab(tabHost.newTabSpec("tab2").setIndicator("往返")
 				.setContent(new Intent(this, SearchBackAndForth.class)));
 
-		// This tab sets the intent flag so that it is recreated each time
-		// the tab is clicked.
 		tabHost.addTab(tabHost.newTabSpec("tab3").setIndicator("联程")
 				.setContent(new Intent(this, SearchConnect.class)));
 	}

@@ -19,8 +19,8 @@ import com.ucai.po.SeatClass;
 import com.ucai.po.Segment;
 
 public class FightApi {
-	private static final String BASE_URL = "http://192.168.1.101:8081/accuracy/filghtInfoJsonServlet";
-	private static final String CACHE_URL = "http://192.168.1.101:8081/accuracy/filghtInfoByPageJsonServlet";
+	private static final String BASE_URL = "http://www.ecook.cn/accuracy/filghtInfoJsonServlet";
+	private static final String CACHE_URL = "http://www.ecook.cn/accuracy/filghtInfoByPageJsonServlet";
 
 	/**
 	 * 获取查询航班数据流

@@ -41,7 +41,9 @@ public class SearchSimple extends Activity {
 	private int mMonth;
 	private int mDay;
 
-	/** Called when the activity is first created. */
+	/**
+	 * 程序主入口
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -91,7 +93,7 @@ public class SearchSimple extends Activity {
 		search = (Button) findViewById(R.id.search);
 		search.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				if (sctiy.getText().toString().length() == 0) {
+				if (sctiy.getText().toString().length() == 0) {// 判断是否已作相应
 					showToastCollectioned(Toast.LENGTH_SHORT, "请选择出发城市");
 				} else if (ectiy.getText().toString().length() == 0) {
 					showToastCollectioned(Toast.LENGTH_SHORT, "请选择到达城市");
@@ -115,6 +117,9 @@ public class SearchSimple extends Activity {
 		mDay = c.get(Calendar.DAY_OF_MONTH);
 	}
 
+	/**
+	 * 返回参数方法接口
+	 */
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (data != null) {
@@ -138,6 +143,9 @@ public class SearchSimple extends Activity {
 		}
 	}
 
+	/**
+	 * 时间显示监听
+	 */
 	private DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
 
 		public void onDateSet(DatePicker view, int year, int monthOfYear,
@@ -149,6 +157,9 @@ public class SearchSimple extends Activity {
 		}
 	};
 
+	/**
+	 * 时间选择显示功能
+	 */
 	@Override
 	protected Dialog onCreateDialog(int id) {
 		switch (id) {
@@ -159,6 +170,9 @@ public class SearchSimple extends Activity {
 		return null;
 	}
 
+	/**
+	 * 操作时间返回的数据
+	 */
 	private void updateDisplay() {
 		String month;
 		String day;
@@ -176,6 +190,12 @@ public class SearchSimple extends Activity {
 				month).append("-").append(day));
 	}
 
+	/**
+	 * 显示提示界面方法
+	 * 
+	 * @param type
+	 * @param message
+	 */
 	protected void showToastCollectioned(int type, String message) {
 		View view = inflateView(R.layout.toast);
 		TextView tv = (TextView) view.findViewById(R.id.tips);
@@ -186,6 +206,12 @@ public class SearchSimple extends Activity {
 		toast.show();
 	}
 
+	/**
+	 * 显示提示界面
+	 * 
+	 * @param resource
+	 * @return
+	 */
 	private View inflateView(int resource) {
 		LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		return vi.inflate(resource, null);

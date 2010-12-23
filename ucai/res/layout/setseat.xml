@@ -44,7 +44,7 @@
 						android:layout_height="wrap_content" android:layout_weight="1"></TextView>
 					<EditText android:text="" android:id="@+id/tel"
 						android:layout_width="176px" android:layout_height="wrap_content"
-						android:layout_weight="2"></EditText>
+						android:layout_weight="2" android:phoneNumber="true"></EditText>
 				</LinearLayout>
 				<LinearLayout android:layout_width="fill_parent"
 					android:layout_height="wrap_content" android:layout_marginLeft="13px"
@@ -54,7 +54,7 @@
 						android:layout_height="wrap_content" android:layout_weight="1"></TextView>
 					<EditText android:text="" android:id="@+id/mobil"
 						android:layout_width="176px" android:layout_height="wrap_content"
-						android:layout_weight="2"></EditText>
+						android:layout_weight="2" android:phoneNumber="true"></EditText>
 				</LinearLayout>
 				<LinearLayout android:layout_width="fill_parent"
 					android:layout_height="wrap_content" android:layout_marginLeft="13px"
