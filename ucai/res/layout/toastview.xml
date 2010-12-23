@@ -7,7 +7,7 @@
 		android:layout_width="fill_parent" android:layout_height="fill_parent">
 		<TextView android:text="" android:id="@+id/info"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:textSize="14dip" android:layout_centerHorizontal="true"
+			android:textSize="12dip" android:layout_centerHorizontal="true"
 			android:layout_marginTop="90dip"></TextView>
 		<Button android:text="确定" android:id="@+id/button"
 			android:layout_width="100px" android:layout_height="wrap_content"

@@ -13,7 +13,7 @@ import org.json.JSONObject;
 import com.ucai.po.ReturnPo;
 
 public class SeatApi {
-	private static final String BASE_URL = "http://192.168.1.100:8081/seatInfoAndroidServlet";
+	private static final String BASE_URL = "http://www.ecook.cn/accuracy/seatInfoAndroidServlet";
 
 	/**
 	 * 提交数据

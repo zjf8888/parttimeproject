@@ -160,8 +160,20 @@ public class SearchSimple extends Activity {
 	}
 
 	private void updateDisplay() {
+		String month;
+		String day;
+		if (((mMonth + 1) + "").length() == 1) {
+			month = "0" + (mMonth + 1);
+		} else {
+			month = "" + (mMonth + 1);
+		}
+		if ((mDay + "").length() == 1) {
+			day = "0" + mDay;
+		} else {
+			day = "" + mDay;
+		}
 		sdate.setText(new StringBuilder().append(mYear).append("-").append(
-				mMonth + 1).append("-").append(mDay));
+				month).append("-").append(day));
 	}
 
 	protected void showToastCollectioned(int type, String message) {

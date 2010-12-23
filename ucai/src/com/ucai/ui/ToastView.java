@@ -21,8 +21,13 @@ public class ToastView extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.toastview);
 		ReturnPo rpo = (ReturnPo) getIntent().getExtras().get("rpo");
+
 		info = (TextView) findViewById(R.id.info);
-		info.setText(rpo.getInfo());
+		if (rpo.getCode().equals("1")) {
+			info.setText("订票成功，pnr码为:" + rpo.getPnr());
+		} else {
+			info.setText(rpo.getInfo());
+		}
 		button = (Button) findViewById(R.id.button);
 		button.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {

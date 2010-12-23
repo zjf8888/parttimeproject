@@ -13,6 +13,7 @@ import com.ucai.po.Passenger;
 import com.ucai.po.ReturnPo;
 import com.ucai.po.SeatClass;
 import com.ucai.po.Segment;
+import com.ucai.po.TravelerView;
 import com.ucai.tool.ConstantPo;
 
 import android.app.Activity;
@@ -22,12 +23,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 public class SeatView extends Activity {
 	private TextView level;
@@ -60,12 +64,18 @@ public class SeatView extends Activity {
 	private ArrayAdapter<String> insuranceAdapter = null;
 	private ArrayList<String> insurancepage = null;
 
+	private TravelerView travelerView2 = null;
+	private TravelerView travelerView3 = null;
+	private TravelerView travelerView4 = null;
+
 	private Button commit;
 	private Button back;
 
 	private SeatClass seatClasspo;
 	private Segment segmentpo;
-
+	private ArrayList<LinearLayout> twoList = null;
+	private ArrayList<LinearLayout> threeList = null;
+	private ArrayList<LinearLayout> fourList = null;
 	private ProgressDialog progressDialog = null;
 
 	/** Called when the activity is first created. */
@@ -85,19 +95,24 @@ public class SeatView extends Activity {
 		address = (EditText) findViewById(R.id.address);
 		sentaddress = (EditText) findViewById(R.id.sentaddress);
 		numSpinner = (Spinner) findViewById(R.id.numSpinner);
+		numSpinner.setOnItemSelectedListener(selectListener);
 		nameoftraveler = (EditText) findViewById(R.id.nameoftraveler);
 		travelertype = (Spinner) findViewById(R.id.travelertype);
 		idtype = (Spinner) findViewById(R.id.idtype);
 		idnumber = (EditText) findViewById(R.id.idnumber);
 		insurancenumber = (Spinner) findViewById(R.id.insurancenumber);
-
+		setTravelerPo2();
+		setTravelerPo3();
+		setTravelerPo4();
 		back = (Button) findViewById(R.id.back);
 		back.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				finish();
 			}
 		});
-
+		setTwoList();
+		setThreeList();
+		setFourList();
 		commit = (Button) findViewById(R.id.commit);
 		commit.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -106,6 +121,120 @@ public class SeatView extends Activity {
 		});
 
 		setView();
+	}
+
+	private void setTravelerPo2() {
+		travelerView2 = new TravelerView();
+		travelerView2
+				.setNameoftraveler((EditText) findViewById(R.id.nameoftraveler2));
+		travelerView2
+				.setTravelertype((Spinner) findViewById(R.id.travelertype2));
+		travelerView2.setIdtype((Spinner) findViewById(R.id.idtype2));
+		travelerView2.setIdnumber((EditText) findViewById(R.id.idnumber2));
+		travelerView2
+				.setInsurancenumber((Spinner) findViewById(R.id.insurancenumber2));
+	}
+
+	private void setTravelerPo3() {
+		travelerView3 = new TravelerView();
+		travelerView3
+				.setNameoftraveler((EditText) findViewById(R.id.nameoftraveler3));
+		travelerView3
+				.setTravelertype((Spinner) findViewById(R.id.travelertype3));
+		travelerView3.setIdtype((Spinner) findViewById(R.id.idtype3));
+		travelerView3.setIdnumber((EditText) findViewById(R.id.idnumber3));
+		travelerView3
+				.setInsurancenumber((Spinner) findViewById(R.id.insurancenumber3));
+	}
+
+	private void setTravelerPo4() {
+		travelerView4 = new TravelerView();
+		travelerView4
+				.setNameoftraveler((EditText) findViewById(R.id.nameoftraveler4));
+		travelerView4
+				.setTravelertype((Spinner) findViewById(R.id.travelertype4));
+		travelerView4.setIdtype((Spinner) findViewById(R.id.idtype4));
+		travelerView4.setIdnumber((EditText) findViewById(R.id.idnumber4));
+		travelerView4
+				.setInsurancenumber((Spinner) findViewById(R.id.insurancenumber4));
+	}
+
+	private void setTravelertype() {
+		Spinner travelertype2 = (Spinner) findViewById(R.id.travelertype2);
+		Spinner travelertype3 = (Spinner) findViewById(R.id.travelertype3);
+		Spinner travelertype4 = (Spinner) findViewById(R.id.travelertype4);
+		travelertype2.setAdapter(travelerAdapter);
+		travelertype2.setSelection(0);
+		travelertype3.setAdapter(travelerAdapter);
+		travelertype3.setSelection(0);
+		travelertype4.setAdapter(travelerAdapter);
+		travelertype4.setSelection(0);
+	}
+
+	private void setIDtype() {
+		Spinner idtype2 = (Spinner) findViewById(R.id.idtype2);
+		Spinner idtype3 = (Spinner) findViewById(R.id.idtype3);
+		Spinner idtype4 = (Spinner) findViewById(R.id.idtype4);
+		idtype2.setAdapter(idAdapter);
+		idtype2.setSelection(0);
+		idtype3.setAdapter(idAdapter);
+		idtype3.setSelection(0);
+		idtype4.setAdapter(idAdapter);
+		idtype4.setSelection(0);
+	}
+
+	private void setInsurancenumber() {
+		Spinner insurancenumber2 = (Spinner) findViewById(R.id.insurancenumber2);
+		Spinner insurancenumber3 = (Spinner) findViewById(R.id.insurancenumber3);
+		Spinner insurancenumber4 = (Spinner) findViewById(R.id.insurancenumber4);
+		insurancenumber2.setAdapter(insuranceAdapter);
+		insurancenumber2.setSelection(0);
+		insurancenumber3.setAdapter(insuranceAdapter);
+		insurancenumber3.setSelection(0);
+		insurancenumber4.setAdapter(insuranceAdapter);
+		insurancenumber4.setSelection(0);
+	}
+
+	private void setTwoList() {
+		twoList = new ArrayList<LinearLayout>();
+		LinearLayout two1 = (LinearLayout) findViewById(R.id.two1);
+		LinearLayout two2 = (LinearLayout) findViewById(R.id.two2);
+		LinearLayout two3 = (LinearLayout) findViewById(R.id.two3);
+		LinearLayout two4 = (LinearLayout) findViewById(R.id.two4);
+		LinearLayout two5 = (LinearLayout) findViewById(R.id.two5);
+		twoList.add(two1);
+		twoList.add(two2);
+		twoList.add(two3);
+		twoList.add(two4);
+		twoList.add(two5);
+	}
+
+	private void setThreeList() {
+		threeList = new ArrayList<LinearLayout>();
+		LinearLayout three1 = (LinearLayout) findViewById(R.id.three1);
+		LinearLayout three2 = (LinearLayout) findViewById(R.id.three2);
+		LinearLayout three3 = (LinearLayout) findViewById(R.id.three3);
+		LinearLayout three4 = (LinearLayout) findViewById(R.id.three4);
+		LinearLayout three5 = (LinearLayout) findViewById(R.id.three5);
+		threeList.add(three1);
+		threeList.add(three2);
+		threeList.add(three3);
+		threeList.add(three4);
+		threeList.add(three5);
+	}
+
+	private void setFourList() {
+		fourList = new ArrayList<LinearLayout>();
+		LinearLayout four1 = (LinearLayout) findViewById(R.id.four1);
+		LinearLayout four2 = (LinearLayout) findViewById(R.id.four2);
+		LinearLayout four3 = (LinearLayout) findViewById(R.id.four3);
+		LinearLayout four4 = (LinearLayout) findViewById(R.id.four4);
+		LinearLayout four5 = (LinearLayout) findViewById(R.id.four5);
+		fourList.add(four1);
+		fourList.add(four2);
+		fourList.add(four3);
+		fourList.add(four4);
+		fourList.add(four5);
 	}
 
 	private void setView() {
@@ -161,6 +290,9 @@ public class SeatView extends Activity {
 				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		insurancenumber.setAdapter(insuranceAdapter);
 		insurancenumber.setSelection(0);
+		setTravelertype();
+		setIDtype();
+		setInsurancenumber();
 	}
 
 	private ReturnPo commit() {
@@ -198,6 +330,69 @@ public class SeatView extends Activity {
 		passengers.add(paser);
 
 		// 这里是在动态生成字段后处理预留的地方.
+		if (numSpinner.getSelectedItemPosition() > 0) {
+			for (int i = 2; i <= numSpinner.getSelectedItemPosition() + 1; i++) {
+				Passenger pas = new Passenger();
+				if (i == 2) {
+					pas.setPasName(travelerView2.getNameoftraveler().getText()
+							.toString().trim());
+					pas.setPasType((travelerView2.getTravelertype()
+							.getSelectedItemPosition() + 1)
+							+ "");
+					pas.setPasYE("");
+					pas.setPasBirthday((travelerView2.getIdtype()
+							.getSelectedItemPosition() + 1)
+							+ "");
+					pas.setPasBirthNo(travelerView2.getIdnumber().getText()
+							.toString());
+					pas.setInsurance_num((travelerView2.getInsurancenumber()
+							.getSelectedItemPosition() + 1)
+							+ "");
+					pas.setInsurance_price((travelerView2.getInsurancenumber()
+							.getSelectedItemPosition() + 1)
+							* 20 + "");
+				}
+				if (i == 3) {
+					pas.setPasName(travelerView3.getNameoftraveler().getText()
+							.toString().trim());
+					pas.setPasType((travelerView3.getTravelertype()
+							.getSelectedItemPosition() + 1)
+							+ "");
+					pas.setPasYE("");
+					pas.setPasBirthday((travelerView3.getIdtype()
+							.getSelectedItemPosition() + 1)
+							+ "");
+					pas.setPasBirthNo(travelerView3.getIdnumber().getText()
+							.toString());
+					pas.setInsurance_num((travelerView3.getInsurancenumber()
+							.getSelectedItemPosition() + 1)
+							+ "");
+					pas.setInsurance_price((travelerView3.getInsurancenumber()
+							.getSelectedItemPosition() + 1)
+							* 20 + "");
+				}
+				if (i == 4) {
+					pas.setPasName(travelerView4.getNameoftraveler().getText()
+							.toString().trim());
+					pas.setPasType((travelerView4.getTravelertype()
+							.getSelectedItemPosition() + 1)
+							+ "");
+					pas.setPasYE("");
+					pas.setPasBirthday((travelerView4.getIdtype()
+							.getSelectedItemPosition() + 1)
+							+ "");
+					pas.setPasBirthNo(travelerView4.getIdnumber().getText()
+							.toString());
+					pas.setInsurance_num((travelerView4.getInsurancenumber()
+							.getSelectedItemPosition() + 1)
+							+ "");
+					pas.setInsurance_price((travelerView4.getInsurancenumber()
+							.getSelectedItemPosition() + 1)
+							* 20 + "");
+				}
+				passengers.add(pas);
+			}
+		}
 		flyOrderpo.setPassengers(passengers);
 		Contact contact = new Contact();
 		contact.setConName(name.getText().toString().trim());
@@ -249,5 +444,52 @@ public class SeatView extends Activity {
 	private View inflateView(int resource) {
 		LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		return vi.inflate(resource, null);
+	}
+
+	private OnItemSelectedListener selectListener = new OnItemSelectedListener() {
+		@SuppressWarnings("unchecked")
+		@Override
+		public void onItemSelected(AdapterView parent, View v, int position,
+				long id) {
+			int pos = numSpinner.getSelectedItemPosition();
+			if (pos == 0) {
+				setListGone(twoList);
+				setListGone(threeList);
+				setListGone(fourList);
+			}
+			if (pos == 1) {
+				setListGone(threeList);
+				setListGone(fourList);
+				setListVisibility(twoList);
+			}
+			if (pos == 2) {
+				setListVisibility(threeList);
+				setListGone(fourList);
+				setListVisibility(twoList);
+			}
+			if (pos == 3) {
+				setListVisibility(threeList);
+				setListVisibility(fourList);
+				setListVisibility(twoList);
+			}
+		}
+
+		@Override
+		public void onNothingSelected(AdapterView<?> arg0) {
+		}
+	};
+
+	private void setListVisibility(ArrayList<LinearLayout> list) {
+		for (int i = 0; i < list.size(); i++) {
+			LinearLayout layout = list.get(i);
+			layout.setVisibility(View.VISIBLE);
+		}
+	}
+
+	private void setListGone(ArrayList<LinearLayout> list) {
+		for (int i = 0; i < list.size(); i++) {
+			LinearLayout layout = list.get(i);
+			layout.setVisibility(View.GONE);
+		}
 	}
 }

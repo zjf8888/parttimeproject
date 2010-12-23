@@ -37,6 +37,14 @@ public class SearchHangKong extends Activity {
 
 		hangKonglist = (ListView) findViewById(R.id.citylist);
 		searchHangKongtext = (EditText) findViewById(R.id.searchfightcitytext);
+		searchHangKongtext.setFocusable(false);
+		searchHangKongtext.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				searchHangKongtext.setFocusable(true);
+				searchHangKongtext.setFocusableInTouchMode(true);
+				searchHangKongtext.requestFocus();
+			}
+		});
 		searchHangKongtext.addTextChangedListener(textWatcher);
 		PrepareData();
 		setView();
