@@ -21,7 +21,17 @@ public class ReturnPo {
 
 	private String fuel;// 燃油附加费
 
-	private String price;// 总价
+	private String price;// 总价]
+
+	private String forderid;
+
+	public String getForderid() {
+		return forderid;
+	}
+
+	public void setForderid(String forderid) {
+		this.forderid = forderid;
+	}
 
 	public String getCode() {
 		return code;

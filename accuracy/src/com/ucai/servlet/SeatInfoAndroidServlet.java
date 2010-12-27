@@ -72,6 +72,7 @@ public class SeatInfoAndroidServlet extends HttpServlet {
 		if (rpo != null && rpo.getCode() != null && rpo.getCode().equals("1")) {
 			Orders Orders = FlyOrder2JDOrder.getJDOrderFromFlyOrder(flyOrder,
 					rpo);
+			rpo.setForderid(Orders.getFOrders().getF_Number());
 			xstream.alias("Orders", Orders.class);
 			xstream.alias("airOrder", AirOrder.class);
 			xstream.alias("passenger", Passenger2.class);

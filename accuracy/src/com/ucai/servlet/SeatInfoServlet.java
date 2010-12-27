@@ -88,6 +88,7 @@ public class SeatInfoServlet extends HttpServlet {
 		if (rpo != null && rpo.getCode() != null && rpo.getCode().equals("1")) {
 			Orders Orders = FlyOrder2JDOrder.getJDOrderFromFlyOrder(flyOrder,
 					rpo);
+			rpo.setForderid(Orders.getFOrders().getF_Number());
 			xstream.alias("Orders", Orders.class);
 			xstream.alias("airOrder", AirOrder.class);
 			xstream.alias("passenger", Passenger2.class);
@@ -98,6 +99,7 @@ public class SeatInfoServlet extends HttpServlet {
 			String rexml = SetOrderImp.FlyOrder(jdReXml);
 			System.out.println(rexml);
 		}
+		reXml = xstream.toXML(rpo);
 		PrintWriter pw = response.getWriter();
 		pw.write(reXml);
 		pw.flush();
