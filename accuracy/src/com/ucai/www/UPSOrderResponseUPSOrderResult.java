@@ -8,7 +8,11 @@
 package com.ucai.www;
 
 public class UPSOrderResponseUPSOrderResult  implements java.io.Serializable, org.apache.axis.encoding.AnyContentType, org.apache.axis.encoding.MixedContentType {
-    private org.apache.axis.message.MessageElement [] _any;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private org.apache.axis.message.MessageElement [] _any;
 
     public UPSOrderResponseUPSOrderResult() {
     }

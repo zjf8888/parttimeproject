@@ -1,9 +1,8 @@
 package com.alipay.wap.security;
 
-
 public class SecurityManagerImpl implements SecurityManager {
 	private Signature signature;
-	@Override
+
 	public String sign(String algoType, String content, String key)
 			throws Exception {
 		if (algoType.equals("MD5")) {
@@ -15,7 +14,6 @@ public class SecurityManagerImpl implements SecurityManager {
 		return signature.sign(content, key);
 	}
 
-	@Override
 	public boolean verify(String algoType, String content, String sign,
 			String key) throws Exception {
 		if (algoType.equals("MD5")) {

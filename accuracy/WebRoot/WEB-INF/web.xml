@@ -37,6 +37,18 @@
 			com.ucai.servlet.SeatInfoAndroidServlet
 		</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>TradeServlet</servlet-name>
+		<servlet-class>
+			 com.alipay.wap.servlet.TradeServlet
+		</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>CallBackServlet</servlet-name>
+		<servlet-class>
+			 com.alipay.wap.servlet.CallBackServlet
+		</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>FlightInfoServlet</servlet-name>
 		<url-pattern>/spi/getflight.do</url-pattern>
@@ -60,6 +72,14 @@
 	<servlet-mapping>
 		<servlet-name>SeatInfoAndroidServlet</servlet-name>
 		<url-pattern>/seatInfoAndroidServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>TradeServlet</servlet-name>
+		<url-pattern>/tradeServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CallBackServlet</servlet-name>
+		<url-pattern>/callBackServlet</url-pattern>
 	</servlet-mapping>
 	<filter>
 		<filter-name>Set Character Encoding</filter-name>

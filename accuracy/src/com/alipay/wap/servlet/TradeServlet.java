@@ -49,21 +49,16 @@ public class TradeServlet extends HttpServlet {
 			DirectTool dt=new DirectTool();
 			Map<String, String> reqParams = dt.prepareTradeRequestParamsMap(resultOrder);
 			
-			String signAlgo = "MD5";
-			String key = "konbtn7ffh861z6rntoypzyvl60ndqzm";
 			String reqUrl = "http://wappaygw.alipay.com/service/rest.htm";
 			
-			ClientConfig.setMd5Key(key);
-			ClientConfig.setMd5SignAlgo(signAlgo);
-			
-			String sign = dt.sign(reqParams,signAlgo,key);
+			String sign = dt.sign(reqParams,ClientConfig.md5SignAlgo,ClientConfig.md5Key);
 			reqParams.put("sign", sign);
 			
 			ResponseResult resResult = new ResponseResult();
 			String businessResult = "";
 			AlipayApi api=new AlipayApi();
 			try {
-				resResult = api.getResponseResult(reqParams,reqUrl,signAlgo,key);
+				resResult = api.getResponseResult(reqParams,reqUrl,ClientConfig.md5SignAlgo,ClientConfig.md5Key);
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
@@ -87,9 +82,8 @@ public class TradeServlet extends HttpServlet {
 			// 开放平台返回的内容中取出request_token（对返回的内容要先用私钥解密，再用支付宝的公钥验签名）
 			String requestToken = directTradeCreateRes.getRequestToken();
 			
-			Map<String, String> authParams =dt.prepareAuthParamsMap(request,
-					requestToken);
-			String authSign = dt.sign(authParams,signAlgo,key);
+			Map<String, String> authParams =dt.prepareAuthParamsMap(requestToken);
+			String authSign = dt.sign(authParams,ClientConfig.md5SignAlgo,ClientConfig.md5Key);
 			authParams.put("sign", authSign);
 			String redirectURL = "";
 			try {

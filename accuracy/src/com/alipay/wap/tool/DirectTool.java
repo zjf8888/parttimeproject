@@ -4,14 +4,13 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import com.alipay.wap.security.SecurityManagerImpl;
 import com.alipay.wap.security.SecurityManager;
 import com.ucai.po.ResultOrder;
 
 public class DirectTool {
 	private SecurityManager securityManager = new SecurityManagerImpl();
+
 	/**
 	 * 准备alipay.wap.trade.create.direct服务的参数
 	 * 
@@ -23,22 +22,31 @@ public class DirectTool {
 			ResultOrder resultOrder) throws UnsupportedEncodingException {
 		Map<String, String> requestParams = new HashMap<String, String>();
 		// 商品名称
-		String subject = resultOrder.getA_Scity()+"-"+resultOrder.getA_Ecity();
+		String subject = resultOrder.getA_Scity() + "-"
+				+ resultOrder.getA_Ecity();
 		// 外部交易号
 		String outTradeNo = resultOrder.getF_Number().trim();
 		// 商品总价
-		String totalFee = resultOrder.getTotalPrice().trim();
+		String totalFee = "0.01";
+		//String totalFee = resultOrder.getTotalPrice().trim();
+		// 卖家帐号
+		String sellerAccountName = "jdpiaowu@163.com".trim();
+		// 接收支付宝发送的通知的url
+		String notifyUrl = "http://www.ecook.cn/accuracy/callBackServlet";
 		// req_data的内容
 		String reqData = "<direct_trade_create_req>" + "<subject>" + subject
 				+ "</subject><out_trade_no>" + outTradeNo
 				+ "</out_trade_no><total_fee>" + totalFee
-				+ "</total_fee></direct_trade_create_req>";
+				+ "</total_fee><seller_account_name>" + sellerAccountName
+				+ "</seller_account_name><notify_url>" + notifyUrl
+				+ "</notify_url><pay_expire>10</pay_expire></direct_trade_create_req>";
 		requestParams.put("req_data", reqData);
 		requestParams.put("req_id", System.currentTimeMillis() + "");
 		requestParams.putAll(prepareCommonParams());
 		System.out.println("prepareTradeRequestParamsMap" + requestParams);
 		return requestParams;
 	}
+
 	/**
 	 * 准备通用参数
 	 * 
@@ -51,7 +59,7 @@ public class DirectTool {
 		String secId = "MD5";
 		commonParams.put("sec_id", secId);
 		String partner = "2088301177981331";
-		commonParams.put("partner", partner);		
+		commonParams.put("partner", partner);
 		String format = "xml";
 		commonParams.put("format", format);
 		String v = "2.0";
@@ -59,42 +67,44 @@ public class DirectTool {
 		System.out.println("prepareCommonParams" + commonParams);
 		return commonParams;
 	}
+
 	/**
 	 * 对参数进行签名
 	 * 
 	 * @param reqParams
 	 * @return
 	 */
-	public String sign(Map<String, String> reqParams,String signAlgo,String key) {
+	public String sign(Map<String, String> reqParams, String signAlgo,
+			String key) {
 
 		String signData = ParameterUtil.getSignData(reqParams);
 		String sign = "";
 		try {
-			sign = securityManager.sign(signAlgo,
-					signData, key);
+			sign = securityManager.sign(signAlgo, signData, key);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
 		return sign;
 	}
+
 	/**
 	 * 准备alipay.wap.auth.authAndExecute服务的参数
 	 * 
 	 * @param requestToken
 	 * @return
 	 */
-	public Map<String, String> prepareAuthParamsMap(
-			HttpServletRequest request, String requestToken) {
+	public Map<String, String> prepareAuthParamsMap(String requestToken) {
 		Map<String, String> requestParams = new HashMap<String, String>();
 		String reqData = "<auth_and_execute_req><request_token>" + requestToken
 				+ "</request_token></auth_and_execute_req>";
 		requestParams.put("req_data", reqData);
 		requestParams.putAll(prepareCommonParams());
-		String callbackUrl = request.getParameter("call_back_url").trim();
+		String callbackUrl = "http://www.ucai.com/";
 		requestParams.put("call_back_url", callbackUrl);
 		requestParams.put("service", "alipay.wap.auth.authAndExecute");
 		return requestParams;
 	}
+
 	/**
 	 * 调用alipay.wap.auth.authAndExecute服务的时候需要跳转到支付宝的页面，组装跳转url
 	 * 
@@ -102,7 +112,7 @@ public class DirectTool {
 	 * @return
 	 * @throws Exception
 	 */
-	public String getRedirectUrl(Map<String, String> reqParams,String reqUrl)
+	public String getRedirectUrl(Map<String, String> reqParams, String reqUrl)
 			throws Exception {
 		String redirectUrl = reqUrl + "?";
 		redirectUrl = redirectUrl + ParameterUtil.mapToUrl(reqParams);

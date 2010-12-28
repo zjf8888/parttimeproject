@@ -9,7 +9,6 @@ import com.alipay.wap.tool.StringUtil;
 
 public class MD5Signature implements Signature {
 
-	@Override
 	public String sign(String content, String key) throws Exception {
 		String tosign = (content == null ? "" : content) + key;
 
@@ -21,7 +20,6 @@ public class MD5Signature implements Signature {
         }
 	}
 
-	@Override
 	public boolean verify(String content, String sign, String key)
 			throws Exception {
 		 String tosign = (content == null ? "" : content) + key;
