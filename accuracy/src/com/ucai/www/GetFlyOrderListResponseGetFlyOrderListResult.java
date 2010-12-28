@@ -1,5 +1,5 @@
 /**
- * FlyOrderResponseFlyOrderResult.java
+ * GetFlyOrderListResponseGetFlyOrderListResult.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
@@ -7,24 +7,24 @@
 
 package com.ucai.www;
 
-public class FlyOrderResponseFlyOrderResult  implements java.io.Serializable, org.apache.axis.encoding.AnyContentType, org.apache.axis.encoding.MixedContentType {
+public class GetFlyOrderListResponseGetFlyOrderListResult  implements java.io.Serializable, org.apache.axis.encoding.AnyContentType, org.apache.axis.encoding.MixedContentType {
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private org.apache.axis.message.MessageElement [] _any;
 
-    public FlyOrderResponseFlyOrderResult() {
+    public GetFlyOrderListResponseGetFlyOrderListResult() {
     }
 
-    public FlyOrderResponseFlyOrderResult(
+    public GetFlyOrderListResponseGetFlyOrderListResult(
            org.apache.axis.message.MessageElement [] _any) {
            this._any = _any;
     }
 
 
     /**
-     * Gets the _any value for this FlyOrderResponseFlyOrderResult.
+     * Gets the _any value for this GetFlyOrderListResponseGetFlyOrderListResult.
      * 
      * @return _any
      */
@@ -34,7 +34,7 @@ public class FlyOrderResponseFlyOrderResult  implements java.io.Serializable, or
 
 
     /**
-     * Sets the _any value for this FlyOrderResponseFlyOrderResult.
+     * Sets the _any value for this GetFlyOrderListResponseGetFlyOrderListResult.
      * 
      * @param _any
      */
@@ -44,8 +44,8 @@ public class FlyOrderResponseFlyOrderResult  implements java.io.Serializable, or
 
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof FlyOrderResponseFlyOrderResult)) return false;
-        FlyOrderResponseFlyOrderResult other = (FlyOrderResponseFlyOrderResult) obj;
+        if (!(obj instanceof GetFlyOrderListResponseGetFlyOrderListResult)) return false;
+        GetFlyOrderListResponseGetFlyOrderListResult other = (GetFlyOrderListResponseGetFlyOrderListResult) obj;
         if (obj == null) return false;
         if (this == obj) return true;
         if (__equalsCalc != null) {
@@ -85,10 +85,10 @@ public class FlyOrderResponseFlyOrderResult  implements java.io.Serializable, or
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(FlyOrderResponseFlyOrderResult.class, true);
+        new org.apache.axis.description.TypeDesc(GetFlyOrderListResponseGetFlyOrderListResult.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://www.ucai.com", ">>FlyOrderResponse>FlyOrderResult"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://www.ucai.com", ">>GetFlyOrderListResponse>GetFlyOrderListResult"));
     }
 
     /**
