@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author lin
  * 
  */
-public class ReturnPo implements Serializable{
+public class ReturnPo implements Serializable {
 	/**
 	 * 
 	 */
@@ -29,6 +29,15 @@ public class ReturnPo implements Serializable{
 	private String fuel;// 燃油附加费
 
 	private String price;// 总价
+	private String forderId;
+
+	public String getForderId() {
+		return forderId;
+	}
+
+	public void setForderId(String forderId) {
+		this.forderId = forderId;
+	}
 
 	public String getCode() {
 		return code;
