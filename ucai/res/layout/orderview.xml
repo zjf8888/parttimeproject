@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical" android:background="@drawable/blue">
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_marginBottom="13px" android:layout_marginLeft="13px"
+		android:layout_marginRight="13px" android:layout_marginTop="13px"
+		android:layout_height="fill_parent" android:orientation="vertical"
+		android:background="@drawable/blue_in">
+		<TextView android:text="@+id/TextView01" android:id="@+id/TextView01"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_marginTop="13px" android:layout_marginLeft="13px"
+			android:layout_marginBottom="13px" ></TextView>
+		<TextView android:text="@+id/TextView02" android:id="@+id/TextView02"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_marginLeft="13px" android:layout_marginBottom="13px"></TextView>
+		<TextView android:text="@+id/TextView03" android:id="@+id/TextView03"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_marginLeft="13px" android:layout_marginBottom="13px"></TextView>
+		<TextView android:text="@+id/TextView04" android:id="@+id/TextView04"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_marginLeft="13px" android:layout_marginBottom="13px"></TextView>
+		<TextView android:text="@+id/TextView05" android:id="@+id/TextView05"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_marginLeft="13px" android:layout_marginBottom="13px"></TextView>
+		<TextView android:text="@+id/TextView06" android:id="@+id/TextView06"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_marginLeft="13px" android:layout_marginBottom="13px"></TextView>
+		<TextView android:text="@+id/TextView07" android:id="@+id/TextView07"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_marginLeft="13px" android:layout_marginBottom="13px"></TextView>
+			<RelativeLayout android:id="@+id/RelativeLayout01"
+		android:layout_width="fill_parent" android:layout_height="wrap_content">
+		<Button android:text="确定" android:id="@+id/Button01" 
+			android:layout_width="100px" android:layout_height="wrap_content" android:layout_centerHorizontal="true"></Button>
+			</RelativeLayout>
+	</LinearLayout>
+</LinearLayout>

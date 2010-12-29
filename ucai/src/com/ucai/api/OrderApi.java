@@ -10,14 +10,10 @@ import java.net.URLConnection;
 
 import org.json.JSONObject;
 
-import com.ucai.po.ReturnPo;
-/**
- * 扣位对应的api
- * @author lin
- *
- */
-public class SeatApi {
-	private static final String BASE_URL = "http://www.ecook.cn/accuracy/seatInfoAndroidServlet";
+import com.ucai.po.ResultOrder;
+
+public class OrderApi {
+	private static final String BASE_URL = "http://www.ecook.cn/accuracy/getFlyOrderListJsonServlet";
 
 	/**
 	 * 提交数据
@@ -25,7 +21,7 @@ public class SeatApi {
 	 * @param xml
 	 * @return
 	 */
-	public InputStream openViewConn(String xml) {
+	public InputStream openViewConn(String forderid) {
 		InputStream is = null;
 		try {
 			URL realUrl = new URL(BASE_URL);
@@ -43,7 +39,7 @@ public class SeatApi {
 			PrintWriter out = new PrintWriter(new OutputStreamWriter(conn
 					.getOutputStream(), "utf-8"));
 			// 发送请求参数
-			out.print("xml=" + xml);
+			out.print("forderid=" + forderid);
 			// flush输出流的缓冲
 			out.flush();
 			is = conn.getInputStream();
@@ -54,40 +50,42 @@ public class SeatApi {
 	}
 
 	/**
-	 * 查询缓存数年据
+	 * 获取订单信息对象
 	 * 
-	 * @param tid
-	 *            缓存ID
-	 * @param pn
-	 *            第几页
-	 * @return 航班信息对象
+	 * @param xml
+	 * @return
 	 */
-	public ReturnPo setSeat(String xml) {
+	public ResultOrder setSeat(String xml) {
 		try {
-			ReturnPo po = new ReturnPo();
+			ResultOrder po = new ResultOrder();
 			InputStream is = openViewConn(xml);
 			BufferedReader in = new BufferedReader(new InputStreamReader(is,
 					"UTF-8"));
 			String line = in.readLine();
+			System.out.println(line);
 			JSONObject jsonObject = new JSONObject(line);
-			String code = jsonObject.getString("code");
-			String info = jsonObject.getString("info");
-			String pnr = jsonObject.getString("pnr");
-			String FlyConpany = jsonObject.getString("flyConpany");
-			String ticketPrice = jsonObject.getString("ticketPrice");
-			String tax = jsonObject.getString("tax");
-			String fuel = jsonObject.getString("fuel");
-			String price = jsonObject.getString("price");
-			String forderId = jsonObject.getString("forderid");
-			po.setCode(code);
-			po.setInfo(info);
-			po.setPnr(pnr);
-			po.setFlyConpany(FlyConpany);
-			po.setTicketPrice(ticketPrice);
-			po.setTax(tax);
-			po.setFuel(fuel);
-			po.setPrice(price);
-			po.setForderId(forderId);
+			String f_Id = jsonObject.getString("f_Id");
+			String f_Number = jsonObject.getString("f_Number");
+			String f_PayStatus = jsonObject.getString("f_PayStatus");
+			String a_FlyNo = jsonObject.getString("a_FlyNo");
+			String a_Pnr = jsonObject.getString("a_Pnr");
+			String p_Name = jsonObject.getString("p_Name");
+			String l_Name = jsonObject.getString("l_Name");
+			String a_Scity = jsonObject.getString("a_Scity");
+			String a_Ecity = jsonObject.getString("a_Ecity");
+			String a_FlyDate = jsonObject.getString("a_FlyDate");
+			String TotalPrice = jsonObject.getString("totalPrice");
+			po.setF_Id(f_Id);
+			po.setF_Number(f_Number);
+			po.setF_PayStatus(f_PayStatus);
+			po.setA_FlyNo(a_FlyNo);
+			po.setA_Pnr(a_Pnr);
+			po.setP_Name(p_Name);
+			po.setL_Name(l_Name);
+			po.setA_Scity(a_Scity);
+			po.setA_Ecity(a_Ecity);
+			po.setA_FlyDate(a_FlyDate);
+			po.setTotalPrice(TotalPrice);
 			return po;
 		} catch (Exception e) {
 			e.printStackTrace();
