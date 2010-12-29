@@ -49,6 +49,12 @@
 			 com.alipay.wap.servlet.CallBackServlet
 		</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>GetFlyOrderListServlet</servlet-name>
+		<servlet-class>
+			 com.alipay.wap.servlet.GetFlyOrderListServlet
+		</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>FlightInfoServlet</servlet-name>
 		<url-pattern>/spi/getflight.do</url-pattern>
@@ -80,6 +86,10 @@
 	<servlet-mapping>
 		<servlet-name>CallBackServlet</servlet-name>
 		<url-pattern>/callBackServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetFlyOrderListServlet</servlet-name>
+		<url-pattern>/getFlyOrderListServlet</url-pattern>
 	</servlet-mapping>
 	<filter>
 		<filter-name>Set Character Encoding</filter-name>
