@@ -55,6 +55,12 @@
 			 com.alipay.wap.servlet.GetFlyOrderListServlet
 		</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>GetFlyOrderListJsonServlet</servlet-name>
+		<servlet-class>
+			 com.alipay.wap.servlet.GetFlyOrderListJsonServlet
+		</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>FlightInfoServlet</servlet-name>
 		<url-pattern>/spi/getflight.do</url-pattern>
@@ -90,6 +96,10 @@
 	<servlet-mapping>
 		<servlet-name>GetFlyOrderListServlet</servlet-name>
 		<url-pattern>/getFlyOrderListServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetFlyOrderListJsonServlet</servlet-name>
+		<url-pattern>/getFlyOrderListJsonServlet</url-pattern>
 	</servlet-mapping>
 	<filter>
 		<filter-name>Set Character Encoding</filter-name>

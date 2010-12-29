@@ -33,6 +33,7 @@ public class SeatInfoAndroidServlet extends HttpServlet {
 		DoSeat doseat = new DoSeat();
 		ReturnPo rpo = doseat.doSeatInfo(request, response);
 		JSONObject jsonObject = JSONObject.fromObject(rpo);
+		System.out.println(jsonObject.toString());
 		PrintWriter pw = response.getWriter();
 		pw.write(jsonObject.toString());
 		pw.flush();
