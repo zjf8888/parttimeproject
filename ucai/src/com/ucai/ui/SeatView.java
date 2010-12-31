@@ -467,9 +467,9 @@ public class SeatView extends Activity {
 		new Thread() {
 			public void run() {
 				try {
-					ReturnPo rpo = commit();// 得到返回对象
+					ReturnPo rpo = commit();// 得到返回对象					
 					Intent i = new Intent(SeatView.this, ToastView.class);
-					i.putExtra("rpo", rpo);
+					i.putExtra("rpo", rpo);					
 					startActivity(i);
 				} catch (Exception e) {
 					e.printStackTrace();
