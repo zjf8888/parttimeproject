@@ -39,4 +39,16 @@ public interface SecurityManager {
 	 */
 	public boolean verify(String algoType, String content, String sign,
 			String key) throws Exception;
+
+	/**
+	 * 支付控件的签名方法
+	 * 
+	 * @param algoType
+	 *            算法类型
+	 * @param content
+	 *            原始数据
+	 * @return
+	 * @throws Exception
+	 */
+	public String sign(String algoType, String content) throws Exception;
 }

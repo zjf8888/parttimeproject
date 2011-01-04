@@ -14,6 +14,15 @@ public interface Signature {
 	public String sign(String content, String key) throws Exception;
 
 	/**
+	 * 对支付控件签名
+	 * 
+	 * @param content原始数据
+	 * @return
+	 * @throws Exception
+	 */
+	public String sign(String content) throws Exception;
+
+	/**
 	 * 验证签名
 	 * 
 	 * @param content

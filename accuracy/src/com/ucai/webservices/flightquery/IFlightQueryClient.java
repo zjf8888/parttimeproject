@@ -24,6 +24,7 @@ public class IFlightQueryClient {
 
 	private Service service0;
 
+	@SuppressWarnings("unchecked")
 	public IFlightQueryClient() {
 		create0();
 		Endpoint IFlightQueryHttpPortEP = service0.addEndpoint(new QName(
@@ -61,7 +62,7 @@ public class IFlightQueryClient {
 	public Collection getEndpoints() {
 		return endpoints.values();
 	}
-
+	@SuppressWarnings("unchecked")
 	private void create0() {
 		TransportManager tm = (org.codehaus.xfire.XFireFactory.newInstance()
 				.getXFire().getTransportManager());
@@ -74,12 +75,14 @@ public class IFlightQueryClient {
 		service0 = asf.create(
 				(com.ucai.webservices.flightquery.IFlightQueryPortType.class), props);
 		{
+			@SuppressWarnings("unused")
 			AbstractSoapBinding soapBinding = asf
 					.createSoap11Binding(service0, new QName("http://jdtx",
 							"IFlightQueryPortTypeLocalBinding"),
 							"urn:xfire:transport:local");
 		}
 		{
+			@SuppressWarnings("unused")
 			AbstractSoapBinding soapBinding = asf.createSoap11Binding(service0,
 					new QName("http://jdtx", "IFlightQueryHttpBinding"),
 					"http://schemas.xmlsoap.org/soap/http");

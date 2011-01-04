@@ -9,7 +9,12 @@ package com.ucai.www;
 
 public class SetOrdersLocator extends org.apache.axis.client.Service implements com.ucai.www.SetOrders {
 
-    public SetOrdersLocator() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public SetOrdersLocator() {
     }
 
 
@@ -109,7 +114,7 @@ public class SetOrdersLocator extends org.apache.axis.client.Service implements 
     }
 
     private java.util.HashSet ports = null;
-
+    @SuppressWarnings("unchecked")
     public java.util.Iterator getPorts() {
         if (ports == null) {
             ports = new java.util.HashSet();

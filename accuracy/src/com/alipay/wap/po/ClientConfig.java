@@ -12,5 +12,9 @@ public class ClientConfig {
 	 */
 	public static String md5SignAlgo = "MD5";
 
-	
+	// 卖家帐号
+	public static String sellerAccountName = "jdpiaowu@163.com".trim();
+
+	// 接收支付宝发送的通知的url
+	public static String notifyUrl = "http://www.ecook.cn/accuracy/callBackServlet";
 }

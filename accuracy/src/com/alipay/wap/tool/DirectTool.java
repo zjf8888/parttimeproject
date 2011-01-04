@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.alipay.wap.po.ClientConfig;
 import com.alipay.wap.security.SecurityManagerImpl;
 import com.alipay.wap.security.SecurityManager;
 import com.ucai.po.ResultOrder;
@@ -30,9 +31,9 @@ public class DirectTool {
 		String totalFee = "0.01";
 		//String totalFee = resultOrder.getTotalPrice().trim();
 		// 卖家帐号
-		String sellerAccountName = "jdpiaowu@163.com".trim();
+		String sellerAccountName = ClientConfig.sellerAccountName;
 		// 接收支付宝发送的通知的url
-		String notifyUrl = "http://www.ecook.cn/accuracy/callBackServlet";
+		String notifyUrl = ClientConfig.notifyUrl;
 		// req_data的内容
 		String reqData = "<direct_trade_create_req>" + "<subject>" + subject
 				+ "</subject><out_trade_no>" + outTradeNo
