@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -25,13 +26,14 @@ public class OrderView extends Activity {
 	private ProgressDialog progressDialog = null;
 	private ResultOrder order = null;
 	private String forderid;
-
+	private Handler handler = new Handler();
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.orderview);
 		forderid = (String) getIntent().getExtras().get("forderid");
+		Button01 = (Button) findViewById(R.id.Button01);
 		Button01.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Intent i = new Intent(OrderView.this, Main.class);
@@ -67,8 +69,21 @@ public class OrderView extends Activity {
 		OrderApi api = new OrderApi();
 		order = api.setSeat(forderid);
 	}
-
+	/**
+	 * 更新界面
+	 */
 	private void updateView() {
+		handler.post(new Runnable() {
+			public void run() {
+				try {
+					setView();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	private void setView() {
 		System.out.println(forderid);
 		TextView01 = (TextView) findViewById(R.id.TextView01);
 		TextView02 = (TextView) findViewById(R.id.TextView02);
@@ -76,8 +91,7 @@ public class OrderView extends Activity {
 		TextView04 = (TextView) findViewById(R.id.TextView04);
 		TextView05 = (TextView) findViewById(R.id.TextView05);
 		TextView06 = (TextView) findViewById(R.id.TextView06);
-		TextView07 = (TextView) findViewById(R.id.TextView07);
-		Button01 = (Button) findViewById(R.id.Button01);
+		TextView07 = (TextView) findViewById(R.id.TextView07);		
 
 		System.out.println(order);
 		System.out.println(order.getA_FlyNo());
@@ -85,7 +99,7 @@ public class OrderView extends Activity {
 		TextView02.setText("乘客姓名:" + order.getP_Name());
 		TextView03.setText("出发城市:" + order.getA_Scity());
 		TextView04.setText("目标城市:" + order.getA_Ecity());
-		TextView05.setText("起飞日期:" + order.getA_FlyDate());
+		TextView05.setText("起飞日期:" + order.getA_FlyDate().split(" ")[0]);
 		TextView06.setText("订单总价:" + order.getTotalPrice());
 		TextView07.setText("支付状态:"
 				+ (order.getF_PayStatus().equals("1") ? "已支付" : "未支付"));
