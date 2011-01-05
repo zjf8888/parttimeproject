@@ -62,8 +62,9 @@ public class CallBackServlet extends HttpServlet {
 			//  根据交易状态处理业务逻辑
 			// 当交易状态成功，处理业务逻辑成功。回写success
 			String orderid=getOrderId(map);
+			String price=getPrice(map);
 			SetOrderImp setOrderImp=new SetOrderImp();
-			System.out.println(setOrderImp.updateOrder(orderid));
+			System.out.println(setOrderImp.updateOrder(orderid,price));
 			System.out.println("接收支付宝系统通知验证签名成功！");
 			out.print("success");
 		} else {
@@ -103,6 +104,22 @@ public class CallBackServlet extends HttpServlet {
 			Element notify = doc.getRootElement();
 			String orderid=notify.getChildTextTrim("out_trade_no");
 			return orderid;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sr.close();
+		}
+		return null;
+	}
+	private String getPrice(Map map){
+		String notify_data = (String) ((Object[]) map.get("notify_data"))[0];
+		StringReader sr = new StringReader(notify_data);
+		SAXBuilder builder = new SAXBuilder(false);
+		try {
+			Document doc = builder.build(sr);
+			Element notify = doc.getRootElement();
+			String price=notify.getChildTextTrim("total_fee");
+			return price;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

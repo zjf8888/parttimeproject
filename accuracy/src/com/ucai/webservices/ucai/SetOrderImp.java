@@ -118,7 +118,7 @@ public class SetOrderImp {
 		return null;
 	}
 
-	public String updateOrder(String OrderNumber) {
+	public String updateOrder(String OrderNumber, String price) {
 		try {
 			String service_url = "http://www.ucai.com/FlyWebService/SetOrders.asmx?WSDL";
 			Service service = new Service();
@@ -133,6 +133,8 @@ public class SetOrderImp {
 			call.addParameter(new QName("http://www.ucai.com", "fOrders"),
 					XMLType.XSD_STRING, ParameterMode.IN);
 			call.addParameter(new QName("http://www.ucai.com", "state"),
+					XMLType.XSD_STRING, ParameterMode.IN);
+			call.addParameter(new QName("http://www.ucai.com", "price"),
 					XMLType.XSD_STRING, ParameterMode.IN);
 			call.addParameter(new QName("http://www.ucai.com", "payDoc"),
 					XMLType.XSD_STRING, ParameterMode.IN);
@@ -149,7 +151,7 @@ public class SetOrderImp {
 					"http://www.ucai.com", "UPSOrderResult"));
 			// 调用远程方法
 			UPSOrderResponseUPSOrderResult UPSOrderResponseUPSOrderResult = (UPSOrderResponseUPSOrderResult) call
-					.invoke(new Object[] { OrderNumber, "1", "" });
+					.invoke(new Object[] { OrderNumber, "1", price, "" });
 			// 获取相应的数据
 			MessageElement[] me = UPSOrderResponseUPSOrderResult.get_any();
 			// 把获取的数据组装成对象
