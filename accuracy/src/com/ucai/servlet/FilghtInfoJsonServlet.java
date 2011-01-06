@@ -21,7 +21,6 @@ import com.ucai.tool.Xml2Flight;
 import com.ucai.tool.po.ToSerializationFlight;
 import com.ucai.webservices.flightquery.IFlightQueryClient;
 import com.ucai.webservices.flightquery.IFlightQueryPortType;
-import com.ucai.webservices.ucai.SetOrderImp;
 
 /**
  * 机票查询Servlet 这个类是针对以json为传输介质处理的
@@ -47,8 +46,7 @@ public class FilghtInfoJsonServlet extends HttpServlet {
 		response.setContentType(CONTENT_TYPE);
 		response.setCharacterEncoding("UTF-8");
 		try {
-			SetOrderImp simp=new SetOrderImp();
-			simp.getFlyOrderList("F20101227115553441");
+
 			String org = request.getParameter("org");
 			String dst = request.getParameter("dst");
 			String date = request.getParameter("date");

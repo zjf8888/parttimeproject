@@ -1,7 +1,8 @@
-package com.alipay.wap.servlet;
+package com.ucai.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -10,11 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONObject;
+
+import com.alipay.wap.po.ResultPo;
 import com.ucai.po.ResultOrder;
 import com.ucai.webservices.ucai.SetOrderImp;
 
-public class GetFlyOrderListJsonServlet extends HttpServlet{
-	private static final String CONTENT_TYPE = "text/xml;charset=UTF-8";
+public class GetOrderListByUserIdServlet extends HttpServlet {
+	private static final String CONTENT_TYPE = "application/json;charset=UTF-8";
 
 	/**
 	 * 
@@ -38,10 +41,12 @@ public class GetFlyOrderListJsonServlet extends HttpServlet{
 		response.setContentType(CONTENT_TYPE);
 		response.setCharacterEncoding("UTF-8");
 		try {
-			String forderid = request.getParameter("forderid");
+			String userid = request.getParameter("userid");
 			SetOrderImp orderImp = new SetOrderImp();
-			ResultOrder resultOrder = orderImp.getFlyOrderList(forderid,"");
-			JSONObject jsonObject = JSONObject.fromObject(resultOrder);
+			List<ResultOrder> resultList=orderImp.getResultList("", userid);
+			ResultPo po=new ResultPo();
+			po.setResultList(resultList);
+			JSONObject jsonObject = JSONObject.fromObject(po);
 			String json = jsonObject.toString();
 			System.out.println(json);
 			PrintWriter pw = response.getWriter();

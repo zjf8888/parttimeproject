@@ -42,7 +42,7 @@ public class SignServlet extends HttpServlet {
 		try {
 			String forderid = request.getParameter("forderid");
 			SetOrderImp orderImp = new SetOrderImp();
-			ResultOrder resultOrder = orderImp.getFlyOrderList(forderid);
+			ResultOrder resultOrder = orderImp.getFlyOrderList(forderid,"");
 			String subject = resultOrder.getA_Scity() + "-"
 					+ resultOrder.getA_Ecity();
 			String body = "航班号为" + resultOrder.getA_FlyNo() + ",日期为"

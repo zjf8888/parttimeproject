@@ -40,7 +40,7 @@ public class GetFlyOrderListServlet extends HttpServlet {
 		try {
 			String forderid = request.getParameter("forderid");
 			SetOrderImp orderImp = new SetOrderImp();
-			ResultOrder resultOrder = orderImp.getFlyOrderList(forderid);
+			ResultOrder resultOrder = orderImp.getFlyOrderList(forderid,"");
 			XStream xstream = new XStream();
 			xstream.alias("Results", ResultOrder.class);
 			String xml = xstream.toXML(resultOrder);

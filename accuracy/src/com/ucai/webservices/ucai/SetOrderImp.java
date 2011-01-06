@@ -1,5 +1,7 @@
 package com.ucai.webservices.ucai;
 
+import java.util.List;
+
 import javax.xml.namespace.QName;
 import javax.xml.rpc.ParameterMode;
 
@@ -75,7 +77,19 @@ public class SetOrderImp {
 		return null;
 	}
 
-	public ResultOrder getFlyOrderList(String OrderNumber) {
+	public ResultOrder getFlyOrderList(String OrderNumber, String userId) {
+		try {
+			List<ResultOrder> resultList = getResultList(OrderNumber, userId);
+			ResultOrder po = resultList.get(0);
+			System.out.println(po.getF_PayStatus());
+			return po;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public List<ResultOrder> getResultList(String OrderNumber, String userId) {
 		try {
 			String service_url = "http://www.ucai.com/FlyWebService/SetOrders.asmx?WSDL";
 			Service service = new Service();
@@ -104,14 +118,14 @@ public class SetOrderImp {
 					"http://www.ucai.com", "GetFlyOrderListResult"));
 			// 调用远程方法
 			GetFlyOrderListResponseGetFlyOrderListResult GetFlyOrderListResponseGetFlyOrderListResult = (GetFlyOrderListResponseGetFlyOrderListResult) call
-					.invoke(new Object[] { OrderNumber, "" });
+					.invoke(new Object[] { OrderNumber, userId });
 			// 获取相应的数据
 			MessageElement[] me = GetFlyOrderListResponseGetFlyOrderListResult
 					.get_any();
 			// 把获取的数据组装成对象
-			ResultOrder po = ReturnXml2Po.getFlyOrderList(me[0].toString());
-			System.out.println(po.getF_PayStatus());
-			return po;
+			List<ResultOrder> resultList = ReturnXml2Po.getFlyOrderList(me[0]
+					.toString());
+			return resultList;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

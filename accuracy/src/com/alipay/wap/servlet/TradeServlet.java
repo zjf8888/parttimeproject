@@ -45,7 +45,7 @@ public class TradeServlet extends HttpServlet {
 		try {
 			String forderid = request.getParameter("forderid");
 			SetOrderImp orderImp=new SetOrderImp();
-			ResultOrder resultOrder=orderImp.getFlyOrderList(forderid);
+			ResultOrder resultOrder=orderImp.getFlyOrderList(forderid,"");
 			DirectTool dt=new DirectTool();
 			Map<String, String> reqParams = dt.prepareTradeRequestParamsMap(resultOrder);
 			

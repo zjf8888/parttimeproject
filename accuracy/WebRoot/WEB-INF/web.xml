@@ -67,6 +67,12 @@
 			 com.alipay.wap.servlet.SignServlet
 		</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>GetOrderListByUserIdServlet</servlet-name>
+		<servlet-class>
+			 com.ucai.servlet.GetOrderListByUserIdServlet
+		</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>FlightInfoServlet</servlet-name>
 		<url-pattern>/spi/getflight.do</url-pattern>
@@ -110,6 +116,10 @@
 	<servlet-mapping>
 		<servlet-name>SignServlet</servlet-name>
 		<url-pattern>/signServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetOrderListByUserIdServlet</servlet-name>
+		<url-pattern>/getOrderListByUserIdServlet</url-pattern>
 	</servlet-mapping>
 	<filter>
 		<filter-name>Set Character Encoding</filter-name>
