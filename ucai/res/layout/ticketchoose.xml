@@ -16,6 +16,8 @@
 						android:layout_height="wrap_content" android:text="机票查询"></Button>
 					<Button android:id="@+id/ticketdeal" android:layout_width="176px"
 						android:layout_height="wrap_content" android:text="票务处理"></Button>
+					<Button android:id="@+id/orderquery" android:layout_width="176px"
+						android:layout_height="wrap_content" android:text="订单查询"></Button>
 				</LinearLayout>
 			</RelativeLayout>
 		</LinearLayout>
