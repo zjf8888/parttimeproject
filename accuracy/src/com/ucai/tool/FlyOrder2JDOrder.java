@@ -44,12 +44,12 @@ public class FlyOrder2JDOrder {
 				+ calendar.get(Calendar.MINUTE) + ":"
 				+ calendar.get(Calendar.SECOND));
 		order.setUserId("0");
-		order.setAserialnumber("shouji0z");
+		order.setAserialnumber("");
 		orders.setOrder(order);
 
 		FOrders fOrders = new FOrders();
 		fOrders.setF_Number("f" + id);
-		fOrders.setF_Ordercode("shouji0f");
+		fOrders.setF_Ordercode("");
 		fOrders.setF_UserId("0");
 		List<FlyAir> flyAirs = flyOrder.getFlyAirs();
 		int totalprice = 0;
