@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="35dip">
+	<LinearLayout android:layout_width="fill_parent"
+		android:orientation="horizontal" android:layout_height="wrap_content"
+		android:layout_marginRight="10dip">
+		<LinearLayout android:orientation="horizontal"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_weight="1">
+			<TextView android:text="" android:id="@+id/scity"
+				android:layout_marginTop="10dip" android:layout_width="wrap_content"
+				android:layout_height="wrap_content"></TextView>
+			<TextView android:text="到" android:id="@+id/text1"
+				android:layout_marginTop="10dip" android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerHorizontal="true" android:layout_marginLeft="5dp" android:layout_marginRight="5dp"></TextView>
+			<TextView android:text="" android:id="@+id/ecity"
+				android:layout_marginTop="10dip" android:layout_width="wrap_content"
+				android:layout_height="wrap_content"></TextView>
+		</LinearLayout>
+		<LinearLayout android:orientation="horizontal"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_weight="1.2">
+			<TextView android:text="时间：" android:id="@+id/text2"
+				android:layout_marginTop="10dip" android:layout_width="wrap_content"
+				android:layout_height="wrap_content"></TextView>
+			<TextView android:text="" android:id="@+id/sdate"
+				android:layout_marginTop="10dip" android:layout_width="wrap_content"
+				android:layout_height="wrap_content"></TextView>
+		</LinearLayout>
+	</LinearLayout>
+</LinearLayout>
+
