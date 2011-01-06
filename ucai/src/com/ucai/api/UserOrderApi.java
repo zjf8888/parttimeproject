@@ -17,7 +17,7 @@ import org.json.JSONObject;
 import com.ucai.po.ResultOrder;
 
 public class UserOrderApi {
-	private static final String BASE_URL = "http://192.168.1.101:8081/accuracy/getOrderListByUserIdServlet";
+	private static final String BASE_URL = "http://www.ecook.cn/accuracy/getOrderListByUserIdServlet";
 
 	/**
 	 * 查询提交

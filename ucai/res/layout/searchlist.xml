@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="wrap_content" android:layout_height="fill_parent"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
 	android:orientation="vertical" android:background="@drawable/blue_in">
 	<TextView android:text="" android:id="@+id/errorinfo"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"></TextView>
-	<ListView android:id="@+id/fightList" android:layout_width="fill_parent"
-		android:layout_height="wrap_content" android:layout_weight="1"
-		android:cacheColorHint="#00000000">
-	</ListView>
+	<ScrollView android:id="@+id/ScrollView01"
+		android:layout_weight="1" android:layout_height="fill_parent"
+		android:layout_width="fill_parent" android:scrollbars="horizontal|vertical">
+		<HorizontalScrollView android:id="@+id/HorizontalScrollView01"
+			android:layout_height="fill_parent" android:layout_width="fill_parent">
+			<LinearLayout android:id="@+id/LinearLayout02"
+				android:layout_width="wrap_content" android:orientation="vertical"
+				android:layout_height="390dp">
+				<ListView android:id="@+id/fightList" android:layout_width="fill_parent"
+					android:layout_height="fill_parent" android:cacheColorHint="#00000000">
+				</ListView>
+			</LinearLayout>
+		</HorizontalScrollView>
+	</ScrollView>
 	<RelativeLayout android:layout_width="fill_parent"
 		android:layout_gravity="bottom" android:layout_height="wrap_content"
 		android:orientation="horizontal" android:layout_alignParentBottom="true">
@@ -22,7 +32,7 @@
 		<Button android:text="下一页" android:id="@+id/next"
 			android:layout_width="90px" android:layout_height="wrap_content"
 			android:layout_alignParentRight="true" android:layout_marginRight="20px"></Button>
-	
 
-</RelativeLayout>
+
+	</RelativeLayout>
 </LinearLayout>

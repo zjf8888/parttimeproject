@@ -151,10 +151,11 @@ public class SearchFightView extends Activity {
 	private void setView() {
 		if (flightpo.getErrorCode().trim().equals("0")) {
 			SimpleAdapter adapter = new SimpleAdapter(this, data,
-					R.layout.searchlist_item, new String[] { "name", "stime",
-							"etime", "price" }, new int[] { R.id.airname,
+					R.layout.searchlist_item, new String[] { "name","fltno", "stime",
+							"etime", "price" }, new int[] { R.id.airname,R.id.fltno,
 							R.id.stime, R.id.etime, R.id.price });
 			listView.setAdapter(adapter);
+			listView.setHorizontalScrollBarEnabled(true);
 			listView.setOnItemClickListener(listListener);
 			totalPages.setText("共" + flightpo.getTotalPages() + "页");
 			pageNo.setText("第" + flightpo.getPageNo() + "页");
@@ -179,6 +180,7 @@ public class SearchFightView extends Activity {
 				String fltno = contentbean.getFltno();
 				String fltName = MethodTool.searchName(fltno.substring(0, 2));
 				item.put("name", fltName);
+				item.put("fltno", fltno);
 				item.put("stime", "起飞:" + contentbean.getDeptime());
 				item.put("etime", "到达" + contentbean.getArrtime());
 				List<SeatClass> classesList = contentbean.getClassesList();
@@ -212,6 +214,7 @@ public class SearchFightView extends Activity {
 				String fltno = contentbean.getFltno();
 				String fltName = MethodTool.searchName(fltno.substring(0, 2));
 				item.put("name", fltName);
+				item.put("fltno", fltno);
 				item.put("stime", "起飞:" + contentbean.getDeptime());
 				item.put("etime", "到达" + contentbean.getArrtime());
 				List<SeatClass> classesList = contentbean.getClassesList();
