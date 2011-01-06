@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical" android:background="@drawable/blue">
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_marginBottom="13px" android:layout_marginLeft="13px"
+		android:layout_marginRight="13px" android:layout_marginTop="13px"
+		android:layout_height="fill_parent" android:orientation="vertical"
+		android:background="@drawable/blue_in">
+		<ListView android:id="@+id/orderList" android:layout_width="fill_parent"
+			android:layout_marginLeft="13dip" android:layout_marginRight="13dip"
+			android:layout_height="wrap_content" android:cacheColorHint="#00000000">
+		</ListView>
+	</LinearLayout>
+</LinearLayout>
