@@ -15,6 +15,7 @@ import android.widget.Button;
 public class TicketChoose extends Activity {
 	private Button ticketquery;
 	private Button ticketdeal;
+	private Button orderquery;
 
 	/**
 	 * TicketChoose程序主入口
@@ -35,6 +36,13 @@ public class TicketChoose extends Activity {
 		ticketdeal.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				dialog();
+			}
+		});
+		orderquery = (Button) findViewById(R.id.orderquery);
+		orderquery.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent i = new Intent(TicketChoose.this, UserOrder.class);
+				startActivity(i);
 			}
 		});
 	}

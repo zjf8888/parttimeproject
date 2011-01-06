@@ -1,12 +1,19 @@
 package com.ucai.po;
 
+import java.io.Serializable;
+
 /**
  * 订单查询结果
  * 
  * @author lin
  * 
  */
-public class ResultOrder {
+public class ResultOrder implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String f_Id;// 订单ID
 
 	private String f_Number;// 订单号
