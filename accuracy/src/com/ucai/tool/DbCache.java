@@ -20,14 +20,18 @@ public class DbCache {
 	final static String DB4OFILENAME = System.getProperty("user.home")
 			+ "/auto.yap";
 
+	private synchronized ObjectServer newObjectServer(ServerConfiguration config) {
+		return Db4oClientServer.openServer(config, DB4OFILENAME, 0);
+	}
+
 	/**
 	 * 插入查询飞机信息
 	 * 
 	 * @param flightpo
 	 */
 	public void insertFlight(Flight flightpo) {
-		ObjectServer server = Db4oClientServer.openServer(Db4oClientServer
-				.newServerConfiguration(), DB4OFILENAME, 0);
+		ObjectServer server = newObjectServer(Db4oClientServer
+				.newServerConfiguration());
 		// ObjectContainer db = Db4o.openFile(DB4OFILENAME);
 		try {
 			ObjectContainer client = server.openClient();
@@ -48,8 +52,8 @@ public class DbCache {
 	 * @return
 	 */
 	public Flight query(final String transId) {
-		ObjectServer server = Db4oClientServer.openServer(Db4oClientServer
-				.newServerConfiguration(), DB4OFILENAME, 0);
+		ObjectServer server = newObjectServer(Db4oClientServer
+				.newServerConfiguration());
 		try {
 			ObjectContainer client = server.openClient();
 			Flight flightpo = new Flight();
@@ -87,8 +91,7 @@ public class DbCache {
 		config.common().objectClass("com.ucai.po.Flight").cascadeOnDelete(true);
 		config.common().objectClass("com.ucai.po.Segment")
 				.cascadeOnDelete(true);
-		ObjectServer server = Db4oClientServer.openServer(config, DB4OFILENAME,
-				0);
+		ObjectServer server = newObjectServer(config);
 		try {
 			ObjectContainer db = server.openClient();
 			System.out.println("haltHour:"
@@ -117,26 +120,4 @@ public class DbCache {
 			server.close();
 		}
 	}
-
-	// /**
-	// * 一并删除座位信息
-	// *
-	// * @param db
-	// * @param segmentList
-	// */
-	// private void deleteSeatClass(ObjectContainer db, List<Segment>
-	// segmentList) {
-	// try {
-	// for (int i = 0; i < segmentList.size(); i++) {
-	// Segment segment = segmentList.get(i);
-	// List<SeatClass> seatClassList = segment.getClassesList();
-	// for (int j = 0; j < seatClassList.size(); j++) {
-	// SeatClass seatClass = seatClassList.get(j);
-	// db.delete(seatClass);
-	// }
-	// }
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// }
-	// }
 }

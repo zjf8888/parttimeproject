@@ -28,8 +28,8 @@ public class Xml2Flight {
 	 * @param flightpo
 	 */
 	private static void insertCache(Flight flightpo) {
-		DbCount dbCount = new DbCount();
-		flightpo.setTransId("" + dbCount.query());
+		Calendar calendar = Calendar.getInstance();
+		flightpo.setTransId("" + calendar.getTime().getTime());
 		DbCache dbCache = new DbCache();
 		flightpo.setRightNow(Calendar.getInstance().getTime().getTime());
 		dbCache.insertFlight(flightpo);
@@ -70,7 +70,6 @@ public class Xml2Flight {
 			// 获取出发日期
 			String startdate = flight.getChildTextTrim("startdate");
 			flightpo.setStartdate(startdate);
-
 			// 获取航班信息
 			List<Segment> segmentArrayList = new ArrayList<Segment>();
 			Element date = flight.getChild("date");
