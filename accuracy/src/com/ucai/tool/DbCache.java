@@ -17,10 +17,10 @@ import com.ucai.po.Flight;
  * 
  */
 public class DbCache {
-	final static String DB4OFILENAME = System.getProperty("user.home")
+	private final static String DB4OFILENAME = System.getProperty("user.home")
 			+ "/auto.yap";
 
-	private synchronized ObjectServer newObjectServer(ServerConfiguration config) {
+	private  ObjectServer newObjectServer(ServerConfiguration config) {
 		return Db4oClientServer.openServer(config, DB4OFILENAME, 0);
 	}
 
@@ -29,7 +29,7 @@ public class DbCache {
 	 * 
 	 * @param flightpo
 	 */
-	public void insertFlight(Flight flightpo) {
+	public synchronized void insertFlight(Flight flightpo) {
 		ObjectServer server = newObjectServer(Db4oClientServer
 				.newServerConfiguration());
 		// ObjectContainer db = Db4o.openFile(DB4OFILENAME);
@@ -51,7 +51,7 @@ public class DbCache {
 	 * @param transId
 	 * @return
 	 */
-	public Flight query(final String transId) {
+	public synchronized Flight query(final String transId) {
 		ObjectServer server = newObjectServer(Db4oClientServer
 				.newServerConfiguration());
 		try {
@@ -86,7 +86,7 @@ public class DbCache {
 	 * 
 	 */
 
-	public void delete() {
+	public synchronized void delete() {
 		ServerConfiguration config = Db4oClientServer.newServerConfiguration();
 		config.common().objectClass("com.ucai.po.Flight").cascadeOnDelete(true);
 		config.common().objectClass("com.ucai.po.Segment")
@@ -108,8 +108,7 @@ public class DbCache {
 				}
 			});
 			while (result.hasNext()) {
-				Flight flightpo = result.next();
-				// deleteSeatClass(db, flightpo.getSegmentList());// 删除机票座位信息
+				Flight flightpo = result.next();				
 				db.delete(flightpo);
 			}
 
