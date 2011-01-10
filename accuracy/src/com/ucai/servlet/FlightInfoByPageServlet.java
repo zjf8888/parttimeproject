@@ -46,7 +46,7 @@ public class FlightInfoByPageServlet extends HttpServlet {
 			String tid = request.getParameter("tid");
 			String pn = request.getParameter("pn");
 			int pageno=new Integer(pn);
-			DbCache dbCache = new DbCache();
+			DbCache dbCache = DbCache.getDbcache();
 			Flight flightpo =dbCache.query(tid);
 			ToSerializationFlight tsFlight=FlightFromPage.setFlightFromPage(flightpo, pageno);
 			XStream xstream = new XStream();

@@ -30,7 +30,7 @@ public class Xml2Flight {
 	private static void insertCache(Flight flightpo) {
 		Calendar calendar = Calendar.getInstance();
 		flightpo.setTransId("" + calendar.getTime().getTime());
-		DbCache dbCache = new DbCache();
+		DbCache dbCache = DbCache.getDbcache();
 		flightpo.setRightNow(Calendar.getInstance().getTime().getTime());
 		dbCache.insertFlight(flightpo);
 		dbCache.delete();
@@ -118,7 +118,6 @@ public class Xml2Flight {
 					if (classs != null) {
 						List<SeatClass> classArraylist = new ArrayList<SeatClass>();
 						List classList = null;
-						System.out.println(classs);
 						classList = classs.getChildren("class");
 						for (Iterator classiter = classList.iterator(); classiter
 								.hasNext();) {

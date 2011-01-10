@@ -17,10 +17,21 @@ import com.ucai.po.Flight;
  * 
  */
 public class DbCache {
-	private final static String DB4OFILENAME = System.getProperty("user.home")
-			+ "/auto.yap";
+	private DbCache() {
+	}
 
-	private  ObjectServer newObjectServer(ServerConfiguration config) {
+	private static DbCache ca;
+
+	public static DbCache getDbcache() {
+		if (ca == null) {
+			ca = new DbCache();
+		}
+		return ca;
+	}
+
+	private String DB4OFILENAME = System.getProperty("user.home") + "/auto.yap";
+
+	private synchronized ObjectServer newObjectServer(ServerConfiguration config) {
 		return Db4oClientServer.openServer(config, DB4OFILENAME, 0);
 	}
 
@@ -30,6 +41,7 @@ public class DbCache {
 	 * @param flightpo
 	 */
 	public synchronized void insertFlight(Flight flightpo) {
+		System.out.println("insertFlight" + "开始");
 		ObjectServer server = newObjectServer(Db4oClientServer
 				.newServerConfiguration());
 		// ObjectContainer db = Db4o.openFile(DB4OFILENAME);
@@ -37,7 +49,7 @@ public class DbCache {
 			ObjectContainer client = server.openClient();
 			client.store(flightpo);
 			client.close();
-			// db.set(flightpo);
+			System.out.println("insertFlight" + "结束");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -52,6 +64,7 @@ public class DbCache {
 	 * @return
 	 */
 	public synchronized Flight query(final String transId) {
+		System.out.println("query" + "开始");
 		ObjectServer server = newObjectServer(Db4oClientServer
 				.newServerConfiguration());
 		try {
@@ -67,10 +80,9 @@ public class DbCache {
 
 				}
 			});
-
-			System.out.println(result.size());
 			flightpo = result.next();
 			client.close();
+			System.out.println("query" + "结束");
 			return flightpo;
 
 		} catch (Exception e) {
@@ -87,6 +99,7 @@ public class DbCache {
 	 */
 
 	public synchronized void delete() {
+		System.out.println("delete" + "开始");
 		ServerConfiguration config = Db4oClientServer.newServerConfiguration();
 		config.common().objectClass("com.ucai.po.Flight").cascadeOnDelete(true);
 		config.common().objectClass("com.ucai.po.Segment")
@@ -108,10 +121,10 @@ public class DbCache {
 				}
 			});
 			while (result.hasNext()) {
-				Flight flightpo = result.next();				
+				Flight flightpo = result.next();
 				db.delete(flightpo);
 			}
-
+			System.out.println("delete" + "结束");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
