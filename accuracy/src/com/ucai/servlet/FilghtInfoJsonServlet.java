@@ -83,6 +83,11 @@ public class FilghtInfoJsonServlet extends HttpServlet {
 		}
 	}
 
+	/**
+	 * 设置访问超时方法
+	 * 
+	 * @param iFlightQueryPortType
+	 */
 	private void setTimeOut(IFlightQueryPortType iFlightQueryPortType) {
 		HttpClientParams params = new HttpClientParams();
 		params

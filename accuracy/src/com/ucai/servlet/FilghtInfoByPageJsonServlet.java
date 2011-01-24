@@ -15,10 +15,12 @@ import com.ucai.po.Flight;
 import com.ucai.tool.DbCache;
 import com.ucai.tool.FlightFromPage;
 import com.ucai.tool.po.ToSerializationFlight;
+
 /**
  * 获取json分页信息
+ * 
  * @author lin
- *
+ * 
  */
 public class FilghtInfoByPageJsonServlet extends HttpServlet {
 
@@ -38,6 +40,9 @@ public class FilghtInfoByPageJsonServlet extends HttpServlet {
 		doGet(request, response);
 	}
 
+	/**
+	 * 获取分页信息方法
+	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType(CONTENT_TYPE);
