@@ -9,13 +9,19 @@ import com.alipay.wap.security.SecurityManagerImpl;
 import com.alipay.wap.security.SecurityManager;
 import com.ucai.po.ResultOrder;
 
+/**
+ * 交易创建工具类
+ * 
+ * @author 李卓林
+ * 
+ */
 public class DirectTool {
 	private SecurityManager securityManager = new SecurityManagerImpl();
 
 	/**
 	 * 准备alipay.wap.trade.create.direct服务的参数
 	 * 
-	 * @param resultOrder
+	 * @param resultOrder 订单查询结果
 	 * @return
 	 * @throws UnsupportedEncodingException
 	 */
@@ -29,17 +35,23 @@ public class DirectTool {
 		String outTradeNo = resultOrder.getF_Number().trim();
 		// 商品总价
 		String totalFee = "0.01";
-		//String totalFee = resultOrder.getTotalPrice().trim();
+		// String totalFee = resultOrder.getTotalPrice().trim();
 		// 卖家帐号
 		String sellerAccountName = ClientConfig.sellerAccountName;
 		// 接收支付宝发送的通知的url
 		String notifyUrl = ClientConfig.notifyUrl;
 		// req_data的内容
-		String reqData = "<direct_trade_create_req>" + "<subject>" + subject
-				+ "</subject><out_trade_no>" + outTradeNo
-				+ "</out_trade_no><total_fee>" + totalFee
-				+ "</total_fee><seller_account_name>" + sellerAccountName
-				+ "</seller_account_name><notify_url>" + notifyUrl
+		String reqData = "<direct_trade_create_req>"
+				+ "<subject>"
+				+ subject
+				+ "</subject><out_trade_no>"
+				+ outTradeNo
+				+ "</out_trade_no><total_fee>"
+				+ totalFee
+				+ "</total_fee><seller_account_name>"
+				+ sellerAccountName
+				+ "</seller_account_name><notify_url>"
+				+ notifyUrl
 				+ "</notify_url><pay_expire>10</pay_expire></direct_trade_create_req>";
 		requestParams.put("req_data", reqData);
 		requestParams.put("req_id", System.currentTimeMillis() + "");

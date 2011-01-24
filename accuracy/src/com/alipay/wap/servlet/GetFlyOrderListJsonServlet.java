@@ -13,7 +13,13 @@ import net.sf.json.JSONObject;
 import com.ucai.po.ResultOrder;
 import com.ucai.webservices.ucai.SetOrderImp;
 
-public class GetFlyOrderListJsonServlet extends HttpServlet{
+/**
+ * 通过订单号获取订单 json版
+ * 
+ * @author 李卓林
+ * 
+ */
+public class GetFlyOrderListJsonServlet extends HttpServlet {
 	private static final String CONTENT_TYPE = "text/xml;charset=UTF-8";
 
 	/**
@@ -32,6 +38,9 @@ public class GetFlyOrderListJsonServlet extends HttpServlet{
 		doPost(request, response);
 	}
 
+	/**
+	 * 获取订单接口方法
+	 */
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
@@ -40,7 +49,7 @@ public class GetFlyOrderListJsonServlet extends HttpServlet{
 		try {
 			String forderid = request.getParameter("forderid");
 			SetOrderImp orderImp = new SetOrderImp();
-			ResultOrder resultOrder = orderImp.getFlyOrderList(forderid,"");
+			ResultOrder resultOrder = orderImp.getFlyOrderList(forderid, "");
 			JSONObject jsonObject = JSONObject.fromObject(resultOrder);
 			String json = jsonObject.toString();
 			System.out.println(json);

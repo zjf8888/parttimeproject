@@ -20,6 +20,12 @@ import com.alipay.wap.security.SecurityManagerImpl;
 import com.alipay.wap.security.SecurityManager;
 import com.ucai.webservices.ucai.SetOrderImp;
 
+/**
+ * 接收支付宝回传处理Servlet
+ * 
+ * @author 李卓林
+ * 
+ */
 public class CallBackServlet extends HttpServlet {
 	private SecurityManager securityManager = new SecurityManagerImpl();
 
@@ -59,12 +65,12 @@ public class CallBackServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		// 验证签名通过
 		if (verified) {
-			//  根据交易状态处理业务逻辑
+			// 根据交易状态处理业务逻辑
 			// 当交易状态成功，处理业务逻辑成功。回写success
-			String orderid=getOrderId(map);
-			String price=getPrice(map);
-			SetOrderImp setOrderImp=new SetOrderImp();
-			System.out.println(setOrderImp.updateOrder(orderid,price));
+			String orderid = getOrderId(map);
+			String price = getPrice(map);
+			SetOrderImp setOrderImp = new SetOrderImp();
+			System.out.println(setOrderImp.updateOrder(orderid, price));
 			System.out.println("接收支付宝系统通知验证签名成功！");
 			out.print("success");
 		} else {
@@ -95,14 +101,22 @@ public class CallBackServlet extends HttpServlet {
 		return "service=" + service + "&v=" + v + "&sec_id=" + sec_id
 				+ "&notify_data=" + notify_data;
 	}
-	private String getOrderId(Map map){
+
+	/**
+	 * 获取订单编号
+	 * 
+	 * @param map
+	 *            回传参数map
+	 * @return
+	 */
+	private String getOrderId(Map map) {
 		String notify_data = (String) ((Object[]) map.get("notify_data"))[0];
 		StringReader sr = new StringReader(notify_data);
 		SAXBuilder builder = new SAXBuilder(false);
 		try {
 			Document doc = builder.build(sr);
 			Element notify = doc.getRootElement();
-			String orderid=notify.getChildTextTrim("out_trade_no");
+			String orderid = notify.getChildTextTrim("out_trade_no");
 			return orderid;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -111,14 +125,22 @@ public class CallBackServlet extends HttpServlet {
 		}
 		return null;
 	}
-	private String getPrice(Map map){
+
+	/**
+	 * 获取价格字段
+	 * 
+	 * @param map
+	 *            回传参数map
+	 * @return
+	 */
+	private String getPrice(Map map) {
 		String notify_data = (String) ((Object[]) map.get("notify_data"))[0];
 		StringReader sr = new StringReader(notify_data);
 		SAXBuilder builder = new SAXBuilder(false);
 		try {
 			Document doc = builder.build(sr);
 			Element notify = doc.getRootElement();
-			String price=notify.getChildTextTrim("total_fee");
+			String price = notify.getChildTextTrim("total_fee");
 			return price;
 		} catch (Exception e) {
 			e.printStackTrace();

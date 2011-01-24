@@ -2,7 +2,11 @@ package com.alipay.wap.po;
 
 import org.nuxeo.common.xmap.annotation.XNode;
 import org.nuxeo.common.xmap.annotation.XObject;
-
+/**
+ * 交易的RequestToken存储类
+ * @author 李卓林
+ *
+ */
 @XObject("direct_trade_create_res")
 public class DirectTradeCreateRes {
 	 /**

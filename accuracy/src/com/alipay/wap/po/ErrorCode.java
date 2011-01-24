@@ -2,6 +2,11 @@ package com.alipay.wap.po;
 
 import org.nuxeo.common.xmap.annotation.XNode;
 import org.nuxeo.common.xmap.annotation.XObject;
+/**
+ * 错误码存储类
+ * @author 李卓林
+ *
+ */
 @XObject("err")
 public class ErrorCode {
 	/**

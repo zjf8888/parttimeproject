@@ -1,5 +1,11 @@
 package com.alipay.wap.security;
 
+/**
+ * 签名、验签接口
+ * 
+ * @author 李卓林
+ * 
+ */
 public interface Signature {
 	/**
 	 * 对原始数据进行签名

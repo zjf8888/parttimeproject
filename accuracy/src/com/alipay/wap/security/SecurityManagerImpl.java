@@ -1,8 +1,16 @@
 package com.alipay.wap.security;
 
+/**
+ * 安全管理实现类
+ * @author 李卓林
+ *
+ */
 public class SecurityManagerImpl implements SecurityManager {
 	private Signature signature;
 
+	/**
+	 * 
+	 */
 	public String sign(String algoType, String content, String key)
 			throws Exception {
 		if (algoType.equals("MD5")) {

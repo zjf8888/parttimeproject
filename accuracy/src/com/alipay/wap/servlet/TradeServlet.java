@@ -21,6 +21,12 @@ import com.alipay.wap.tool.XMapUtil;
 import com.ucai.po.ResultOrder;
 import com.ucai.webservices.ucai.SetOrderImp;
 
+/**
+ * 总支付处理接口
+ * 
+ * @author 李卓林
+ * 
+ */
 public class TradeServlet extends HttpServlet {
 	private static final String CONTENT_TYPE = "text/xml;charset=UTF-8";
 

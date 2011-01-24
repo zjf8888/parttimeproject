@@ -20,10 +20,16 @@ import com.alipay.wap.tool.ParameterUtil;
 import com.alipay.wap.tool.XMapUtil;
 
 public class AlipayApi {
-	private SecurityManager securityManager = new SecurityManagerImpl();
+	private SecurityManager securityManager = new SecurityManagerImpl(); //安全检验控制器
 
+	/**
+	 * 根据参数返回的数据流
+	 * @param reqParams 参数对象map
+	 * @param reqUrl 提交数据地址
+	 * @return 返回对应的数据流
+	 */
 	public InputStream openViewConn(Map<String, String> reqParams,
-			String reqUrl, String secId, String key) {
+			String reqUrl) {
 		InputStream is = null;
 		try {
 			URL realUrl = new URL(reqUrl);
@@ -52,10 +58,18 @@ public class AlipayApi {
 		return is;
 	}
 
+	/**
+	 * 提交支付信息
+	 * @param reqParams 支付参数maP
+	 * @param reqUrl 提交地址
+	 * @param secId 算法类型
+	 * @param key 公钥
+	 * @return 返回支付宝返回对象
+	 */
 	public ResponseResult getResponseResult(Map<String, String> reqParams,
 			String reqUrl, String secId, String key) {
 		try {
-			InputStream is = openViewConn(reqParams, reqUrl, secId, key);
+			InputStream is = openViewConn(reqParams, reqUrl);
 			String response = "";
 			BufferedReader in = new BufferedReader(new InputStreamReader(is));
 			StringBuffer buffer = new StringBuffer();

@@ -13,6 +13,12 @@ import com.thoughtworks.xstream.XStream;
 import com.ucai.po.ResultOrder;
 import com.ucai.webservices.ucai.SetOrderImp;
 
+/**
+ * 通过订单号获取订单 xml版
+ * 
+ * @author 李卓林
+ * 
+ */
 public class GetFlyOrderListServlet extends HttpServlet {
 	private static final String CONTENT_TYPE = "text/xml;charset=UTF-8";
 
@@ -32,6 +38,9 @@ public class GetFlyOrderListServlet extends HttpServlet {
 		doPost(request, response);
 	}
 
+	/**
+	 * 获取订单接口方法
+	 */
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
@@ -40,7 +49,7 @@ public class GetFlyOrderListServlet extends HttpServlet {
 		try {
 			String forderid = request.getParameter("forderid");
 			SetOrderImp orderImp = new SetOrderImp();
-			ResultOrder resultOrder = orderImp.getFlyOrderList(forderid,"");
+			ResultOrder resultOrder = orderImp.getFlyOrderList(forderid, "");
 			XStream xstream = new XStream();
 			xstream.alias("Results", ResultOrder.class);
 			String xml = xstream.toXML(resultOrder);

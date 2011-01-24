@@ -1,5 +1,10 @@
 package com.alipay.wap.po;
 
+/**
+ * 交易返回结果存储类
+ * @author 李卓林
+ *
+ */
 public class ResponseResult {
 	/**
 	 * 是否调用成功 默认为false 所以在每次调用都必须设置这个值为true；

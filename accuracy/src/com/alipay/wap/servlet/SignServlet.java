@@ -15,12 +15,15 @@ import com.alipay.wap.security.SecurityManagerImpl;
 import com.ucai.po.ResultOrder;
 import com.ucai.webservices.ucai.SetOrderImp;
 
+/**
+ * 对支付信息签名接口类
+ * 
+ * @author 李卓林
+ * 
+ */
 public class SignServlet extends HttpServlet {
 	private static final String CONTENT_TYPE = "text/xml;charset=UTF-8";
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -34,6 +37,9 @@ public class SignServlet extends HttpServlet {
 		doPost(request, response);
 	}
 
+	/**
+	 * 支付信息签名方法
+	 */
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
@@ -42,7 +48,7 @@ public class SignServlet extends HttpServlet {
 		try {
 			String forderid = request.getParameter("forderid");
 			SetOrderImp orderImp = new SetOrderImp();
-			ResultOrder resultOrder = orderImp.getFlyOrderList(forderid,"");
+			ResultOrder resultOrder = orderImp.getFlyOrderList(forderid, "");
 			String subject = resultOrder.getA_Scity() + "-"
 					+ resultOrder.getA_Ecity();
 			String body = "航班号为" + resultOrder.getA_FlyNo() + ",日期为"
@@ -76,7 +82,7 @@ public class SignServlet extends HttpServlet {
 	 * @param reqParams
 	 * @return
 	 */
-	public String sign(String signInfo, String signAlgo) {
+	private String sign(String signInfo, String signAlgo) {
 
 		String sign = "";
 		try {

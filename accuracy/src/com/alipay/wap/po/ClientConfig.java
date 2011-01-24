@@ -1,5 +1,10 @@
 package com.alipay.wap.po;
 
+/**
+ * 
+ * @author 李卓林
+ * 支付客户端配置信息类
+ */
 public class ClientConfig {
 
 	/**

@@ -1,9 +1,9 @@
 package com.alipay.wap.security;
 
 /**
- * 安全管理类
+ * 安全管理接口
  * 
- * @author lizhlin
+ * @author 李卓林
  * 
  */
 public interface SecurityManager {
