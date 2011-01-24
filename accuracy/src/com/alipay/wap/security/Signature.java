@@ -22,7 +22,7 @@ public interface Signature {
 	/**
 	 * 对支付控件签名
 	 * 
-	 * @param content原始数据
+	 * @param content 原始数据
 	 * @return
 	 * @throws Exception
 	 */

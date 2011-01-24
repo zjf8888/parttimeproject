@@ -18,7 +18,7 @@ public class MD5Signature implements Signature {
 	/**
 	 * 带key的签名方法
 	 * 
-	 * @param content签名内容
+	 * @param content 签名内容
 	 * @param key
 	 *            商户key
 	 * @return 返回的签名内容
@@ -37,7 +37,7 @@ public class MD5Signature implements Signature {
 	/**
 	 * 对支付控件签名
 	 * 
-	 * @param content签名内容
+	 * @param content 签名内容
 	 * @return 返回的签名内容
 	 */
 	public String sign(String content) throws Exception {
