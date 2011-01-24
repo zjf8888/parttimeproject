@@ -105,6 +105,9 @@ public class SeatInfoServlet extends HttpServlet {
 		pw.flush();
 	}
 
+	/**
+	 * get处理方法
+	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doPost(request, response);

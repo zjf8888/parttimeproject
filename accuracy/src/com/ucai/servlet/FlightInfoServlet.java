@@ -21,9 +21,9 @@ import com.ucai.webservices.flightquery.IFlightQueryClient;
 import com.ucai.webservices.flightquery.IFlightQueryPortType;
 
 /**
- * 机票查询Servlet
- * 这个类是针对以xml为传输介质处理的
- * @author lin
+ * 机票查询Servlet 这个类是针对以xml为传输介质处理的
+ * 
+ * @author 李卓林
  * 
  */
 public class FlightInfoServlet extends HttpServlet {
@@ -88,6 +88,9 @@ public class FlightInfoServlet extends HttpServlet {
 		}
 	}
 
+	/**
+	 * Post访问处理
+	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);

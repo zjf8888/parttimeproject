@@ -16,6 +16,12 @@ import com.alipay.wap.po.ResultPo;
 import com.ucai.po.ResultOrder;
 import com.ucai.webservices.ucai.SetOrderImp;
 
+/**
+ * 获取订单信息接口，需传递用户id作为参数
+ * 
+ * @author 李卓林
+ * 
+ */
 public class GetOrderListByUserIdServlet extends HttpServlet {
 	private static final String CONTENT_TYPE = "application/json;charset=UTF-8";
 
@@ -29,12 +35,18 @@ public class GetOrderListByUserIdServlet extends HttpServlet {
 		super.init(config);
 	}
 
+	/**
+	 * get访问处理
+	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doPost(request, response);
 	}
 
+	/**
+	 * Post访问处理
+	 */
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
@@ -43,8 +55,8 @@ public class GetOrderListByUserIdServlet extends HttpServlet {
 		try {
 			String userid = request.getParameter("userid");
 			SetOrderImp orderImp = new SetOrderImp();
-			List<ResultOrder> resultList=orderImp.getResultList("", userid);
-			ResultPo po=new ResultPo();
+			List<ResultOrder> resultList = orderImp.getResultList("", userid);
+			ResultPo po = new ResultPo();
 			po.setResultList(resultList);
 			JSONObject jsonObject = JSONObject.fromObject(po);
 			String json = jsonObject.toString();

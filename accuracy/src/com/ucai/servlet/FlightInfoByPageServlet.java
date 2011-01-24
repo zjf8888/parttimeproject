@@ -16,10 +16,12 @@ import com.ucai.po.Segment;
 import com.ucai.tool.DbCache;
 import com.ucai.tool.FlightFromPage;
 import com.ucai.tool.po.ToSerializationFlight;
+
 /**
  * 获取xml分页信息
+ * 
  * @author lin
- *
+ * 
  */
 public class FlightInfoByPageServlet extends HttpServlet {
 	private static final String CONTENT_TYPE = "text/xml;charset=UTF-8";
@@ -33,11 +35,17 @@ public class FlightInfoByPageServlet extends HttpServlet {
 		super.init(config);
 	}
 
+	/**
+	 * post访问接口
+	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
 	}
 
+	/**
+	 * get访问接口
+	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType(CONTENT_TYPE);
@@ -45,17 +53,19 @@ public class FlightInfoByPageServlet extends HttpServlet {
 		try {
 			String tid = request.getParameter("tid");
 			String pn = request.getParameter("pn");
-			int pageno=new Integer(pn);
+			int pageno = new Integer(pn);
 			DbCache dbCache = DbCache.getDbcache();
-			Flight flightpo =dbCache.query(tid);
-			ToSerializationFlight tsFlight=FlightFromPage.setFlightFromPage(flightpo, pageno);
+			Flight flightpo = dbCache.query(tid);
+			ToSerializationFlight tsFlight = FlightFromPage.setFlightFromPage(
+					flightpo, pageno);
 			XStream xstream = new XStream();
 			xstream.alias("flightdate", ToSerializationFlight.class);
-			xstream.aliasField("date", ToSerializationFlight.class, "segmentList");
+			xstream.aliasField("date", ToSerializationFlight.class,
+					"segmentList");
 			xstream.alias("segment", Segment.class);
 			xstream.aliasField("classs", Segment.class, "classesList");
 			xstream.alias("class", SeatClass.class);
-	        String xml=xstream.toXML(tsFlight);			
+			String xml = xstream.toXML(tsFlight);
 			PrintWriter pw = response.getWriter();
 			pw.write(xml);
 			pw.flush();

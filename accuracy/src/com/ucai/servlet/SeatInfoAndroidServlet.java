@@ -14,6 +14,12 @@ import net.sf.json.JSONObject;
 import com.ucai.po.ReturnPo;
 import com.ucai.tool.DoSeat;
 
+/**
+ * 扣位信息处理Servlet,android版本
+ * 
+ * @author 李卓林
+ * 
+ */
 public class SeatInfoAndroidServlet extends HttpServlet {
 
 	/**
@@ -39,6 +45,9 @@ public class SeatInfoAndroidServlet extends HttpServlet {
 		pw.flush();
 	}
 
+	/**
+	 * get处理方法
+	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doPost(request, response);
