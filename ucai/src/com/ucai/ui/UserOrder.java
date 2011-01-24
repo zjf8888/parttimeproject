@@ -20,6 +20,11 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.AdapterView.OnItemClickListener;
 
+/**
+ * 用户订单查询列表界面
+ * @author lin
+ *
+ */
 public class UserOrder extends Activity {
 	private static final String SDATE = "sdate";
 	private static final String ECITY = "ecity";

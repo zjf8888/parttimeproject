@@ -13,6 +13,12 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+/**
+ * 支付跳转界面
+ * 
+ * @author lin
+ * 
+ */
 public class ToastView extends Activity {
 	private TextView info;
 	private Button button;
@@ -34,23 +40,15 @@ public class ToastView extends Activity {
 		had = (RelativeLayout) findViewById(R.id.had);
 
 		info = (TextView) findViewById(R.id.info);
-		if (rpo.getCode().equals("1")) {
-			info.setText("订票成功，pnr码为:" + rpo.getPnr());
-		} else {
-			info.setText(rpo.getInfo());
-		}
+
 		final String forderid = rpo.getForderId();
 		url = url + forderid;
 		button = (Button) findViewById(R.id.button);
 		button.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				info.setText("支付成功?");
-				wait.setVisibility(View.GONE);
-				had.setVisibility(View.VISIBLE);
-				Uri uri = Uri.parse(url);
-				Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-				startActivity(intent);
+				doSubmit();
 			}
+
 		});
 		back = (Button) findViewById(R.id.back);
 		back.setOnClickListener(new View.OnClickListener() {
@@ -73,9 +71,21 @@ public class ToastView extends Activity {
 				had.setVisibility(View.GONE);
 			}
 		});
+		if (rpo.getCode().equals("1")) {
+			doSubmit();
+		} else {
+			info.setText(rpo.getInfo());
+		}
 	}
 
-	
+	private void doSubmit() {
+		info.setText("支付成功?");
+		wait.setVisibility(View.GONE);
+		had.setVisibility(View.VISIBLE);
+		Uri uri = Uri.parse(url);
+		Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+		startActivity(intent);
+	}
 
 	//
 	// close the progress bar

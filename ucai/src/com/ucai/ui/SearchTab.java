@@ -5,6 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TabHost;
 
+/**
+ * 航班查询的tab主程序
+ * @author lin
+ *
+ */
 public class SearchTab extends TabActivity {
 	/**
 	 * 程序入口

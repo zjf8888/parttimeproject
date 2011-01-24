@@ -1,5 +1,10 @@
 package com.ucai.tool;
 
+/**
+ * 机场信息 名字跟编号一一对应；航空公司信息，航空公司名字与编号一一对应
+ * @author lin
+ *
+ */
 public class CityCode {
 	/**
 	 * 

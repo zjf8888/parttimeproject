@@ -39,7 +39,7 @@ public class FightApi {
 	 *            ,出发日期
 	 * @param airway
 	 *            ,航空公司
-	 * @param flightNo航班号
+	 * @param flightNo 航班号
 	 *            return 航班数据流
 	 */
 	public InputStream openViewConn(String startcity, String endcity,

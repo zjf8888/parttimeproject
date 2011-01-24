@@ -1,11 +1,16 @@
 package com.ucai.tool;
 
+/**
+ * 工具类
+ * @author lin
+ *
+ */
 public class MethodTool {
 	/**
 	 * 查询航空公司方法
 	 * 
 	 * @param s
-	 * @return
+	 * @return 航空公司名字
 	 */
 	public static String searchName(String s) {
 		String hangKongCode[] = CityCode.hangKongCode;

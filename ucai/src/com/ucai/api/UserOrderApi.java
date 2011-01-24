@@ -16,6 +16,11 @@ import org.json.JSONObject;
 
 import com.ucai.po.ResultOrder;
 
+/**
+ * 用户订单查询接口类
+ * @author lin
+ *
+ */
 public class UserOrderApi {
 	private static final String BASE_URL = "http://www.ecook.cn/accuracy/getOrderListByUserIdServlet";
 
@@ -23,7 +28,7 @@ public class UserOrderApi {
 	 * 查询提交
 	 * 
 	 * @param userid
-	 * @return
+	 * @return 输入流
 	 */
 	public InputStream openViewConn(String userid) {
 		InputStream is = null;
@@ -53,6 +58,11 @@ public class UserOrderApi {
 		return is;
 	}
 
+	/**
+	 * 获取订单列表
+	 * @param userid 用户ID
+	 * @return 订单列表
+	 */
 	public List<ResultOrder> setSeat(String userid) {
 		try {
 			List<ResultOrder> list = new ArrayList<ResultOrder>();
@@ -74,6 +84,12 @@ public class UserOrderApi {
 		return null;
 	}
 
+	/**
+	 * 通过把json对象转换成订单查询结果对象
+	 * @param jsonObject json数据
+	 * @return 订单查询对象
+	 * @throws JSONException
+	 */
 	private ResultOrder jsonToResultOrder(JSONObject jsonObject)
 			throws JSONException {
 		ResultOrder po = new ResultOrder();

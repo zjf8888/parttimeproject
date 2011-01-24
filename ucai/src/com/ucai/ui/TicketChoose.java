@@ -12,6 +12,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * 机票信息选择入口
+ * @author lin
+ *
+ */
 public class TicketChoose extends Activity {
 	private Button ticketquery;
 	private Button ticketdeal;

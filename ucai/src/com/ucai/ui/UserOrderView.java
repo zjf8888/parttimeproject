@@ -11,7 +11,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class UserOrderView extends Activity{
+/**
+ * 用户订单具体信息界面
+ * 
+ * @author lin
+ * 
+ */
+public class UserOrderView extends Activity {
 	private TextView TextView01;
 	private TextView TextView02;
 	private TextView TextView03;
@@ -23,6 +29,7 @@ public class UserOrderView extends Activity{
 	private ProgressDialog progressDialog = null;
 	private ResultOrder order = null;
 	private Handler handler = new Handler();
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -56,7 +63,6 @@ public class UserOrderView extends Activity{
 		}.start();
 	}
 
-	
 	/**
 	 * 更新界面
 	 */
@@ -71,6 +77,7 @@ public class UserOrderView extends Activity{
 			}
 		});
 	}
+
 	private void setView() {
 		TextView01 = (TextView) findViewById(R.id.TextView01);
 		TextView02 = (TextView) findViewById(R.id.TextView02);
@@ -78,7 +85,7 @@ public class UserOrderView extends Activity{
 		TextView04 = (TextView) findViewById(R.id.TextView04);
 		TextView05 = (TextView) findViewById(R.id.TextView05);
 		TextView06 = (TextView) findViewById(R.id.TextView06);
-		TextView07 = (TextView) findViewById(R.id.TextView07);		
+		TextView07 = (TextView) findViewById(R.id.TextView07);
 
 		System.out.println(order);
 		System.out.println(order.getA_FlyNo());

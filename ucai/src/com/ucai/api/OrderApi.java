@@ -12,14 +12,19 @@ import org.json.JSONObject;
 
 import com.ucai.po.ResultOrder;
 
+/**
+ * 提交订单api
+ * @author lin
+ *
+ */
 public class OrderApi {
 	private static final String BASE_URL = "http://www.ecook.cn/accuracy/getFlyOrderListJsonServlet";
 
 	/**
 	 * 提交数据
 	 * 
-	 * @param xml
-	 * @return
+	 * @param forderid
+	 * @return 输入流对象
 	 */
 	public InputStream openViewConn(String forderid) {
 		InputStream is = null;
@@ -53,7 +58,7 @@ public class OrderApi {
 	 * 获取订单信息对象
 	 * 
 	 * @param xml
-	 * @return
+	 * @return 订单查询结果
 	 */
 	public ResultOrder setSeat(String xml) {
 		try {

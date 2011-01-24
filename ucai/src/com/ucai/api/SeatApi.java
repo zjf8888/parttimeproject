@@ -23,7 +23,7 @@ public class SeatApi {
 	 * 提交数据
 	 * 
 	 * @param xml
-	 * @return
+	 * @return 输入流
 	 */
 	public InputStream openViewConn(String xml) {
 		InputStream is = null;
@@ -56,10 +56,7 @@ public class SeatApi {
 	/**
 	 * 查询缓存数年据
 	 * 
-	 * @param tid
-	 *            缓存ID
-	 * @param pn
-	 *            第几页
+	 * @param xml
 	 * @return 航班信息对象
 	 */
 	public ReturnPo setSeat(String xml) {

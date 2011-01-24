@@ -14,6 +14,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+/**
+ * 订单显示界面
+ * 
+ * @author lin
+ * 
+ */
 public class OrderView extends Activity {
 	private TextView TextView01;
 	private TextView TextView02;
@@ -27,6 +33,7 @@ public class OrderView extends Activity {
 	private ResultOrder order = null;
 	private String forderid;
 	private Handler handler = new Handler();
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -69,6 +76,7 @@ public class OrderView extends Activity {
 		OrderApi api = new OrderApi();
 		order = api.setSeat(forderid);
 	}
+
 	/**
 	 * 更新界面
 	 */
@@ -83,6 +91,10 @@ public class OrderView extends Activity {
 			}
 		});
 	}
+
+	/**
+	 * 设置界面
+	 */
 	private void setView() {
 		System.out.println(forderid);
 		TextView01 = (TextView) findViewById(R.id.TextView01);
@@ -91,7 +103,7 @@ public class OrderView extends Activity {
 		TextView04 = (TextView) findViewById(R.id.TextView04);
 		TextView05 = (TextView) findViewById(R.id.TextView05);
 		TextView06 = (TextView) findViewById(R.id.TextView06);
-		TextView07 = (TextView) findViewById(R.id.TextView07);		
+		TextView07 = (TextView) findViewById(R.id.TextView07);
 
 		System.out.println(order);
 		System.out.println(order.getA_FlyNo());

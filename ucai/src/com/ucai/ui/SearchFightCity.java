@@ -101,6 +101,9 @@ public class SearchFightCity extends Activity {
 		citylist.setOnItemClickListener(listListener);
 	}
 
+	/**
+	 * 数据封装
+	 */
 	private void PrepareData() {
 		data = new ArrayList<Map<String, String>>();
 		String[][] city = CityCode.CityString;

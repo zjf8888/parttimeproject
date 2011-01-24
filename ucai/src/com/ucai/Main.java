@@ -13,6 +13,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * 主程序入口类
+ * @author lin
+ *
+ */
 public class Main extends Activity {
 	private Button travel;
 	private Button hotel;
