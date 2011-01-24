@@ -122,7 +122,7 @@ public class DirectTool {
 	 * 调用alipay.wap.auth.authAndExecute服务的时候需要跳转到支付宝的页面，组装跳转url
 	 * 
 	 * @param reqParams
-	 * @return
+	 * @return 
 	 * @throws Exception
 	 */
 	public String getRedirectUrl(Map<String, String> reqParams, String reqUrl)

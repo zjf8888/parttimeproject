@@ -89,7 +89,7 @@ public class CallBackServlet extends HttpServlet {
 	 * 获得验签名的数据
 	 * 
 	 * @param map
-	 * @return
+	 * @return 验签名字符串
 	 */
 	private String getVerifyData(Map map) {
 		String service = (String) ((Object[]) map.get("service"))[0];
@@ -107,7 +107,7 @@ public class CallBackServlet extends HttpServlet {
 	 * 
 	 * @param map
 	 *            回传参数map
-	 * @return
+	 * @return 订单编号
 	 */
 	private String getOrderId(Map map) {
 		String notify_data = (String) ((Object[]) map.get("notify_data"))[0];
@@ -131,7 +131,7 @@ public class CallBackServlet extends HttpServlet {
 	 * 
 	 * @param map
 	 *            回传参数map
-	 * @return
+	 * @return 价格
 	 */
 	private String getPrice(Map map) {
 		String notify_data = (String) ((Object[]) map.get("notify_data"))[0];

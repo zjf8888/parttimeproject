@@ -75,12 +75,12 @@ public class SignServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * 对参数进行签名
-	 * 
-	 * @param reqParams
-	 * @return
+	 * @param signInfo 
+	 * @param signAlgo 
+	 * @return 签名后的字符串
 	 */
 	private String sign(String signInfo, String signAlgo) {
 
