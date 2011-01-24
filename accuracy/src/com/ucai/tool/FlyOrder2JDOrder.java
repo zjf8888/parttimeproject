@@ -26,9 +26,9 @@ public class FlyOrder2JDOrder {
 	/**
 	 * 把扣位信息转换成订单信息类
 	 * 
-	 * @param flyOrder扣位信息
-	 * @param rpo扣位操作后返回的对象
-	 * @return返回订单信息类
+	 * @param flyOrder 扣位信息
+	 * @param rpo 扣位操作后返回的对象
+	 * @return 返回订单信息类
 	 */
 	public static Orders getJDOrderFromFlyOrder(FlyOrder flyOrder, ReturnPo rpo) {
 		Orders orders = new Orders();

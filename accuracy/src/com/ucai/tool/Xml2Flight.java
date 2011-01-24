@@ -14,6 +14,12 @@ import com.ucai.po.Flight;
 import com.ucai.po.SeatClass;
 import com.ucai.po.Segment;
 
+/**
+ * 机票查询后把xml封装成对象的工具类，在封装过程中，把对象保存到缓存
+ * 
+ * @author lin
+ * 
+ */
 public class Xml2Flight {
 
 	public static Flight jDomParse(String xml) {
@@ -37,10 +43,10 @@ public class Xml2Flight {
 	}
 
 	/**
-	 * 解释对像
+	 * 解释机票查询对像
 	 * 
 	 * @param xml
-	 * @return
+	 * @return 机票查询对像
 	 */
 	private static Flight xml2Flight(String xml) {
 		Flight flightpo = new Flight();
@@ -54,12 +60,12 @@ public class Xml2Flight {
 			if (errinfo != null) {
 				String code = errinfo.getChildTextTrim("code");
 				flightpo.setErrorCode(code);
-			}else{
+			} else {
 				String code = flight.getChildTextTrim("result");
 				flightpo.setErrorCode(code);
-				String info=flight.getChildTextTrim("info");
+				String info = flight.getChildTextTrim("info");
 				flightpo.setErrorTips(info);
-				
+
 			}
 			// 获取出发城市编码
 			String startcity = flight.getChildTextTrim("startcity");

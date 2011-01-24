@@ -14,7 +14,7 @@ import com.ucai.po.ResultOrder;
 import com.ucai.po.ReturnPo;
 
 /**
- * 返回信息打包类
+ * 返回信息封装类
  * 
  * @author lin
  * 
@@ -24,7 +24,7 @@ public class ReturnXml2Po {
 	 * 扣位返回信息打包对象处理方示
 	 * 
 	 * @param xml
-	 * @return
+	 * @return  扣位返回信息对象
 	 */
 	public static ReturnPo getReturnPo(String xml) {
 		ReturnPo po = new ReturnPo();
@@ -60,7 +60,7 @@ public class ReturnXml2Po {
 	 * 下订单返回信息打包类
 	 * 
 	 * @param xml
-	 * @return
+	 * @return 订单结果对象
 	 */
 	public static JDResInfo getJDResInfoFromXml(String xml) {
 		JDResInfo po = new JDResInfo();
@@ -83,8 +83,8 @@ public class ReturnXml2Po {
 	/**
 	 * 把xml转化成订单查询结果对象
 	 * 
-	 * @param xml
-	 * @return
+	 * @param xml 
+	 * @return 订单查询结果对象
 	 */
 	public static List<ResultOrder> getFlyOrderList(String xml) {
 		List<ResultOrder> list = new ArrayList<ResultOrder>();

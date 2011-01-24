@@ -14,9 +14,22 @@ import com.ucai.webservices.flightquery.IFlightQueryClient;
 import com.ucai.webservices.flightquery.IFlightQueryPortType;
 import com.ucai.webservices.ucai.SetOrderImp;
 
+/**
+ * 扣位处理工具类
+ * 
+ * @author 李卓林
+ * 
+ */
 public class DoSeat {
 	private static final String CONTENT_TYPE = "text/xml;charset=UTF-8";
 
+	/**
+	 * 扣位处理方法
+	 * 
+	 * @param request
+	 * @param response
+	 * @return 返回扣位处理后的xml
+	 */
 	public ReturnPo doSeatInfo(HttpServletRequest request,
 			HttpServletResponse response) {
 		response.setContentType(CONTENT_TYPE);

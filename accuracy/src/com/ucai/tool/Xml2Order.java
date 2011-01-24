@@ -18,12 +18,18 @@ import com.ucai.po.FlyAir;
 import com.ucai.po.FlyOrder;
 import com.ucai.po.Passenger;
 
+/**
+ * 把订单xml信息封装成机票扣位存储对象
+ * 
+ * @author lin
+ * 
+ */
 public class Xml2Order {
 	/**
 	 * 解释对像
 	 * 
-	 * @param xml
-	 * @return
+	 * @param a
+	 * @return 订单对象
 	 */
 	public static FlyOrder xml2Seat(byte[] a) {
 		String xml = getUTFStr(a);
@@ -35,7 +41,7 @@ public class Xml2Order {
 	 * 参数为XML
 	 * 
 	 * @param xml
-	 * @return
+	 * @return 订单对象
 	 */
 	public static FlyOrder xml2Seat(String xml) {
 		xml = xml.replace("__", "_");
@@ -165,6 +171,12 @@ public class Xml2Order {
 		}
 	}
 
+	/**
+	 * 把对象的字节码转换成utf-8的字符串
+	 * 
+	 * @param utfbytes
+	 * @return 转换后的utf-8编码的字符串
+	 */
 	private static String getUTFStr(byte[] utfbytes) {
 
 		int rdlen = utfbytes.length;

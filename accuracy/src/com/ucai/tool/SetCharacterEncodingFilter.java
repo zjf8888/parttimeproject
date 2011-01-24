@@ -8,6 +8,12 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+/**
+ * 字符过滤类
+ * 
+ * @author lin
+ * 
+ */
 public class SetCharacterEncodingFilter implements Filter {
 
 	protected String encoding = null;
@@ -30,16 +36,7 @@ public class SetCharacterEncodingFilter implements Filter {
 		if (ignore || (request.getCharacterEncoding() == null)) {
 			String encoding = selectEncoding(request);
 			if (encoding != null) {
-				request.setCharacterEncoding(encoding); // 就是这句话在工作的啦，哈哈，它：Overrides
-														// the name of the
-														// character encoding
-														// used in the body of
-														// this request. This
-														// method must be called
-														// prior to reading
-														// request parameters or
-														// reading input using
-														// getReader().
+				request.setCharacterEncoding(encoding); // 就是这句话在工作的
 			}
 		}
 

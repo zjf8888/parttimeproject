@@ -18,9 +18,9 @@ public class FlightFromPage {
 	/**
 	 * 通过已查询到的信息对象，打包成相应页面的信息对象
 	 * 
-	 * @param flightpo航班信息对象
-	 * @param pageno页码
-	 * @return返回的带页码的航班信息
+	 * @param flightpo 航班信息对象
+	 * @param pageno 页码
+	 * @return 返回的带页码的航班信息
 	 */
 	public static ToSerializationFlight setFlightFromPage(Flight flightpo,
 			int pageno) {

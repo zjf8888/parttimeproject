@@ -13,7 +13,7 @@ import com.ucai.po.Flight;
 /**
  * 系统缓存类
  * 
- * @李卓林
+ * @author 李卓林
  * 
  */
 public class DbCache {
@@ -61,7 +61,7 @@ public class DbCache {
 	 * 通过transId查询飞机信息
 	 * 
 	 * @param transId
-	 * @return
+	 * @return 航班信息对象
 	 */
 	public synchronized Flight query(final String transId) {
 		System.out.println("query" + "开始");
