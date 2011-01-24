@@ -17,6 +17,12 @@ import com.ucai.www.FlyOrderResponseFlyOrderResult;
 import com.ucai.www.GetFlyOrderListResponseGetFlyOrderListResult;
 import com.ucai.www.UPSOrderResponseUPSOrderResult;
 
+/**
+ * 扣位webService工具类
+ * 
+ * @author lin
+ * 
+ */
 public class SetOrderImp {
 
 	public String FlyOrder(String orderxml) {
@@ -35,7 +41,7 @@ public class SetOrderImp {
 	 * 调用远程扣位方法
 	 * 
 	 * @param orderxml
-	 * @return
+	 * @return 返回扣位结果字符串
 	 */
 	private String callService(String orderxml) {
 		try {
@@ -77,6 +83,15 @@ public class SetOrderImp {
 		return null;
 	}
 
+	/**
+	 * 通过订单号或者用户ID获取订单信息，其中一个或两个均可，当只查询一个条件时，另一个为""便可,但只返回第一个对象
+	 * 
+	 * @param OrderNumber
+	 *            订单信息
+	 * @param userId
+	 *            用户ID
+	 * @return 订单对象
+	 */
 	public ResultOrder getFlyOrderList(String OrderNumber, String userId) {
 		try {
 			List<ResultOrder> resultList = getResultList(OrderNumber, userId);
@@ -89,6 +104,15 @@ public class SetOrderImp {
 		return null;
 	}
 
+	/**
+	 * 通过订单号或者用户ID获取订单信息，其中一个或两个均可，当只查询一个条件时，另一个为""便可
+	 * 
+	 * @param OrderNumber
+	 *            订单信息
+	 * @param userId
+	 *            用户ID
+	 * @return 订单列表
+	 */
 	public List<ResultOrder> getResultList(String OrderNumber, String userId) {
 		try {
 			String service_url = "http://www.ucai.com/FlyWebService/SetOrders.asmx?WSDL";
@@ -132,6 +156,15 @@ public class SetOrderImp {
 		return null;
 	}
 
+	/**
+	 * 更新订单方法
+	 * 
+	 * @param OrderNumber
+	 *            订单编号
+	 * @param price
+	 *            支付价格
+	 * @return 修改结果
+	 */
 	public String updateOrder(String OrderNumber, String price) {
 		try {
 			String service_url = "http://www.ucai.com/FlyWebService/SetOrders.asmx?WSDL";

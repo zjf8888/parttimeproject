@@ -1,4 +1,3 @@
-
 package com.ucai.webservices.flightquery;
 
 import javax.jws.WebMethod;
@@ -7,6 +6,12 @@ import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 
+/**
+ * 机票查询webService的查询接口，由工具自动生成
+ * 
+ * @author lin
+ * 
+ */
 @WebService(name = "IFlightQueryPortType", targetNamespace = "http://jdtx")
 @SOAPBinding(use = SOAPBinding.Use.LITERAL, parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
 public interface IFlightQueryPortType {

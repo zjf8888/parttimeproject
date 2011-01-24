@@ -1,4 +1,3 @@
-
 package com.ucai.webservices.flightquery;
 
 import java.net.MalformedURLException;
@@ -16,6 +15,12 @@ import org.codehaus.xfire.service.Service;
 import org.codehaus.xfire.soap.AbstractSoapBinding;
 import org.codehaus.xfire.transport.TransportManager;
 
+/**
+ * 机票查询webService的查询客户端,由工具自动生成
+ * 
+ * @author lin
+ * 
+ */
 public class IFlightQueryClient {
 
 	private static XFireProxyFactory proxyFactory = new XFireProxyFactory();
@@ -62,6 +67,7 @@ public class IFlightQueryClient {
 	public Collection getEndpoints() {
 		return endpoints.values();
 	}
+
 	@SuppressWarnings("unchecked")
 	private void create0() {
 		TransportManager tm = (org.codehaus.xfire.XFireFactory.newInstance()
@@ -73,7 +79,8 @@ public class IFlightQueryClient {
 						new JaxbTypeRegistry()));
 		asf.setBindingCreationEnabled(false);
 		service0 = asf.create(
-				(com.ucai.webservices.flightquery.IFlightQueryPortType.class), props);
+				(com.ucai.webservices.flightquery.IFlightQueryPortType.class),
+				props);
 		{
 			@SuppressWarnings("unused")
 			AbstractSoapBinding soapBinding = asf
@@ -115,13 +122,14 @@ public class IFlightQueryClient {
 
 		IFlightQueryClient client = new IFlightQueryClient();
 
-		//create a default service endpoint
+		// create a default service endpoint
 		IFlightQueryPortType iFlightQueryPortType = client
 				.getIFlightQueryHttpPort();
-		String flightInfo=iFlightQueryPortType.getFlightInfo("szx", "kwe", "2010-12-1", "", "jdtx", "");
-		//TODO: Add custom client code here
+		String flightInfo = iFlightQueryPortType.getFlightInfo("szx", "kwe",
+				"2010-12-1", "", "jdtx", "");
+		// TODO: Add custom client code here
 		//
-		//iFlightQueryPortType.yourServiceOperationHere();
+		// iFlightQueryPortType.yourServiceOperationHere();
 
 		System.out.println(flightInfo);
 		System.exit(0);
