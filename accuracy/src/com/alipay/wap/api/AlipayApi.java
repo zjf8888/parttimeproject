@@ -19,6 +19,11 @@ import com.alipay.wap.security.SecurityManagerImpl;
 import com.alipay.wap.tool.ParameterUtil;
 import com.alipay.wap.tool.XMapUtil;
 
+/**
+ * 支付宝接口类
+ * @author lin
+ *
+ */
 public class AlipayApi {
 	private SecurityManager securityManager = new SecurityManagerImpl(); //安全检验控制器
 
