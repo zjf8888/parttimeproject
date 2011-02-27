@@ -17,20 +17,35 @@ import com.ucai.po.Flight;
  * 
  */
 public class DbCache {
+	/**
+	 * 禁用DbCache对象初始化
+	 */
 	private DbCache() {
 	}
-
+	/**
+	 * DbCache静态对象
+	 */
 	private static DbCache ca;
-
+	/**
+	 * 获取DbCache对象方法，如果静态对象ca为空，则初始化对象后返回<br>
+	 * 如果ca已实例化，则直接返回ca对象
+	 * @return DbCache静态对象
+	 */
 	public static DbCache getDbcache() {
 		if (ca == null) {
 			ca = new DbCache();
 		}
 		return ca;
 	}
-
+	/**
+	 * 缓存数据的物理地址
+	 */
 	private String DB4OFILENAME = System.getProperty("user.home") + "/auto.yap";
-
+	/**
+	 * 开启db4o连接
+	 * @param config 服务端参数
+	 * @return 开启的服务对象
+	 */
 	private synchronized ObjectServer newObjectServer(ServerConfiguration config) {
 		return Db4oClientServer.openServer(config, DB4OFILENAME, 0);
 	}
@@ -38,7 +53,7 @@ public class DbCache {
 	/**
 	 * 插入查询飞机信息
 	 * 
-	 * @param flightpo
+	 * @param flightpo 航班信息
 	 */
 	public synchronized void insertFlight(Flight flightpo) {
 		System.out.println("insertFlight" + "开始");
@@ -60,7 +75,7 @@ public class DbCache {
 	/**
 	 * 通过transId查询飞机信息
 	 * 
-	 * @param transId
+	 * @param transId 航班信息对象编号
 	 * @return 航班信息对象
 	 */
 	public synchronized Flight query(final String transId) {
@@ -94,7 +109,7 @@ public class DbCache {
 	}
 
 	/**
-	 * 删除过期查询信息
+	 * 删除过期查询信息，无需参数，程序能自动删除过期航班信息
 	 * 
 	 */
 

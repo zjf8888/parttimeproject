@@ -20,18 +20,27 @@ import com.ucai.webservices.ucai.SetOrderImp;
  * 
  */
 public class GetFlyOrderListServlet extends HttpServlet {
+	/**
+	 * 返回的文件制式
+	 */
 	private static final String CONTENT_TYPE = "text/xml;charset=UTF-8";
 
 	/**
-	 * 
+	 * 序列化时为了保持版本的兼容性
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 初始化方法
+	 */
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 	}
 
+	/**
+	 * 获取订单接口方法
+	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

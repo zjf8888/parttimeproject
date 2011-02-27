@@ -16,14 +16,17 @@ import com.ucai.po.ResultOrder;
  * 
  */
 public class DirectTool {
+	/**
+	 * 返回的文件制式
+	 */
 	private SecurityManager securityManager = new SecurityManagerImpl();
 
 	/**
 	 * 准备alipay.wap.trade.create.direct服务的参数
 	 * 
 	 * @param resultOrder 订单查询结果
-	 * @return
-	 * @throws UnsupportedEncodingException
+	 * @return 参数对照表
+	 * @throws UnsupportedEncodingException 不支持字符编码
 	 */
 	public Map<String, String> prepareTradeRequestParamsMap(
 			ResultOrder resultOrder) throws UnsupportedEncodingException {
@@ -63,7 +66,7 @@ public class DirectTool {
 	/**
 	 * 准备通用参数
 	 * 
-	 * @return
+	 * @return 通用参数
 	 */
 	private Map<String, String> prepareCommonParams() {
 		Map<String, String> commonParams = new HashMap<String, String>();
@@ -83,9 +86,10 @@ public class DirectTool {
 
 	/**
 	 * 对参数进行签名
-	 * 
-	 * @param reqParams
-	 * @return
+	 * @param reqParams 通用参数表
+	 * @param signAlgo 算法类型
+	 * @param key 私钥
+	 * @return 签名后的字符串
 	 */
 	public String sign(Map<String, String> reqParams, String signAlgo,
 			String key) {
@@ -103,8 +107,8 @@ public class DirectTool {
 	/**
 	 * 准备alipay.wap.auth.authAndExecute服务的参数
 	 * 
-	 * @param requestToken
-	 * @return
+	 * @param requestToken 请求标志
+	 * @return 请求参数列表
 	 */
 	public Map<String, String> prepareAuthParamsMap(String requestToken) {
 		Map<String, String> requestParams = new HashMap<String, String>();
@@ -121,9 +125,9 @@ public class DirectTool {
 	/**
 	 * 调用alipay.wap.auth.authAndExecute服务的时候需要跳转到支付宝的页面，组装跳转url
 	 * 
-	 * @param reqParams
-	 * @return 
-	 * @throws Exception
+	 * @param reqParams 请求参数列表
+	 * @return 跳转url字符串
+	 * @throws Exception 一般异常
 	 */
 	public String getRedirectUrl(Map<String, String> reqParams, String reqUrl)
 			throws Exception {

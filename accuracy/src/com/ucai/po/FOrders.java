@@ -1,59 +1,112 @@
 package com.ucai.po;
+
 /**
  * 机票信息存储类
+ * 
  * @author lin
- *
+ * 
  */
 public class FOrders {
-	private String f_Number;//机票订单号
-
-	private String f_Ordercode;//订单流水号
-
-	private String f_UserId;//会员ID
-
-	private String f_Totalprice;//票面总价
-
-	private String f_Payprice;//实际支付价格
-
-	private String f_ProfitPrice;//利润
-
-	private String f_FlightType;//航程类型.1-单程;2-往返,3-联程
-
-	private String f_Type;//类型 1-国内;2-国际
-
-	private String f_AddDateTime;//订单生成日期
-
-	private String f_PayType;//支付方式(ID)
-
-	private String f_PayTime;//支付时间
-
-	private String f_PayStatus;//支付状态.0-未支付;1-已支付
-
-	private String f_PayRemark;//支付备注
-
-	private String f_TicketNum;//机票张数
-
-	private String f_Operator;//操作人
-
-	private String f_SourceId;//订单来源ID
-
-	private String f_Status;//订单状态  1、新订单，2、待出票... 
-
-	private String f_IsTrue;//订单真假. 0-假订单;1-真订单
-
-	private String f_DeptID;//部门ID
-
-	private String f_OrderRemark;//机票订单备注
-
-	private String f_FuelFees;//燃油总价
-
-	private String f_BuildFees;//机建总价
-
-	private String f_Agentfee;//代理点数
-
-	private String f_CPDate;//出票日期
-
-	private String f_PeisongAddr;//取票方式
+	/**
+	 * 机票订单号
+	 */
+	private String f_Number;
+	/**
+	 * 订单流水号
+	 */
+	private String f_Ordercode;
+	/**
+	 * 会员ID
+	 */
+	private String f_UserId;
+	/**
+	 * 票面总价
+	 */
+	private String f_Totalprice;
+	/**
+	 * 实际支付价格
+	 */
+	private String f_Payprice;
+	/**
+	 * 利润
+	 */
+	private String f_ProfitPrice;
+	/**
+	 * 航程类型.1-单程;2-往返,3-联程
+	 */
+	private String f_FlightType;
+	/**
+	 * 类型 1-国内;2-国际
+	 */
+	private String f_Type;
+	/**
+	 * 订单生成日期
+	 */
+	private String f_AddDateTime;
+	/**
+	 * 支付方式(ID)
+	 */
+	private String f_PayType;
+	/**
+	 * 支付时间
+	 */
+	private String f_PayTime;
+	/**
+	 * 支付状态.0-未支付;1-已支付
+	 */
+	private String f_PayStatus;
+	/**
+	 * 支付备注
+	 */
+	private String f_PayRemark;
+	/**
+	 * 机票张数
+	 */
+	private String f_TicketNum;
+	/**
+	 * 操作人
+	 */
+	private String f_Operator;
+	/**
+	 * 订单来源ID
+	 */
+	private String f_SourceId;
+	/**
+	 * 订单状态 1、新订单，2、待出票...
+	 */
+	private String f_Status;
+	/**
+	 * 订单真假. 0-假订单;1-真订单
+	 */
+	private String f_IsTrue;
+	/**
+	 * 部门ID
+	 */
+	private String f_DeptID;
+	/**
+	 * 机票订单备注
+	 */
+	private String f_OrderRemark;
+	/**
+	 * 燃油总价
+	 */
+	private String f_FuelFees;
+	/**
+	 * 机建总价
+	 */
+	private String f_BuildFees;
+	/**
+	 * 代理点数
+	 */
+	private String f_Agentfee;
+	/**
+	 * 出票日期
+	 */
+	private String f_CPDate;
+	/**
+	 * 取票方式
+	 */
+	private String f_PeisongAddr;
 
 	public String getF_PeisongAddr() {
 		return f_PeisongAddr;

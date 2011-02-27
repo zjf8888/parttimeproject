@@ -6,8 +6,14 @@ package com.ucai.po;
  *
  */
 public class City {
-	private String code;//城市编码
-	private String name;//城市名称
+	/**
+	 * 城市编码
+	 */
+	private String code;
+	/**
+	 * 城市名称
+	 */
+	private String name;
 	
 	public String getCode() {
 		return code;

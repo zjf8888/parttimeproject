@@ -22,15 +22,26 @@ import com.ucai.webservices.ucai.SetOrderImp;
  * 
  */
 public class SignServlet extends HttpServlet {
+	/**
+	 * 返回的文件制式
+	 */
 	private static final String CONTENT_TYPE = "text/xml;charset=UTF-8";
-
+	/**
+	 * 序列化时为了保持版本的兼容性
+	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 初始化方法
+	 */
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 	}
 
+	/**
+	 * 支付信息签名方法
+	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -75,11 +86,12 @@ public class SignServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * 对参数进行签名
-	 * @param signInfo 
-	 * @param signAlgo 
+	 * 
+	 * @param signInfo 原始数据
+	 * @param signAlgo 签名的算法
 	 * @return 签名后的字符串
 	 */
 	private String sign(String signInfo, String signAlgo) {

@@ -17,7 +17,10 @@ import com.ucai.tool.FlightFromPage;
 import com.ucai.tool.po.ToSerializationFlight;
 
 /**
- * 获取json分页信息
+ * 获取json分页信息,该方法的调用路径为：/filghtInfoByPageJsonServlet<br>
+ * 需要的参数为<br>
+ * tid 查询记录ID<br>
+ * pn 页码，从0开始的页码<br>
  * 
  * @author lin
  * 
@@ -25,16 +28,23 @@ import com.ucai.tool.po.ToSerializationFlight;
 public class FilghtInfoByPageJsonServlet extends HttpServlet {
 
 	/**
-	 * 
+	 * 序列化字段
 	 */
 	private static final long serialVersionUID = 1L;
-
+	/**
+	 * 返回的文件类型
+	 */
 	private static final String CONTENT_TYPE = "application/json;charset=UTF-8";
-
+	/**
+	 * 初始化方法
+	 */	
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 	}
-
+	/**
+	 * 获取分页信息方法
+	 * @see #doGet(HttpServletRequest, HttpServletResponse)
+	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);

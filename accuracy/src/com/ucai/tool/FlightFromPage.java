@@ -17,6 +17,7 @@ import com.ucai.tool.po.ToSerializationFlight;
 public class FlightFromPage {
 	/**
 	 * 通过已查询到的信息对象，打包成相应页面的信息对象
+	 * 通过传递进来的航班信息和请求的页面号，通过处理返回对应页面的对象
 	 * 
 	 * @param flightpo 航班信息对象
 	 * @param pageno 页码

@@ -1,13 +1,20 @@
 package com.ucai.po;
+
 /**
  * 下订单信息返回类
+ * 
  * @author lin
- *
+ * 
  */
 public class JDResInfo {
-	private String code;//状态码
-
-	private String description;//描述信息
+	/**
+	 * 状态码
+	 */
+	private String code;
+	/**
+	 * 描述信息
+	 */
+	private String description;
 
 	public String getCode() {
 		return code;

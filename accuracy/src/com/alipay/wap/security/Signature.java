@@ -15,7 +15,7 @@ public interface Signature {
 	 * @param key
 	 *            私钥
 	 * @return 签名
-	 * @throws Exception
+	 * @throws Exception 发生一般异常时
 	 */
 	public String sign(String content, String key) throws Exception;
 
@@ -23,8 +23,8 @@ public interface Signature {
 	 * 对支付控件签名
 	 * 
 	 * @param content 原始数据
-	 * @return
-	 * @throws Exception
+	 * @return 签名
+	 * @throws Exception 发生一般异常时
 	 */
 	public String sign(String content) throws Exception;
 
@@ -38,7 +38,7 @@ public interface Signature {
 	 * @param key
 	 *            公钥
 	 * @return 签名验证通过 False 签名验证失败
-	 * @throws Exception
+	 * @throws Exception 发生一般异常时
 	 */
 	public boolean verify(String content, String sign, String key)
 			throws Exception;

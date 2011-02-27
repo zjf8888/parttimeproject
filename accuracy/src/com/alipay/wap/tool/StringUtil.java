@@ -8,7 +8,9 @@ package com.alipay.wap.tool;
  */
 public class StringUtil {
 
-	/** 空字符串。 */
+	/**
+	 * 空字符串
+	 */
 	public static final String EMPTY_STRING = "";
 
 	/**
@@ -323,11 +325,10 @@ public class StringUtil {
 	}
 
 	/**
-	 * Checks if the String contains only unicode digits. A decimal point is not
-	 * a unicode digit and returns false.
+	 * 检查的Unicode字符串只包含数字，是只包含数字的返回true，否则返回false,含小数点的也返回false
 	 * 
-	 * @param str
-	 * @return
+	 * @param str 被检查的字符串
+	 * @return 返回的状态
 	 */
 	public static boolean isNumeric(String str) {
 		if (str == null) {

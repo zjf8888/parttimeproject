@@ -9,6 +9,9 @@ import com.ucai.po.ResultOrder;
  *
  */
 public class ResultPo {
+	/**
+	 * 返回结果列表
+	 */
 	List<ResultOrder> resultList;
 
 	public List<ResultOrder> getResultList() {

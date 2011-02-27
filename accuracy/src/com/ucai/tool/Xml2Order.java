@@ -26,10 +26,13 @@ import com.ucai.po.Passenger;
  */
 public class Xml2Order {
 	/**
-	 * 解释对像
+	 * 解释订单信息<br>
+	 * 通过getUTFStr（byte[] utfbytes）方法提取出字符串,再通过xml2Seat(String xml)方法封装成对象
 	 * 
-	 * @param a
+	 * @param a 传进来的字节码
 	 * @return 订单对象
+	 * @see #getUTFStr(byte[])
+	 * @see #xml2Seat(String)
 	 */
 	public static FlyOrder xml2Seat(byte[] a) {
 		String xml = getUTFStr(a);
@@ -40,7 +43,7 @@ public class Xml2Order {
 	/**
 	 * 参数为XML
 	 * 
-	 * @param xml
+	 * @param xml 需解釋的xml字符串
 	 * @return 订单对象
 	 */
 	public static FlyOrder xml2Seat(String xml) {
@@ -174,7 +177,7 @@ public class Xml2Order {
 	/**
 	 * 把对象的字节码转换成utf-8的字符串
 	 * 
-	 * @param utfbytes
+	 * @param utfbytes 传进来的字节码
 	 * @return 转换后的utf-8编码的字符串
 	 */
 	private static String getUTFStr(byte[] utfbytes) {

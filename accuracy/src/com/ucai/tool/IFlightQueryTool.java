@@ -7,8 +7,9 @@ import org.codehaus.xfire.transport.http.CommonsHttpMessageSender;
 import com.ucai.webservices.flightquery.IFlightQueryPortType;
 
 /**
- * 设置超时类
+ * 设置超时类，该方法需传入查询接口类
  * 
+ * @see #setTimeOut(IFlightQueryPortType)
  * @author lin
  * 
  */
@@ -17,6 +18,7 @@ public class IFlightQueryTool {
 	 * 设置超时方法
 	 * 
 	 * @param iFlightQueryPortType
+	 *            查询接口类
 	 */
 	public void setTimeOut(IFlightQueryPortType iFlightQueryPortType) {
 		HttpClientParams params = new HttpClientParams();

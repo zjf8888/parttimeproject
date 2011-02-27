@@ -16,12 +16,16 @@ import com.ucai.po.Segment;
 
 /**
  * 机票查询后把xml封装成对象的工具类，在封装过程中，把对象保存到缓存
- * 
+ * @see DbCache
  * @author lin
  * 
  */
 public class Xml2Flight {
-
+	/**
+	 * xml解释方法，解释后并把对象存储到缓存
+	 * @param xml 需解释的字符串
+	 * @return 航班信息对象
+	 */
 	public static Flight jDomParse(String xml) {
 		Flight flightpo = xml2Flight(xml);
 		insertCache(flightpo);
@@ -31,7 +35,8 @@ public class Xml2Flight {
 	/**
 	 * 保存查询对像到缓存中
 	 * 
-	 * @param flightpo
+	 * @param flightpo  航班信息对象
+	 * @see DbCache#insertFlight(Flight)
 	 */
 	private static void insertCache(Flight flightpo) {
 		Calendar calendar = Calendar.getInstance();
@@ -45,8 +50,8 @@ public class Xml2Flight {
 	/**
 	 * 解释机票查询对像
 	 * 
-	 * @param xml
-	 * @return 机票查询对像
+	 * @param xml 需解释的字符串
+	 * @return 航班信息对象
 	 */
 	private static Flight xml2Flight(String xml) {
 		Flight flightpo = new Flight();

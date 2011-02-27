@@ -28,13 +28,19 @@ import com.ucai.webservices.ucai.SetOrderImp;
  * 
  */
 public class TradeServlet extends HttpServlet {
+	/**
+	 * 返回的文件制式
+	 */
 	private static final String CONTENT_TYPE = "text/xml;charset=UTF-8";
 
 	/**
-	 * 
+	 * 序列化时为了保持版本的兼容性
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 初始化方法
+	 */
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
@@ -50,21 +56,24 @@ public class TradeServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		try {
 			String forderid = request.getParameter("forderid");
-			SetOrderImp orderImp=new SetOrderImp();
-			ResultOrder resultOrder=orderImp.getFlyOrderList(forderid,"");
-			DirectTool dt=new DirectTool();
-			Map<String, String> reqParams = dt.prepareTradeRequestParamsMap(resultOrder);
-			
+			SetOrderImp orderImp = new SetOrderImp();
+			ResultOrder resultOrder = orderImp.getFlyOrderList(forderid, "");
+			DirectTool dt = new DirectTool();
+			Map<String, String> reqParams = dt
+					.prepareTradeRequestParamsMap(resultOrder);
+
 			String reqUrl = "http://wappaygw.alipay.com/service/rest.htm";
-			
-			String sign = dt.sign(reqParams,ClientConfig.md5SignAlgo,ClientConfig.md5Key);
+
+			String sign = dt.sign(reqParams, ClientConfig.md5SignAlgo,
+					ClientConfig.md5Key);
 			reqParams.put("sign", sign);
-			
+
 			ResponseResult resResult = new ResponseResult();
 			String businessResult = "";
-			AlipayApi api=new AlipayApi();
+			AlipayApi api = new AlipayApi();
 			try {
-				resResult = api.getResponseResult(reqParams,reqUrl,ClientConfig.md5SignAlgo,ClientConfig.md5Key);
+				resResult = api.getResponseResult(reqParams, reqUrl,
+						ClientConfig.md5SignAlgo, ClientConfig.md5Key);
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
@@ -87,13 +96,15 @@ public class TradeServlet extends HttpServlet {
 			}
 			// 开放平台返回的内容中取出request_token（对返回的内容要先用私钥解密，再用支付宝的公钥验签名）
 			String requestToken = directTradeCreateRes.getRequestToken();
-			
-			Map<String, String> authParams =dt.prepareAuthParamsMap(requestToken);
-			String authSign = dt.sign(authParams,ClientConfig.md5SignAlgo,ClientConfig.md5Key);
+
+			Map<String, String> authParams = dt
+					.prepareAuthParamsMap(requestToken);
+			String authSign = dt.sign(authParams, ClientConfig.md5SignAlgo,
+					ClientConfig.md5Key);
 			authParams.put("sign", authSign);
 			String redirectURL = "";
 			try {
-				redirectURL = dt.getRedirectUrl(authParams,reqUrl);
+				redirectURL = dt.getRedirectUrl(authParams, reqUrl);
 				System.out.println("跳转地址:" + redirectURL);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -107,6 +118,9 @@ public class TradeServlet extends HttpServlet {
 		}
 	}
 
+	/**
+	 * 订单处理方法
+	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

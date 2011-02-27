@@ -9,29 +9,54 @@ import java.util.List;
  * 
  */
 public class Segment {
-	public String fltno;// 航班号
-
-	public String sc;// 出发城市编码
-
+	/**
+	 * 航班号
+	 */
+	public String fltno; 
+	/**
+	 * 出发城市编码
+	 */
+	public String sc; 
+	/**
+	 * 出发城市
+	 */
 	public String scAirdrome;
-
-	public String ec;// 到达城市编码
-
+	/**
+	 * 到达城市编码
+	 */
+	public String ec; 
+	/**
+	 * 到达城市
+	 */
 	public String ecAirdrome;
-
-	public String deptime;// 起飞时间
-
-	public String arrtime;// 到达时间
-
-	public String planesty;// 飞机型号
-
-	public String stopnum;// 中途停降次数
-
-	public String etkt;// 电子票
-
-	public String meal;// 有餐
-
-	public List<SeatClass> classesList;// 航班座位信息
+	/**
+	 * 起飞时间
+	 */
+	public String deptime; 
+	/**
+	 * 到达时间
+	 */
+	public String arrtime; 
+	/**
+	 * 飞机型号
+	 */
+	public String planesty; 
+	/**
+	 * 中途停降次数
+	 */
+	public String stopnum; 
+	/**
+	 * 电子票
+	 */
+	public String etkt; 
+	/**
+	 * 有餐
+	 */
+	public String meal; 
+	/**
+	 * 航班座位信息
+	 */
+	public List<SeatClass> classesList; 
 
 	public String getArrtime() {
 		return arrtime;

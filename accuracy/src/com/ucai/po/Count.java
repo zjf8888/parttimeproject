@@ -5,6 +5,9 @@ package com.ucai.po;
  *
  */
 public class Count {
+	/**
+	 * 流水号
+	 */
 	private int id;
 
 	public int getId() {

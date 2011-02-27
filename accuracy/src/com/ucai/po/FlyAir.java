@@ -6,29 +6,53 @@ package com.ucai.po;
  *
  */
 public class FlyAir {
-    //航班号
+    /**
+     * 航班号
+     */
     public String flyNo;
-    //舱位等级
+    /**
+     * 舱位等级
+     */
     public String flyClass;
-    //票价
+    /**
+     * 票价
+     */
     public String flyPrice;
-    //机建
+    /**
+     * 机建
+     */
     public String buildfee;
-    //燃油
+    /**
+     * 燃油
+     */
     public String fuelfee;
-    //机型
+    /**
+     * 机型
+     */
     public String planesty;
-    //出发城市三字码
+    /**
+     * 出发城市三字码
+     */
     public String sc;
-    //目标城市三字码
+    /**
+     * 目标城市三字码
+     */
     public String ec;
-    //起飞日期
+    /**
+     * 起飞日期
+     */
     public String sDate;
-    //抵达日期
+    /**
+     * 抵达日期
+     */
     public String eDate;
-    //起飞时间
+    /**
+     * 起飞时间
+     */
     public String sTime;
-    //抵达时间
+    /**
+     * 抵达时间
+     */
     public String eTime;
 	public String getFlyNo() {
 		return flyNo;

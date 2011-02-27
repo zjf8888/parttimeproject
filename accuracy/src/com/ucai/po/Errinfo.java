@@ -6,9 +6,15 @@ package com.ucai.po;
  *
  */
 public class Errinfo {
-	private String code;//错误码
-
-	private String description;//描述信息
+	
+	/**
+	 * 错误码
+	 */
+	private String code;
+	/**
+	 * 描述信息
+	 */
+	private String description;
 
 	public String getCode() {
 		return code;

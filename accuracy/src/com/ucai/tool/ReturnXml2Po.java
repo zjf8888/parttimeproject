@@ -14,17 +14,22 @@ import com.ucai.po.ResultOrder;
 import com.ucai.po.ReturnPo;
 
 /**
- * 返回信息封装类
+ * 返回信息封装类<br>
+ * 该类是作为各接口提交数据后返回信息封装使用的，其中包括:<br>
+ * 1.扣位返回信息打包对象处理方法<br>
+ * 2.下订单返回信息处理方法<br>
+ * 3.把xml转化成订单查询结果对象
  * 
  * @author lin
  * 
  */
 public class ReturnXml2Po {
 	/**
-	 * 扣位返回信息打包对象处理方示
+	 * 扣位返回信息打包对象处理方法
 	 * 
 	 * @param xml
-	 * @return  扣位返回信息对象
+	 *            扣位返回的xml字符串
+	 * @return 扣位返回信息对象
 	 */
 	public static ReturnPo getReturnPo(String xml) {
 		ReturnPo po = new ReturnPo();
@@ -59,7 +64,7 @@ public class ReturnXml2Po {
 	/**
 	 * 下订单返回信息打包类
 	 * 
-	 * @param xml
+	 * @param xml 订单返回信息
 	 * @return 订单结果对象
 	 */
 	public static JDResInfo getJDResInfoFromXml(String xml) {
@@ -83,7 +88,7 @@ public class ReturnXml2Po {
 	/**
 	 * 把xml转化成订单查询结果对象
 	 * 
-	 * @param xml 
+	 * @param xml 订单查询结果
 	 * @return 订单查询结果对象
 	 */
 	public static List<ResultOrder> getFlyOrderList(String xml) {

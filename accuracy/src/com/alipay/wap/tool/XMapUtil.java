@@ -12,8 +12,14 @@ import org.nuxeo.common.xmap.XMap;
  * 
  */
 public class XMapUtil {
+	/**
+	 * xml转换beam元素
+	 */
 	private static final XMap xmap;
 
+	/**
+	 * 静态初始化元素
+	 */	
 	static {
 		xmap = new XMap();
 	}
@@ -21,7 +27,7 @@ public class XMapUtil {
 	/**
 	 * 注册Object。
 	 * 
-	 * @param clazz
+	 * @param clazz 注冊對應的類
 	 */
 	public static void register(Class<?> clazz) {
 		if (clazz != null) {
@@ -32,9 +38,9 @@ public class XMapUtil {
 	/**
 	 * 解析xml到Object
 	 * 
-	 * @param is
-	 * @return
-	 * @throws Exception
+	 * @param is 需轉換的輸入流
+	 * @return 轉換后的對應
+	 * @throws Exception 一般異常
 	 */
 	public static Object load(InputStream is) throws Exception {
 		Object obj = null;
@@ -51,11 +57,11 @@ public class XMapUtil {
 	/**
 	 * Object到XML。
 	 * 
-	 * @param obj
-	 * @param encoding
-	 * @param outputsFields
-	 * @return
-	 * @throws PaygwException
+	 * @param obj 需转换的对象
+	 * @param encoding 相应的编码
+	 * @param outputsFields 输出的元素
+	 * @return 返回的xml字符串
+	 * @throws Exception 一般异常
 	 */
 	public static String asXml(Object obj, String encoding,
 			List<String> outputsFields) throws Exception {

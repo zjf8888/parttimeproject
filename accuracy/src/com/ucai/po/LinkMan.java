@@ -5,19 +5,34 @@ package com.ucai.po;
  *
  */
 public class LinkMan {
-	private String l_Name;//联系人姓名 
-
-	private String l_Mobile;//移动电话
-
-	private String l_Phone;//固定电话
-
-	private String l_Email;//e_mail
-
-	private String l_Address;//联系地址
-
-	private String l_UserId;//联系人会员号
-
-	private String l_Remark;//联系人备注
+	/**
+	 * 联系人姓名 
+	 */
+	private String l_Name;
+	/**
+	 * 移动电话
+	 */
+	private String l_Mobile;
+	/**
+	 * 固定电话
+	 */
+	private String l_Phone;
+	/**
+	 * e_mail
+	 */
+	private String l_Email;
+	/**
+	 * 联系地址
+	 */
+	private String l_Address;
+	/**
+	 * 联系人会员号
+	 */
+	private String l_UserId;
+	/**
+	 * 联系人备注
+	 */
+	private String l_Remark;
 
 	public String getL_Address() {
 		return l_Address;

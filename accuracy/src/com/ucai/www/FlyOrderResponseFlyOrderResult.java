@@ -8,10 +8,11 @@
 package com.ucai.www;
 
 /**
- * 调用远程扣位方法返回对象类,自动生成
+ * 调用远程扣位方法返回对象类,自动生成<br>
+ * 主要是为远程调用方法SetOrderImp.FlyOrder(String)保存返回结果使用
  * 
  * @author 李卓林
- * 
+ * @see com.ucai.webservices.ucai.SetOrderImp#FlyOrder(String)
  */
 public class FlyOrderResponseFlyOrderResult implements java.io.Serializable,
 		org.apache.axis.encoding.AnyContentType,

@@ -17,7 +17,7 @@ import com.ucai.po.Passenger2;
 import com.ucai.po.ReturnPo;
 
 /**
- * 把扣位信息转换成订单信息类
+ * 把扣位信息转换成订单信息类，主要是作為轉換作用
  * 
  * @author lin
  * 

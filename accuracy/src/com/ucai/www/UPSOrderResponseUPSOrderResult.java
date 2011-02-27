@@ -9,9 +9,9 @@ package com.ucai.www;
 
 /**
  * 更新订单方法返回对象封装类,自动生成
- * 
+ * 主要是为远程调用方法SetOrderImp.updateOrder(String,String)保存返回结果使用
  * @author lin
- * 
+ * @see com.ucai.webservices.ucai.SetOrderImp#updateOrder(String, String)
  */
 public class UPSOrderResponseUPSOrderResult implements java.io.Serializable,
 		org.apache.axis.encoding.AnyContentType,

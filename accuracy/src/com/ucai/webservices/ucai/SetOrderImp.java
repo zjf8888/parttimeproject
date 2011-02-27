@@ -18,13 +18,19 @@ import com.ucai.www.GetFlyOrderListResponseGetFlyOrderListResult;
 import com.ucai.www.UPSOrderResponseUPSOrderResult;
 
 /**
- * 扣位webService工具类
+ * 扣位webService工具类,整个扣位调用的远程接口均在该类中调用
  * 
  * @author lin
  * 
  */
 public class SetOrderImp {
 
+	/**
+	 * 扣位方法，主要调用了callService（String）方法
+	 * @param orderxml 扣位所需的xml字符串
+	 * @return 返回扣位成功后返回的xml
+	 * @see #callService(String)
+	 */
 	public String FlyOrder(String orderxml) {
 
 		try {
@@ -38,10 +44,13 @@ public class SetOrderImp {
 	}
 
 	/**
-	 * 调用远程扣位方法
+	 * 调用远程扣位方法,调用远程方法是通过开源工具axis<br>
+	 * 调用后返回的结果是通过自动生成类FlyOrderResponseFlyOrderResult保存的，<br>
+	 * 要想提取返回后的结果，只需调用FlyOrderResponseFlyOrderResult.get_any()方法便可
 	 * 
-	 * @param orderxml
+	 * @param orderxml 处理后的扣位所需的xml字符串
 	 * @return 返回扣位结果字符串
+	 * @see FlyOrderResponseFlyOrderResult#get_any()
 	 */
 	private String callService(String orderxml) {
 		try {
@@ -85,12 +94,13 @@ public class SetOrderImp {
 
 	/**
 	 * 通过订单号或者用户ID获取订单信息，其中一个或两个均可，当只查询一个条件时，另一个为""便可,但只返回第一个对象
-	 * 
+	 * 该方法通过getResultList（String,String）调用远程接口
 	 * @param OrderNumber
 	 *            订单信息
 	 * @param userId
 	 *            用户ID
 	 * @return 订单对象
+	 * @see #getResultList(String, String)
 	 */
 	public ResultOrder getFlyOrderList(String OrderNumber, String userId) {
 		try {
@@ -106,12 +116,14 @@ public class SetOrderImp {
 
 	/**
 	 * 通过订单号或者用户ID获取订单信息，其中一个或两个均可，当只查询一个条件时，另一个为""便可
-	 * 
+	 * 调用后返回的结果是通过自动生成类GetFlyOrderListResponseGetFlyOrderListResult保存的，<br>
+	 * 要想提取返回后的结果，只需调用GetFlyOrderListResponseGetFlyOrderListResult.get_any()方法便可
 	 * @param OrderNumber
 	 *            订单信息
 	 * @param userId
 	 *            用户ID
 	 * @return 订单列表
+	 * @see GetFlyOrderListResponseGetFlyOrderListResult#get_any()
 	 */
 	public List<ResultOrder> getResultList(String OrderNumber, String userId) {
 		try {
@@ -158,12 +170,14 @@ public class SetOrderImp {
 
 	/**
 	 * 更新订单方法
-	 * 
+	 * 调用后返回的结果是通过自动生成类UPSOrderResponseUPSOrderResult保存的，<br>
+	 * 要想提取返回后的结果，只需调用UPSOrderResponseUPSOrderResult.get_any()方法便可
 	 * @param OrderNumber
 	 *            订单编号
 	 * @param price
 	 *            支付价格
 	 * @return 修改结果
+	 * @see UPSOrderResponseUPSOrderResult#get_any()
 	 */
 	public String updateOrder(String OrderNumber, String price) {
 		try {

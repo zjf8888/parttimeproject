@@ -7,15 +7,26 @@ import java.util.List;
  *
  */
 public class Orders {
-	private Order order;//订单基本信息
-
-	private FOrders FOrders;//飞机订单基本信息
-
-	private List<AirOrder> AirOrders;//扣位订单集合
-
-	private List<Passenger2> Passengers;//客人基本信息
-
-	private LinkMan LinkMan;//联系人信息
+	/**
+	 * 订单基本信息
+	 */
+	private Order order;
+	/**
+	 * 飞机订单基本信息
+	 */
+	private FOrders FOrders;
+	/**
+	 * 扣位订单集合
+	 */
+	private List<AirOrder> AirOrders;
+	/**
+	 * 客人基本信息
+	 */
+	private List<Passenger2> Passengers;
+	/**
+	 * 联系人信息
+	 */
+	private LinkMan LinkMan;
 
 	public LinkMan getLinkMan() {
 		return LinkMan;

@@ -30,10 +30,13 @@ public class CallBackServlet extends HttpServlet {
 	private SecurityManager securityManager = new SecurityManagerImpl();
 
 	/**
-	 * 
+	 * 序列化时为了保持版本的兼容性
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 初始化方法
+	 */
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
@@ -79,6 +82,9 @@ public class CallBackServlet extends HttpServlet {
 		}
 	}
 
+	/**
+	 * 通知处理方法 get处理
+	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -89,6 +95,7 @@ public class CallBackServlet extends HttpServlet {
 	 * 获得验签名的数据
 	 * 
 	 * @param map
+	 *            回传参数map
 	 * @return 验签名字符串
 	 */
 	private String getVerifyData(Map map) {

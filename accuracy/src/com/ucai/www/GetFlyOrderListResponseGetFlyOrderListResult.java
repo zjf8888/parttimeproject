@@ -8,10 +8,10 @@
 package com.ucai.www;
 
 /**
- * 通过订单号或者用户ID获取订单信息接口的返回对象列表封装类
- * 
+ * 通过订单号或者用户ID获取订单信息接口的返回对象列表封装类<br>
+ * 主要是为远程调用方法SetOrderImp.getResultList(String,String)保存返回结果使用
  * @author 李卓林
- * 
+ * @see com.ucai.webservices.ucai.SetOrderImp#getResultList(String, String)
  */
 public class GetFlyOrderListResponseGetFlyOrderListResult implements
 		java.io.Serializable, org.apache.axis.encoding.AnyContentType,

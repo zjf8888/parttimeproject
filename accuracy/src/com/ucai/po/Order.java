@@ -7,15 +7,26 @@ package com.ucai.po;
  * 
  */
 public class Order {
-	private String order_NO;// 总订单号
-
-	private String TotalPrice;// 订单总价
-
-	private String orderdate;// 下订单时间
-
-	private String userId;// 会员ID
-
-	private String aserialnumber;// 总订单流水号
+	/**
+	 * 总订单号
+	 */
+	private String order_NO; 
+	/**
+	 * 订单总价
+	 */
+	private String TotalPrice; 
+	/**
+	 * 下订单时间
+	 */
+	private String orderdate; 
+	/**
+	 * 会员ID
+	 */
+	private String userId; 
+	/**
+	 * 总订单流水号
+	 */
+	private String aserialnumber; 
 
 	public String getAserialnumber() {
 		return aserialnumber;

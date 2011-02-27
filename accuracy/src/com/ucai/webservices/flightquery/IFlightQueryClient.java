@@ -118,6 +118,15 @@ public class IFlightQueryClient {
 		return var;
 	}
 
+	/**
+	 * 访接口的测试方法，调用该方法只需调用IFlightQueryPortType的<br>
+	 * getFlightInfogetFlightInfo(sCode, eCode, sDate, flyConpany, userName,
+	 * flyNo)方法，
+	 * 
+	 * @param args
+	 * @see IFlightQueryPortType#getFlightInfo(String, String, String, String,
+	 *      String, String)
+	 */
 	public static void main(String[] args) {
 
 		IFlightQueryClient client = new IFlightQueryClient();

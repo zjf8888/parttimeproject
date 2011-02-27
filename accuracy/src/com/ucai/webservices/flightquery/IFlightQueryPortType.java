@@ -24,6 +24,23 @@ public interface IFlightQueryPortType {
 
 	@WebMethod(operationName = "getFlightInfo", action = "")
 	@WebResult(name = "out", targetNamespace = "http://jdtx")
+	/**
+	 * 调用远程查询航班的接口方法
+	 * 
+	 * @param in0
+	 *            出发城市
+	 * @param in1
+	 *            目标城市
+	 * @param in2
+	 *            起飞日期
+	 * @param in3
+	 *            航空公司
+	 * @param in4
+	 *            精度用户名
+	 * @param in5
+	 *            航班号
+	 * @return 返回航班信息xml字符串
+	 */
 	public String getFlightInfo(
 			@WebParam(name = "in0", targetNamespace = "http://jdtx")
 			String in0,

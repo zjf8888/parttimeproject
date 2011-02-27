@@ -17,19 +17,28 @@ import com.ucai.po.ResultOrder;
 import com.ucai.webservices.ucai.SetOrderImp;
 
 /**
- * 获取订单信息接口，需传递用户id作为参数
+ * 获取订单信息接口，需传递用户id作为参数<br>
+ * 该方法的调用路径为：/getOrderListByUserIdServlet<br>
+ * 参数：<br>
+ * userid：用户Id<br>
  * 
  * @author 李卓林
  * 
  */
 public class GetOrderListByUserIdServlet extends HttpServlet {
+	/**
+	 * 返回文件类型
+	 */
 	private static final String CONTENT_TYPE = "application/json;charset=UTF-8";
 
 	/**
-	 * 
+	 * 序列化字段
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 初始化方法，系统自动调用，不需处理
+	 */
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
@@ -37,6 +46,8 @@ public class GetOrderListByUserIdServlet extends HttpServlet {
 
 	/**
 	 * get访问处理
+	 * 
+	 * @see #doPost(HttpServletRequest, HttpServletResponse)
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)

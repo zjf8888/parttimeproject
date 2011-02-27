@@ -18,8 +18,10 @@ import com.ucai.tool.FlightFromPage;
 import com.ucai.tool.po.ToSerializationFlight;
 
 /**
- * 获取xml分页信息
- * 
+ * 获取xml分页信息,该方法的调用路径为：/spi/getflightbypage.do<br>
+ * 需要的参数为<br>
+ * tid 查询记录ID<br>
+ * pn 页码，从0开始的页码<br>
  * @author lin
  * 
  */
@@ -37,6 +39,7 @@ public class FlightInfoByPageServlet extends HttpServlet {
 
 	/**
 	 * post访问接口
+	 * @see #doGet(HttpServletRequest, HttpServletResponse)
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

@@ -7,23 +7,42 @@ package com.alipay.wap.po;
  * 
  */
 public class DirectPo {
-	private String subject;// 商品名称
-
-	private String out_trade_no;// 外部交易号
-
-	private String total_fee;// 订单价格
-
-	private String seller_account_name;// 卖家帐号
-
-	private String buyer_account_name;// 买家帐号
-
-	private String notify_url;// 接受通知的url
-
-	private String out_user;// 系统用户唯一标识
-
-	private String merchant_url;// 返回商户链接,我们系统为空
-
-	private String pay_expire;// 交易自动关闭时间
+	/**
+	 * 商品名称
+	 */
+	private String subject;
+	/**
+	 * 外部交易号
+	 */
+	private String out_trade_no;
+	/**
+	 * 订单价格
+	 */
+	private String total_fee;
+	/**
+	 * 卖家帐号
+	 */
+	private String seller_account_name;
+	/**
+	 * 买家帐号
+	 */
+	private String buyer_account_name;
+	/**
+	 * 接受通知的url
+	 */
+	private String notify_url;
+	/**
+	 * 系统用户唯一标识
+	 */
+	private String out_user;
+	/**
+	 * 返回商户链接,我们系统为空
+	 */
+	private String merchant_url;
+	/**
+	 * 交易自动关闭时间
+	 */
+	private String pay_expire;
 
 	public String getSubject() {
 		return subject;

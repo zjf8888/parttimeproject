@@ -21,13 +21,18 @@ import com.ucai.webservices.ucai.SetOrderImp;
  * 
  */
 public class DoSeat {
+	/**
+	 * 返回的信息文件类型
+	 */
 	private static final String CONTENT_TYPE = "text/xml;charset=UTF-8";
 
 	/**
 	 * 扣位处理方法
 	 * 
 	 * @param request
+	 *            請求
 	 * @param response
+	 *            回複
 	 * @return 返回扣位处理后的xml
 	 */
 	public ReturnPo doSeatInfo(HttpServletRequest request,

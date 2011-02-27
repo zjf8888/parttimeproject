@@ -23,8 +23,14 @@ import com.ucai.webservices.flightquery.IFlightQueryClient;
 import com.ucai.webservices.flightquery.IFlightQueryPortType;
 
 /**
- * 机票查询Servlet 这个类是针对以json为传输介质处理的
- * 
+ * 机票查询Servlet 这个类是针对以json为传输介质处理的<br>
+ * 该方法的调用路径为：/filghtInfoJsonServlet<br>
+ * 需要的参数：<br>
+ * org：出发城市三字码<br>
+ * dst：目标城市三字码<br>
+ * date：起飞日期<br>
+ * airway：航空公司，该字段不是必须的，不用时，传递“”便可<br>
+ * flightNo：航班号，该字段不是必须的，不用时，传递“”便可<br>
  * @author lin
  * 
  */

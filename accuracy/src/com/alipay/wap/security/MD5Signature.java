@@ -79,8 +79,8 @@ public class MD5Signature implements Signature {
 	 * @param content 内容
 	 * @param charset 编码
 	 * @return 返回对应的字节码数组
-	 * @throws SignatureException
-	 * @throws UnsupportedEncodingException
+	 * @throws SignatureException 如果签名异常时
+	 * @throws UnsupportedEncodingException 如果不支持字符编码时
 	 */
 	protected byte[] getContentBytes(String content, String charset)
 			throws UnsupportedEncodingException {

@@ -20,7 +20,8 @@ import com.alipay.wap.tool.ParameterUtil;
 import com.alipay.wap.tool.XMapUtil;
 
 /**
- * 支付宝接口类
+ * 支付宝接口类<br>
+ * 该类是关于支付流程中与外界接口通信桥梁
  * @author lin
  *
  */
@@ -64,12 +65,16 @@ public class AlipayApi {
 	}
 
 	/**
-	 * 提交支付信息
+	 * 提交支付信息<br>
+	 * 该方法通过调用openViewConn(Map, String)提交交易数据，再通过调用praseResult(String, String, String)<br>
+	 * 来解釋和验证交易的合法性。
 	 * @param reqParams 支付参数maP
 	 * @param reqUrl 提交地址
 	 * @param secId 算法类型
 	 * @param key 公钥
 	 * @return 返回支付宝返回对象
+	 * @see #openViewConn(Map, String)
+	 * @see #praseResult(String, String, String)
 	 */
 	public ResponseResult getResponseResult(Map<String, String> reqParams,
 			String reqUrl, String secId, String key) {
@@ -92,10 +97,11 @@ public class AlipayApi {
 
 	/**
 	 * 解析支付宝返回的结果
-	 * 
-	 * @param response
-	 * @return
-	 * @throws Exception
+	 * 验证签名主要通过SecurityManager的verify(String, String, String, String)方法
+	 * @param response 提交返回的字符串
+	 * @return 交易返回结果对象
+	 * @throws Exception 如果验证签名失败时
+	 * @see SecurityManager#verify(String, String, String, String)
 	 */
 	private ResponseResult praseResult(String response, String secId, String key)
 			throws Exception {

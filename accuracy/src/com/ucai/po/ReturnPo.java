@@ -7,22 +7,41 @@ package com.ucai.po;
  * 
  */
 public class ReturnPo {
-	private String code;// 状态码
-
-	private String info;// 描述信息
-
-	private String pnr;// 机票订单号
-
-	private String FlyConpany;// 航运公司二字码
-
-	private String ticketPrice;// 机票价格
-
-	private String tax;// 机场建设费
-
-	private String fuel;// 燃油附加费
-
-	private String price;// 总价]
-
+	/**
+	 * 状态码
+	 */
+	private String code;// 
+	/**
+	 * 描述信息
+	 */
+	private String info;// 
+	/**
+	 * 机票订单号
+	 */
+	private String pnr;// 
+	/**
+	 * 航运公司二字码
+	 */
+	private String FlyConpany;// 
+	/**
+	 * 机票价格
+	 */
+	private String ticketPrice;// 
+	/**
+	 * 机场建设费
+	 */
+	private String tax;// 
+	/**
+	 * 燃油附加费
+	 */
+	private String fuel;// 
+	/**
+	 * 总价
+	 */
+	private String price;
+	/**
+	 * 订单ID
+	 */
 	private String forderid;
 
 	public String getForderid() {

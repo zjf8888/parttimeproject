@@ -7,29 +7,52 @@ package com.ucai.po;
  * 
  */
 public class SeatClass {
-	public String classname;// 座位等级名称
+	/**
+	 * 座位等级名称
+	 */
+	public String classname; 
+	/**
+	 * 剩余的座位数，大于等于9时为A
+	 */
+	public String num; 
+	/**
+	 * 价格
+	 */
+	public String saleprice; 
+	/**
+	 * 座位等级码
+	 */
+	public String classcode; 
+	/**
+	 * 建设费
+	 */
+	public String buildfee; 
+	/**
+	 * 燃油费
+	 */
+	public String fuelfee; 
+	/**
+	 * 可否申请电子票
+	 */
+	public String isApply; 
 
-	public String num;// 剩余的座位数，大于等于9时为A
-
-	public String saleprice;// 价格
-
-	public String classcode;// 座位等级码
-
-	public String buildfee;// 建设费
-
-	public String fuelfee;// 燃油费
-
-	public String isApply;// 可否申请电子票
-
-	// public String tgqInfo;//办理说明
+	/**
+	 * 办理说明
+	 */
+	
 	public String discount;
-
-	public String refund;// 退票说明
-
-	// public String ei;//不得签转
-	public String cmt;// 免费变更
-
-	public String sale;// 见舱销售，随订随售
+	/**
+	 * 退票说明
+	 */
+	public String refund; 
+	/**
+	 * 不得签转免费变更
+	 */
+	public String cmt; 
+	/**
+	 * 见舱销售，随订随售
+	 */
+	public String sale; 
 
 	public String getBuildfee() {
 		return buildfee;
