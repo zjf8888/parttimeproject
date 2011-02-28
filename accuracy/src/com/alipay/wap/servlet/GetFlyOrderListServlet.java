@@ -15,8 +15,13 @@ import com.ucai.webservices.ucai.SetOrderImp;
 
 /**
  * 通过订单号获取订单 xml版
- * 
+ * 与GetFlyOrderListJsonServlet类似，区别只是返回的文件类型不同
+ * 主要是提供给客户端显示订单具体信息使用，<br>
+ * 该方法的调用路径为：/getFlyOrderListServlet<br>
+ * 需要的参数为<br>
+ * forderid:订单编号
  * @author 李卓林
+ * @see GetFlyOrderListJsonServlet
  * 
  */
 public class GetFlyOrderListServlet extends HttpServlet {
@@ -39,7 +44,8 @@ public class GetFlyOrderListServlet extends HttpServlet {
 	}
 
 	/**
-	 * 获取订单接口方法
+	 * 获取订单接口方法,具体实现方法是doPost(HttpServletRequest, HttpServletResponse)
+	 * @see #doPost(HttpServletRequest, HttpServletResponse)
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -48,7 +54,10 @@ public class GetFlyOrderListServlet extends HttpServlet {
 	}
 
 	/**
-	 * 获取订单接口方法
+	 * 获取订单接口方法,该方法为此类的核心方法，获取具体订单信息是通过远程方法实现，具体是通过SetOrderImp.getFlyOrderList(String,
+	 * String)实现
+	 * 
+	 * @see SetOrderImp#getFlyOrderList(String, String)
 	 */
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

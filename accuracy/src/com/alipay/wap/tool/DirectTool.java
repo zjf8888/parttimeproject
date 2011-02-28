@@ -10,7 +10,8 @@ import com.alipay.wap.security.SecurityManager;
 import com.ucai.po.ResultOrder;
 
 /**
- * 交易创建工具类
+ * 交易创建工具类,该类是交易操作的核心类<br>
+ * 交易中需要的签名、验签等操作均在此完成
  * 
  * @author 李卓林
  * 
@@ -22,7 +23,8 @@ public class DirectTool {
 	private SecurityManager securityManager = new SecurityManagerImpl();
 
 	/**
-	 * 准备alipay.wap.trade.create.direct服务的参数
+	 * 准备alipay.wap.trade.create.direct服务的参数<br>
+	 * 对需提交的参数进行规范性处理
 	 * 
 	 * @param resultOrder 订单查询结果
 	 * @return 参数对照表
@@ -64,7 +66,7 @@ public class DirectTool {
 	}
 
 	/**
-	 * 准备通用参数
+	 * 准备通用参数,在此方法中，准备编码方式、合作ID等参数的处理
 	 * 
 	 * @return 通用参数
 	 */
@@ -85,11 +87,12 @@ public class DirectTool {
 	}
 
 	/**
-	 * 对参数进行签名
+	 * 对参数进行签名,主要是通过SecurityManagerImpl的sign(String, String, String)方法进行签名
 	 * @param reqParams 通用参数表
 	 * @param signAlgo 算法类型
 	 * @param key 私钥
 	 * @return 签名后的字符串
+	 * @see SecurityManagerImpl#sign(String, String, String)
 	 */
 	public String sign(Map<String, String> reqParams, String signAlgo,
 			String key) {
@@ -124,10 +127,11 @@ public class DirectTool {
 
 	/**
 	 * 调用alipay.wap.auth.authAndExecute服务的时候需要跳转到支付宝的页面，组装跳转url
-	 * 
+	 * 组装的方法见 ParameterUtil.mapToUrl(reqParams)
 	 * @param reqParams 请求参数列表
 	 * @return 跳转url字符串
 	 * @throws Exception 一般异常
+	 * @see  ParameterUtil#mapToUrl(Map)
 	 */
 	public String getRedirectUrl(Map<String, String> reqParams, String reqUrl)
 			throws Exception {

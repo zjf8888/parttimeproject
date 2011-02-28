@@ -16,9 +16,11 @@ import com.ucai.po.ResultOrder;
 import com.ucai.webservices.ucai.SetOrderImp;
 
 /**
- * 对支付信息签名接口类
- * 
+ * 对支付信息签名接口类<br>
+ * 该类是对信息进行签名处理使用的。同样，具体签名实现可查看SecurityManagerImpl.sign(String, String)
+ * 该方法的调用路径为：/signServlet<br>
  * @author 李卓林
+ * @see SecurityManagerImpl#sign(String, String)
  * 
  */
 public class SignServlet extends HttpServlet {
@@ -40,7 +42,8 @@ public class SignServlet extends HttpServlet {
 	}
 
 	/**
-	 * 支付信息签名方法
+	 * 支付信息签名方法，具体处理查看doGet(HttpServletRequest, HttpServletResponse)方法
+	 * @see #doGet(HttpServletRequest, HttpServletResponse)
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -49,7 +52,9 @@ public class SignServlet extends HttpServlet {
 	}
 
 	/**
-	 * 支付信息签名方法
+	 * 支付信息签名方法<br>
+	 * 本方法是对信息进行格式化处理后，调用sign(String, String)进行具体的签名行为
+	 * @see #sign(String, String)	
 	 */
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -88,11 +93,12 @@ public class SignServlet extends HttpServlet {
 	}
 
 	/**
-	 * 对参数进行签名
+	 * 对参数进行签名，主要是调用SecurityManagerImpl.sign(String, String)方法代为处理
 	 * 
 	 * @param signInfo 原始数据
 	 * @param signAlgo 签名的算法
 	 * @return 签名后的字符串
+	 * @see SecurityManagerImpl#sign(String, String)
 	 */
 	private String sign(String signInfo, String signAlgo) {
 

@@ -6,7 +6,8 @@ import java.util.List;
 import org.nuxeo.common.xmap.XMap;
 
 /**
- * 支付xml解释工具类
+ * 支付xml解释工具类<br>
+ * 作为对xmap开源工具的辅助类
  * 
  * @author 李卓林
  * 

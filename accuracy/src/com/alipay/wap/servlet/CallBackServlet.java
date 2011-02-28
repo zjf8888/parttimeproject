@@ -21,10 +21,14 @@ import com.alipay.wap.security.SecurityManager;
 import com.ucai.webservices.ucai.SetOrderImp;
 
 /**
- * 接收支付宝回传处理Servlet
+ * 接收支付宝回传处理Servlet<br>
+ * 该方法的调用路径为：/callBackServlet<br>
+ * 其中回传数据的验签是通过SecurityManagerImpl.verify(String, String, String, String)<br>
+ * 验签成功后便调用SetOrderImp.updateOrder(String, String)更新订单状态
  * 
  * @author 李卓林
- * 
+ * @see SecurityManagerImpl#verify(String, String, String, String)
+ * @see SetOrderImp#updateOrder(String, String)
  */
 public class CallBackServlet extends HttpServlet {
 	private SecurityManager securityManager = new SecurityManagerImpl();
@@ -43,7 +47,13 @@ public class CallBackServlet extends HttpServlet {
 	}
 
 	/**
-	 * 通知处理方法
+	 * 通知处理方法,此方法便是接收支付宝回传处理的，首先把接收到的数据规范化处理,主要是通过方法getVerifyData(Map)进行规范化<br>
+	 * 然后通过SecurityManagerImpl.verify(String, String, String, String)<br>
+	 * 验签成功后便调用SetOrderImp.updateOrder(String, String)更新订单状态
+	 * 
+	 * @see SecurityManagerImpl#verify(String, String, String, String)
+	 * @see SetOrderImp#updateOrder(String, String)
+	 * @see #getVerifyData(Map)
 	 */
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -83,7 +93,10 @@ public class CallBackServlet extends HttpServlet {
 	}
 
 	/**
-	 * 通知处理方法 get处理
+	 * 通知处理方法 get处理<br>
+	 * 主要是调用doPost(HttpServletRequest, HttpServletResponse)作为处理方法
+	 * 
+	 * @see #doPost(HttpServletRequest, HttpServletResponse)
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)

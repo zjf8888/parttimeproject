@@ -22,7 +22,8 @@ import com.ucai.po.ResultOrder;
 import com.ucai.webservices.ucai.SetOrderImp;
 
 /**
- * 总支付处理接口
+ * 总支付处理接口,只需提交订单号，程序便可跟支付宝完成所有的操作，直接把连接重定向到支付宝的支付界面<br>
+ * 该方法的调用路径为：/tradeServlet<br>
  * 
  * @author 李卓林
  * 
@@ -48,6 +49,17 @@ public class TradeServlet extends HttpServlet {
 
 	/**
 	 * 订单处理方法
+	 * 程序(1)首先通过订单号在精度天下的业务系统中查询出订单的具体信息（处理方法中SetOrderImp.getFlyOrderList）<br>
+	 * (2)然后通过DirectTool.prepareTradeRequestParamsMap对返回的查询结果作规范化处理，<br>
+	 * (3)通过DirectTool.sign方法对处理后的数据签名
+	 * (4)通过AlipayApi.getResponseResult方法提交签名后的数据
+	 * (5)通过XMapUtil对返回结果解释成对象
+	 * （6)从解释的对象中获取连接，并对提交的连接进行签名
+	 * （7）把浏览器连接重定向到支付宝支付界面
+	 * @see SetOrderImp#getFlyOrderList(String, String)
+	 * @see DirectTool#prepareTradeRequestParamsMap(ResultOrder)
+	 * @see DirectTool#sign(Map, String, String)
+	 * @see AlipayApi#getResponseResult(Map, String, String, String)
 	 */
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -119,7 +131,8 @@ public class TradeServlet extends HttpServlet {
 	}
 
 	/**
-	 * 订单处理方法
+	 * 订单处理方法,具体操作请查看doPost(HttpServletRequest, HttpServletResponse)
+	 * @see #doPost(HttpServletRequest, HttpServletResponse)
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
