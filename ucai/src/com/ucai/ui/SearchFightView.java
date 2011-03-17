@@ -25,29 +25,80 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 /**
- * 搜索航班类
+ * 搜索航班类,当查询条件满足时，进入到这个类，进行航班的查询，具体操作请查看onCreate方法
+ * 
  * 
  * @author lin
- * 
+ * @see #onCreate(Bundle)
  */
 public class SearchFightView extends Activity {
+	/**
+	 * 出发城市代码
+	 */
 	private String startcity;
+	/**
+	 * 到达城市代码
+	 */
 	private String endcity;
+	/**
+	 * 出发日期
+	 */
 	private String date;
+	/**
+	 * 航空公司代码
+	 */
 	private String airway;
+	/**
+	 * 航班信息
+	 */
 	private Flight flightpo = null;
+	/**
+	 * 显示列表用
+	 */
 	private ListView listView = null;
+	/**
+	 * 进程对话框
+	 */
 	private ProgressDialog progressDialog = null;
+	/**
+	 * 更新界面通道
+	 */
 	private Handler handler = new Handler();
+	/**
+	 * 航班列表数据
+	 */
 	private ArrayList<Map<String, Object>> data = null;
+	/**
+	 * 坐位列表信息
+	 */
 	private List<Segment> segmentList = null;
-
+	/**
+	 * 下一步按键
+	 */
 	private Button next;
+	/**
+	 * 上一步按键
+	 */
 	private Button previous;
+	/**
+	 * 页码
+	 */
 	private TextView pageNo;
+	/**
+	 * 页面总数
+	 */
 	private TextView totalPages;
+	/**
+	 * 错误信息
+	 */
 	private TextView errorinfo;
 
+	/**
+	 * 为机票查询的入口方法，该方法从Intent中获取SearchSimple发送过来的参数<br>
+	 * 并调用方法doSearch实现航班信息的查询
+	 * @see SearchSimple
+	 * @see #doSearch()
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -88,7 +139,9 @@ public class SearchFightView extends Activity {
 	}
 
 	/**
-	 * 第一次进入该类时调用的查询方法
+	 * 具体的查询航班方法，在线程中查询，其中setDate为航班查询方法，updateView为界面更新方法
+	 * @see #setDate()
+	 * @see #updateView()
 	 */
 	private void doSearch() {
 		progressDialog = ProgressDialog.show(SearchFightView.this, "请稍等...",
@@ -107,12 +160,16 @@ public class SearchFightView extends Activity {
 	}
 
 	/**
-	 * 下一页调用的查询方法
+	 * 下一页调用的查询方法,当用户在操作下一页查询时调用的查询方法，
+	 * <br>其中setNextPageDate为获取下一页航班信息方法，updateView为界面更新方法
+	 * 
 	 * 
 	 * @param transid
 	 *            查询流水号
 	 * @param pn
 	 *            页码
+	 * @see #setNextPageDate(String, String)
+	 * #see #update()    
 	 */
 	private void doNextPage(final String transid, final String pn) {
 		progressDialog = ProgressDialog.show(SearchFightView.this, "请稍等...",
@@ -131,7 +188,8 @@ public class SearchFightView extends Activity {
 	}
 
 	/**
-	 * 更新界面
+	 * 更新界面方法，通过建立通道，再调用具体更新界面方法setView
+	 * @see #setView()
 	 */
 	private void updateView() {
 		handler.post(new Runnable() {
@@ -146,7 +204,7 @@ public class SearchFightView extends Activity {
 	}
 
 	/**
-	 * 具体更新界面方法
+	 * 具体更新界面方法,进行建立适配器，设置列表，设置页码等工作
 	 */
 	private void setView() {
 		if (flightpo.getErrorCode().trim().equals("0")) {
@@ -166,7 +224,8 @@ public class SearchFightView extends Activity {
 	}
 
 	/**
-	 * 设置数据
+	 * 查询航班具体方法，主要通过FightApi查询航空公司航班数据
+	 * @see FightApi#getFlightPo(String, String, String, String, String)
 	 */
 	private void setDate() {
 		data = new ArrayList<Map<String, Object>>();
@@ -197,10 +256,11 @@ public class SearchFightView extends Activity {
 	}
 
 	/**
-	 * 设置下一页时调用的方法
+	 * 设置下一页时调用的方法,主要通过FightApi查询缓存在服务器上的航班数据
 	 * 
-	 * @param transid
-	 * @param pn
+	 * @param transid 查询单号
+	 * @param pn 想获取的页码
+	 * @see FightApi#getCacheFlightPo(String, String)
 	 */
 	private void setNextPageDate(String transid, String pn) {
 		data = new ArrayList<Map<String, Object>>();
@@ -230,8 +290,8 @@ public class SearchFightView extends Activity {
 	/**
 	 * 查询每航班中价格最低的座位
 	 * 
-	 * @param classesList
-	 * @return
+	 * @param classesList 座位列表
+	 * @return 最低的价格
 	 */
 	private String searchMinPrice(List<SeatClass> classesList) {
 		int minPrice = 10000000;
@@ -247,7 +307,8 @@ public class SearchFightView extends Activity {
 	}
 
 	/**
-	 * 点击航班列表相应的监听
+	 * 点击航班列表相应的监听，它会让程序进入用户所点击的航班的具体信息列表（FightView）
+	 * @see FightView
 	 */
 	private OnItemClickListener listListener = new OnItemClickListener() {
 		public void onItemClick(AdapterView<?> parent, View view, int position,

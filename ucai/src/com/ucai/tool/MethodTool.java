@@ -9,7 +9,7 @@ public class MethodTool {
 	/**
 	 * 查询航空公司方法
 	 * 
-	 * @param s
+	 * @param s 提交的查询关键字
 	 * @return 航空公司名字
 	 */
 	public static String searchName(String s) {

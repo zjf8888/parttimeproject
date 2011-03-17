@@ -18,19 +18,55 @@ import android.widget.TextView;
  * 
  */
 public class UserOrderView extends Activity {
+	/**
+	 * 航班号
+	 */
 	private TextView TextView01;
+	/**
+	 * 乘客姓名
+	 */
 	private TextView TextView02;
+	/**
+	 * 出发城市
+	 */
 	private TextView TextView03;
+	/**
+	 * 目标城市
+	 */
 	private TextView TextView04;
+	/**
+	 * 起飞日期
+	 */
 	private TextView TextView05;
+	/**
+	 * 订单总价
+	 */
 	private TextView TextView06;
+	/**
+	 * 支付状态
+	 */
 	private TextView TextView07;
+	/**
+	 * 返回按键，实则关闭本界面
+	 */
 	private Button Button01;
+	/**
+	 * 进程提示框
+	 */
 	private ProgressDialog progressDialog = null;
+	/**
+	 * 订单查询结果
+	 */
 	private ResultOrder order = null;
+	/**
+	 * 进程通道
+	 */
 	private Handler handler = new Handler();
 
-	/** Called when the activity is first created. */
+	/**
+	 * 入口方法，同时为按键注册点击监听，点击显示的内容通过doSearch（）完成
+	 * @see #doSearch()
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,7 +82,8 @@ public class UserOrderView extends Activity {
 	}
 
 	/**
-	 * 第一次进入该类时调用的查询方法
+	 * 第一次进入该类时调用的查询方法，更新界面的方法主要通过updateView（）完成
+	 * @see #updateView()
 	 */
 	private void doSearch() {
 		progressDialog = ProgressDialog.show(UserOrderView.this, "请稍等...",
@@ -64,7 +101,7 @@ public class UserOrderView extends Activity {
 	}
 
 	/**
-	 * 更新界面
+	 * 更新界面,建立通道，并调用setView（）方法完成
 	 */
 	private void updateView() {
 		handler.post(new Runnable() {
@@ -77,7 +114,9 @@ public class UserOrderView extends Activity {
 			}
 		});
 	}
-
+	/**
+	 * 更新界面操作，主要是对TextView根据数据更新
+	 */
 	private void setView() {
 		TextView01 = (TextView) findViewById(R.id.TextView01);
 		TextView02 = (TextView) findViewById(R.id.TextView02);

@@ -28,15 +28,34 @@ import android.widget.AdapterView.OnItemClickListener;
  * 
  */
 public class SearchHangKong extends Activity {
+	/**
+	 * 航空公司名字的关键字
+	 */
 	public static final String NAME = "name";
+	/**
+	 * 航空公司代码的关键字
+	 */
 	public static final String CODE = "code";
+	/**
+	 * 航空公司列表
+	 */
 	private ListView hangKonglist = null;
+	/**
+	 * 查询框
+	 */
 	private EditText searchHangKongtext = null;
+	/**
+	 * 数据映射
+	 */
 	private ArrayList<Map<String, String>> data = null;
 
 	Handler mHandler = new Handler();
 
-	/** Called when the activity is first created. */
+	/** 
+	 * 查询航空公司的入口方法，该方法为初始化航空公司列表（PrepareData），更新查询界面（setView）。
+	 * @see #PrepareData()
+	 * @see #setView()
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -58,7 +77,9 @@ public class SearchHangKong extends Activity {
 	}
 
 	/**
-	 * 初始化界相
+	 * 初始化界相<br>
+	 * 主要包括（1）初始化航空公司列表的适配器；（2）配置列表监听器
+	 * 
 	 */
 	private void setView() {
 		SimpleAdapter adapter = new SimpleAdapter(this, data,
@@ -69,7 +90,9 @@ public class SearchHangKong extends Activity {
 	}
 
 	/**
-	 * 设置数据
+	 * 设置数据，其中航空公司名字作CityCode.hangKongName获取，航空公司代码从CityCode.hangKongCode获取
+	 * @see CityCode#hangKongName
+	 * @see CityCode#hangKongCode
 	 */
 	private void PrepareData() {
 		data = new ArrayList<Map<String, String>>();
@@ -104,7 +127,8 @@ public class SearchHangKong extends Activity {
 	}
 
 	/**
-	 * 相应的列表单击监听
+	 * 相应的列表单击监听,当点击相应的航空公司时，便把航空公司代码和航空公司名称返回给SearchSimple
+	 * @see SearchSimple
 	 */
 	private OnItemClickListener listListener = new OnItemClickListener() {
 		public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -122,7 +146,8 @@ public class SearchHangKong extends Activity {
 		}
 	};
 	/**
-	 * 对文本框内容变化的监听
+	 * 对文本框内容变化的监听,主要是对afterTextChanged配置更新界面方法searchName
+	 * @see #searchName()
 	 */
 	TextWatcher textWatcher = new TextWatcher() {
 
@@ -143,7 +168,7 @@ public class SearchHangKong extends Activity {
 	};
 
 	/**
-	 * 搜索相应内容
+	 * 搜索相应内容,当搜索框内的内容变化时，调用的方法，更新航空公司列表，使选择更容易。
 	 */
 	private void searchName() {
 		String hangKongCode[] = CityCode.hangKongCode;

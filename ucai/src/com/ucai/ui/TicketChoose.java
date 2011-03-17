@@ -13,17 +13,32 @@ import android.view.View;
 import android.widget.Button;
 
 /**
- * 机票信息选择入口
+ * 机票信息选择入口,该类作为机票操作的菜单类，有关机票的所有操作都是在此类中首先选择
  * @author lin
  *
  */
 public class TicketChoose extends Activity {
+	/**
+	 * 机票查询按键
+	 */
 	private Button ticketquery;
+	/**
+	 * 票务处理按键
+	 */
 	private Button ticketdeal;
+	/**
+	 * 订单查询按键
+	 */
 	private Button orderquery;
 
 	/**
-	 * TicketChoose程序主入口
+	 * 机票信息选择入口方法，该方法首先指定相应的界面配置文件，<br>
+	 * 机票查询按键跳转到SearchTab作为机票查询，<br>
+	 * 票务处理会弹出提示窗口告诉用户拨打票务处理电话时行票务处理，具体操作请查看方法dialog（）；<br>
+	 * 订单查询会跳转到UserOrder作为订单查询。
+	 * @see SearchTab
+	 * @see #dialog()
+	 * @see UserOrder
 	 * 
 	 */
 	@Override
@@ -53,7 +68,7 @@ public class TicketChoose extends Activity {
 	}
 
 	/**
-	 * 提示窗口
+	 * 作为票务处理会弹出提示窗口
 	 */
 	protected void dialog() {
 		AlertDialog.Builder builder = new Builder(TicketChoose.this);

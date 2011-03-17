@@ -34,58 +34,152 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 /**
- * 扣位界面
+ * 扣位界面,本界面是需要客户填写相应的个人信息跟乘客的信息
  * 
  * @author lin
  * 
  */
 public class SeatView extends Activity {
+	/**
+	 * 仓位
+	 */
 	private TextView level;
+	/**
+	 * 机票数量
+	 */
 	private TextView count;
+	/**
+	 * 价格
+	 */
 	private TextView price;
+	/**
+	 * 联系人姓名
+	 */
 	private EditText name;
+	/**
+	 * 联系电话
+	 */
 	private EditText tel;
+	/**
+	 * 移动号码
+	 */
 	private EditText mobil;
+	/**
+	 * 电邮地址
+	 */
 	private EditText email;
+	/**
+	 * 联系人地址
+	 */
 	private EditText address;
+	/**
+	 * 配送地址
+	 */
 	private EditText sentaddress;
-
+	/**
+	 * 购买机票数量
+	 */
 	private Spinner numSpinner;
+	/**
+	 * 机票数量选择器的适配器
+	 */
 	private ArrayAdapter<String> numArrayAdapter = null;
+	/**
+	 * 购买机票数量选择列表
+	 */
 	private ArrayList<String> numpage = null;
-
+	/**
+	 * 第一乘机人姓名
+	 */
 	private EditText nameoftraveler;
-
+	/**
+	 * 乘机人类型
+	 */
 	private Spinner travelertype;
+	/**
+	 * 乘机人类型选择适配器
+	 */
 	private ArrayAdapter<String> travelerAdapter = null;
+	/**
+	 * 乘机人类型选择列表
+	 */
 	private ArrayList<String> travelerpage = null;
-
+	/**
+	 * 证件类型
+	 */
 	private Spinner idtype;
+	/**
+	 * 证件类型适配器
+	 */
 	private ArrayAdapter<String> idAdapter = null;
+	/**
+	 * 证件类型选择列表
+	 */
 	private ArrayList<String> idpage = null;
-
+	/**
+	 * 证件编号输入框
+	 */
 	private EditText idnumber;
-
+	/**
+	 * 保险数量
+	 */
 	private Spinner insurancenumber;
+	/**
+	 * 保险数量适配器
+	 */
 	private ArrayAdapter<String> insuranceAdapter = null;
+	/**
+	 * 保险数量选择列表
+	 */
 	private ArrayList<String> insurancepage = null;
-
+	/**
+	 * 乘机人2
+	 */
 	private TravelerView travelerView2 = null;
+	/**
+	 * 乘机人3
+	 */
 	private TravelerView travelerView3 = null;
+	/**
+	 * 乘机人4
+	 */
 	private TravelerView travelerView4 = null;
-
+	/**
+	 * 提交按键
+	 */
 	private Button commit;
+	/**
+	 * 返回按键
+	 */
 	private Button back;
-
+	/**
+	 * 仓位
+	 */
 	private SeatClass seatClasspo;
+	/**
+	 * 航程信息
+	 */
 	private Segment segmentpo;
+	/**
+	 * 第二乘机人的数据
+	 */
 	private ArrayList<LinearLayout> twoList = null;
+	/**
+	 * 第三乘机人的数据
+	 */
 	private ArrayList<LinearLayout> threeList = null;
+	/**
+	 * 第四乘机人的数据
+	 */
 	private ArrayList<LinearLayout> fourList = null;
+	/**
+	 * 进程提示窗口
+	 */
 	private ProgressDialog progressDialog = null;
 
 	/**
-	 * 界面主入口
+	 * 扣位填写的入口方法，通过用户对旅客数量的选择，会同时变更界面，以适应填写的需要<br>
+	 * 
 	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -132,7 +226,7 @@ public class SeatView extends Activity {
 	}
 
 	/**
-	 * 把第二个旅客对象抱
+	 * 把第二个旅客对象初始化
 	 */
 	private void setTravelerPo2() {
 		travelerView2 = new TravelerView();
@@ -147,7 +241,7 @@ public class SeatView extends Activity {
 	}
 
 	/**
-	 * 把第三个旅客对象抱
+	 * 把第三个旅客对象初始化
 	 */
 	private void setTravelerPo3() {
 		travelerView3 = new TravelerView();
@@ -162,7 +256,7 @@ public class SeatView extends Activity {
 	}
 
 	/**
-	 * 把第四个旅客对象抱
+	 * 把第四个旅客对象初始化
 	 */
 	private void setTravelerPo4() {
 		travelerView4 = new TravelerView();
@@ -334,10 +428,11 @@ public class SeatView extends Activity {
 	}
 
 	/**
-	 * 提交处理
-	 * 
-	 * @return
-	 */
+	 * 提交处理方法，首先格式化信息对象，然后通过XStream转化成xml<br>
+	 * 最后调用SeatApi.setSeat(xml) 提交数据到远程服务器
+	 * @return 扣位返回信息
+	 * @see SeatApi#setSeat(String)
+	 */ 
 	private ReturnPo commit() {
 		FlyOrder flyOrderpo = new FlyOrder();
 		List<FlyAir> flyAirs = new ArrayList<FlyAir>();
@@ -459,7 +554,9 @@ public class SeatView extends Activity {
 	}
 
 	/**
-	 * 提交方法
+	 * 提交方法,具体操作调用方法commit（），提交完成后转入到支付跳转界面,具体请查看ToastView
+	 * @see #commit()
+	 * @see ToastView
 	 */
 	private void doCommit() {
 		progressDialog = ProgressDialog.show(SeatView.this, "请稍等...",
@@ -480,9 +577,9 @@ public class SeatView extends Activity {
 	}
 
 	/**
-	 * 
-	 * @param type
-	 * @param message
+	 * 显示提示窗口
+	 * @param type 显示窗口的类弄
+	 * @param message 显示的文字说明
 	 */
 	protected void showToastCollectioned(int type, String message) {
 		View view = inflateView(R.layout.toast);
@@ -493,12 +590,21 @@ public class SeatView extends Activity {
 		toast.setDuration(type);
 		toast.show();
 	}
-
+	/**
+	 * 初始化显示界面
+	 * @param resource 相应的界面ID
+ 	 * @return 返回初始化后的界面
+	 */
 	private View inflateView(int resource) {
 		LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		return vi.inflate(resource, null);
 	}
-
+	/**
+	 * 旅客人数选择器的监听，根据不同的人数，修改相应的界面生成，<br>
+	 * 具体使相应的界面是不显示的，请查看setListVisibility和setListGone
+	 * @see #setListVisibility(ArrayList)
+	 * @see #setListGone(ArrayList)
+	 */
 	private OnItemSelectedListener selectListener = new OnItemSelectedListener() {
 		@SuppressWarnings("unchecked")
 		@Override
@@ -531,14 +637,20 @@ public class SeatView extends Activity {
 		public void onNothingSelected(AdapterView<?> arg0) {
 		}
 	};
-
+	/**
+	 * 使相应的界面能显示出来
+	 * @param list 要显示出来的元素列表
+	 */
 	private void setListVisibility(ArrayList<LinearLayout> list) {
 		for (int i = 0; i < list.size(); i++) {
 			LinearLayout layout = list.get(i);
 			layout.setVisibility(View.VISIBLE);
 		}
 	}
-
+	/**
+	 * 使相应的界面隐藏起来
+	 * @param list 要隐藏出来的元素列表
+	 */
 	private void setListGone(ArrayList<LinearLayout> list) {
 		for (int i = 0; i < list.size(); i++) {
 			LinearLayout layout = list.get(i);

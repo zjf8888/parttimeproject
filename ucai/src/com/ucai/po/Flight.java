@@ -9,26 +9,46 @@ import java.util.List;
  * 
  */
 public class Flight {
-
-	public String transId;// 事务ID 翻页的时候服务器可判断是那个缓存内容的翻页
-
+	/**
+	 * 事务ID 翻页的时候服务器可判断是那个缓存内容的翻页
+	 */
+	public String transId;
+	/**
+	 * 错误码
+	 */
 	public String errorCode;
-
+	/**
+	 * 错误信息
+	 */
 	public String errorTips;
-
-	public String startcity; // 出发城市编码
-
-	public String endcity;// 到达城市编码
-
-	public String startdate;// 出发日期
-
-	public List<Segment> segmentList;// 航程列表
-
-	public int totalNums;// 总记录数 总共应该有多少航班
-
-	public int totalPages;// 总页数
-
-	public int pageNo;// 页号，从1开始 当前页
+	/**
+	 * 出发城市编码
+	 */
+	public String startcity; 
+	/**
+	 * 到达城市编码
+	 */
+	public String endcity;
+	/**
+	 * 出发日期
+	 */
+	public String startdate;
+	/**
+	 * 航程列表
+	 */
+	public List<Segment> segmentList;
+	/**
+	 * 总记录数 总共应该有多少航班
+	 */
+	public int totalNums;
+	/**
+	 * 总页数
+	 */
+	public int totalPages;
+	/**
+	 * 页号，从1开始 当前页
+	 */
+	public int pageNo;
 
 	
 

@@ -10,11 +10,26 @@ import android.widget.Spinner;
  * 
  */
 public class TravelerView {
-	private EditText nameoftraveler; // 旅客姓名
-	private Spinner travelertype;// 旅客类型
-	private Spinner idtype;// 证件类型
-	private EditText idnumber;// 证件号码
-	private Spinner insurancenumber;// 保险数量
+	/**
+	 * 旅客姓名
+	 */
+	private EditText nameoftraveler; 
+	/**
+	 * 旅客类型
+	 */
+	private Spinner travelertype;
+	/**
+	 * 证件类型
+	 */
+	private Spinner idtype;
+	/**
+	 * 证件号码
+	 */
+	private EditText idnumber;
+	/**
+	 * 保险数量
+	 */
+	private Spinner insurancenumber;
 
 	public EditText getNameoftraveler() {
 		return nameoftraveler;

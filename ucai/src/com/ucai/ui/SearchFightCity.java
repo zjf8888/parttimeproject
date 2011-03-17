@@ -28,27 +28,65 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 /**
- * 查询不同城市的界面
+ * 查询不同城市的界面,为用户快捷查找到机场，这个类服务于由出发机场和到达机场的选择
  * 
  * @author lin
  * 
  */
 public class SearchFightCity extends Activity {
+	/***
+	 * 机场名称
+	 */
 	public static final String NAME = "name";
+	/**
+	 * 机场代码
+	 */
 	public static final String CODE = "code";
+	/**
+	 * 机场列表
+	 */
 	private ListView citylist = null;
+	/**
+	 * 搜索框
+	 */
 	private EditText searchfightcitytext = null;
+	/**
+	 * 为机场列表适配器使用的数据结对
+	 */
 	private ArrayList<Map<String, String>> data = null;
-
+	/**
+	 * 为移除字母窗口
+	 */
 	private RemoveWindow mRemoveWindow = new RemoveWindow();
+	/**
+	 * 进程通道
+	 */
 	Handler mHandler = new Handler();
+	/**
+	 * 窗口管理器
+	 */
 	private WindowManager mWindowManager;
+	/**
+	 * 提示框
+	 */
 	private TextView mDialogText;
+	/**
+	 * 是否显示标志
+	 */
 	private boolean mShowing;
+	/**
+	 * 是否准备好标志
+	 */
 	private boolean mReady;
+	/**
+	 * 在显示的字母
+	 */
 	private String mPrevLetter;
 
-	/** Called when the activity is first created. */
+	/**
+	 * 该方法为搜索城市功能的入口方法，该方法首先初始化城市列表，还有需要显示的提示字母
+	 * 
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -93,16 +131,10 @@ public class SearchFightCity extends Activity {
 		setView();
 	}
 
-	private void setView() {
-		SimpleAdapter adapter = new SimpleAdapter(this, data,
-				R.layout.list_item, new String[] { NAME },
-				new int[] { R.id.content });
-		citylist.setAdapter(adapter);
-		citylist.setOnItemClickListener(listListener);
-	}
-
 	/**
-	 * 数据封装
+	 * 数据封装,为显示城市列表封装数据，城市名称和城市代码来自CityCode
+	 * @see CityCode#CityString
+	 * @see CityCode#cityMa
 	 */
 	private void PrepareData() {
 		data = new ArrayList<Map<String, String>>();
@@ -118,9 +150,22 @@ public class SearchFightCity extends Activity {
 			}
 		}
 	}
+	/**
+	 * 为城市列表初始化适配器和封装点击监听器
+	 * @see #listListener
+	 */
+	private void setView() {
+		SimpleAdapter adapter = new SimpleAdapter(this, data,
+				R.layout.list_item, new String[] { NAME },
+				new int[] { R.id.content });
+		citylist.setAdapter(adapter);
+		citylist.setOnItemClickListener(listListener);
+	}
 
 	/**
-	 * 点击选择时监听
+	 * 点击选择时监听，该点击监听器的作为是为列表被点击时，把机场名跟机场代码返回给SearchSimple的机场选择<br>
+	 * ，不管是出发机场或者到达机场的选择,具体在SearchSimple的处理，请查看SearchSimple.onActivityResult(int , int , Intent )
+	 * @see SearchSimple#onActivityResult(int, int, Intent)
 	 */
 	private OnItemClickListener listListener = new OnItemClickListener() {
 		public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -159,20 +204,26 @@ public class SearchFightCity extends Activity {
 			mDialogText.setVisibility(View.INVISIBLE);
 		}
 	}
-
+	/**
+	 * Activity开始和用户交互的时候调用, 把mReady设为true
+	 */
 	@Override
 	protected void onResume() {
 		super.onResume();
 		mReady = true;
 	}
-
+	/**
+	 * Activity要退出时，被暂停，配置mReady为false
+	 */
 	@Override
 	protected void onPause() {
 		super.onPause();
 		removeWindow();
 		mReady = false;
 	}
-
+	/**
+	 * Activity被移除时调用，把提示框移除，并把mReady设为false
+	 */
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
@@ -224,8 +275,8 @@ public class SearchFightCity extends Activity {
 	/**
 	 * 查询相应的三字码
 	 * 
-	 * @param code
-	 * @return
+	 * @param code 三字码
+	 * @return 查询出现在屏幕上出现的字母
 	 */
 	private int searchFromCode(String code) {
 		String cityMa[][] = CityCode.cityMa;

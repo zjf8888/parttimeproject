@@ -7,7 +7,9 @@ package com.ucai.tool;
  */
 public class CityCode {
 	/**
-	 * 
+	 * 全国城市机场二维数据，在此数据中，以热门城市、和城市首拼音字母作为组织方式，数据的第一组<br>
+	 * 为热门城市，然后是a开头的所有城市的数组，以此类推，还有与此相同结构的全国城市机场代码二维数据cityMa
+	 * @see #cityMa
 	 */
 	public static String CityString[][] = {
 			{ "北京", "上海", "广州", "深圳", "成都", "杭州", "武汉", "西安", "重庆", "青岛", "长沙",
@@ -82,6 +84,11 @@ public class CityCode {
 					"加德满都", "昌都", "梅县", "景洪(西双版纳)"
 
 			} };
+	/**
+	 * 全国城市机场代码二维数据,以热门城市代码、和城市首拼音字母作为组织方式，数据的第一组<br>
+	 * 为热门城市代码，然后是a开头的所有城市代码的数组，以此类推，相对应的城名称请详看CityString
+	 * @see #CityString
+	 */
 	public static String cityMa[][] = {
 			{ "PEK", "SHA", "CAN", "SZX", "CTU", "HGH", "WUH", "XIY", "CKG",
 					"TAO", "CSX", "NKG", "XMN", "KMG", "DLC", "TSN", "CGO",
@@ -215,10 +222,17 @@ public class CityCode {
 					"WNH", "KTM", "BPX", "MXZ", "JHG"
 
 			} };
-
+	/**
+	 * 航空公司名字数组，与航空公司二字码hangKongCode同步
+	 * @see #hangKongCode
+	 */
 	public static String[] hangKongName = { "国际", "南方", "东方", "上海", "海南", "山东",
 			"厦门", "四川", "深圳", "吉祥", "中联", "祥鹏", "奥凯", "成都", "东星", "华夏", "西部",
 			"重庆", "东北", "大新华", "天津", "幸福" };
+	/**
+	 * 航空公司二字码数组，与航空公司名字数组hangKongName同步
+	 * @see #hangKongName
+	 */
 	public static String[] hangKongCode = { "CA", "CZ", "MU", "FM", "HU", "SC",
 			"MF", "3U", "ZH", "HO", "KN", "8L", "BK", "EU", "8C", "G5", "PN",
 			"OQ", "NS", "CN", "GS", "JR" };

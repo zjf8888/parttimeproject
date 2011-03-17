@@ -11,32 +11,61 @@ import java.util.List;
  */
 public class Segment implements Serializable {
 	/**
-	 * 
+	 * 序列化版编号
 	 */
 	private static final long serialVersionUID = 1L;
-
-	public String fltno;// 航班号
-
-	public String sc;// 出发城市编码
-
+	/**
+	 * 航班号
+	 */
+	public String fltno;
+	/**
+	 * 出发城市编码
+	 */
+	public String sc;
+	/**
+	 * 出发城市名称
+	 */
 	public String scAirdrome;
-
-	public String ec;// 到达城市编码
-
+	/**
+	 * 到达城市编码
+	 */
+	public String ec;
+	/**
+	 * 到达城市
+	 */
 	public String ecAirdrome;
-
-	public String deptime;// 起飞时间
-
-	public String arrtime;// 到达时间
-
-	public String planesty;// 飞机型号
-
-	public String stopnum;// 中途停降次数
-
-	public String etkt;// 电子票
-
-	public String meal;// 有餐
+	/**
+	 * 起飞时间
+	 */
+	public String deptime;
+	/**
+	 * 到达时间
+	 */
+	public String arrtime;
+	/**
+	 * 飞机型号
+	 */
+	public String planesty;
+	/**
+	 * 中途停降次数
+	 */
+	public String stopnum;
+	/**
+	 * 电子票
+	 */
+	public String etkt;
+	/**
+	 * 有餐与否
+	 */
+	public String meal;
+	/**
+	 * 出发日期
+	 */
 	private String date;
+	/**
+	 * 航班座位信息
+	 */
+	public List<SeatClass> classesList;
 
 	public String getDate() {
 		return date;
@@ -46,7 +75,7 @@ public class Segment implements Serializable {
 		this.date = date;
 	}
 
-	public List<SeatClass> classesList;// 航班座位信息
+	
 
 	public String getArrtime() {
 		return arrtime;

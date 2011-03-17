@@ -21,13 +21,13 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 /**
- * 航班显示界面
+ * 航班显示界面,显示具体航班信息
  * 
  * @author lin
  * 
  */
 public class FightView extends Activity {
-
+	
 	private static final String DISCOUNT = "discount";
 	private static final String IS_APPLY = "isApply";
 	private static final String FUELFEE = "fuelfee";
@@ -36,19 +36,54 @@ public class FightView extends Activity {
 	private static final String PRICE = "price";
 	private static final String NUM = "num";
 	private static final String CLASSNAME = "classname";
+	/**
+	 * 航空公司名称
+	 */
 	private TextView hkName;
+	/**
+	 * 航班号
+	 */
 	private TextView fightno;
+	/**
+	 * 出发时间
+	 */
 	private TextView stime;
+	/**
+	 * 起飞机场
+	 */
 	private TextView scAirdrome;
+	/**
+	 * 到达时间
+	 */
 	private TextView etime;
+	/**
+	 * 到达机场
+	 */
 	private TextView ecAirdrome;
+	/**
+	 * 座位列表
+	 */
 	private ListView seatlist = null;
-
+	/**
+	 * 座位档次数据
+	 */	
 	private ArrayList<Map<String, String>> data = null;
+	/**
+	 * 仓位信息
+	 */
 	private Segment segmentpo;
+	/**
+	 * 仓位表表
+	 */
 	private List<SeatClass> classesList;
 
-	/** Called when the activity is first created. */
+	/** 
+	 * 航班显示界面入口方法，首先从Intent中获取SearchFightView传递过来的数据<br>
+	 * 并格式化数据再显示
+	 * @see SearchFightView
+	 * @see #PrepareData()
+	 * @see #setDate()
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -71,7 +106,9 @@ public class FightView extends Activity {
 		PrepareData();
 		setDate();
 	}
-
+	/**
+	 * 设置界面方法
+	 */
 	private void setDate() {
 		SimpleAdapter adapter = new SimpleAdapter(this, data,
 				R.layout.fight_item, new String[] { CLASSNAME, NUM, CLASSCODE,
@@ -82,7 +119,9 @@ public class FightView extends Activity {
 		seatlist.setAdapter(adapter);
 		seatlist.setOnItemClickListener(listListener);
 	}
-
+	/**
+	 * 数据处理方法，处理数据使数据适合显示所用
+	 */
 	private void PrepareData() {
 		data = new ArrayList<Map<String, String>>();
 		classesList = segmentpo.getClassesList();
@@ -101,7 +140,10 @@ public class FightView extends Activity {
 			data.add(item);
 		}
 	}
-
+	/**
+	 * 为仓位数据建立监听，当点击相应仓位时，进入相应的扣位界面，具体请查看SeatView
+	 * @see SeatView
+	 */
 	private OnItemClickListener listListener = new OnItemClickListener() {
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {

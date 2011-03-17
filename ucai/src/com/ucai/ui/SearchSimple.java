@@ -19,34 +19,96 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 /**
- * 单程查询界面
- * @author lin
+ * 单程查询界面，该功能主要是通过在界面上操作出发城市、到达城市、出发日期和航空公司进行查询<br>
+ * 其中出发城市、到达城市和航空公司是通过选择来完成的，但出发（到达）城市跟航空公司都很多，所以是<br>
+ * 通过模糊查询再选择来完成的，故当操作到出发（到达）城市时，程序就会弹出查询选择界面，具体弹出的<br>
+ * 操作请查看SearchFightCity.<br>
+ * 当查询操作完成后，点击查询时，程序便会把参数传递到SearchFightView进行航班的查询，具体请查看SearchFightView
+ * @author 李卓林
+ * @see SearchFightCity
+ * @see SearchFightView
  *
  */
 public class SearchSimple extends Activity {
-
+	/**
+	 * 查询出发城市时的标志
+	 */
 	private static final int SCITY_REQUEST_CODE = 1;
+	/**
+	 * 查询到达城市时的标志
+	 */	
 	private static final int ECITY_REQUEST_CODE = 2;
+	/**
+	 * 查询航空公司的标志
+	 */
 	private static final int AIRLINES_REQUEST_CODE = 3;
+	/**
+	 * 选择日期的标志
+	 */
 	private static final int DATE_DIALOG_ID = 1;
+	/**
+	 * 出发城市的输入框
+	 */
 	private EditText sctiy;
+	/**
+	 * 到达城市的输入框
+	 */
 	private EditText ectiy;
+	/**
+	 * 出发日期的输入框
+	 */
 	private EditText sdate;
+	/**
+	 * 航空公司的输入框
+	 */
 	private EditText airlines;
+	/**
+	 * 查询按键
+	 */
 	private Button search;
+	/**
+	 * 返回按键
+	 */
 	private Button back;
+	/**
+	 * 出发城市代码
+	 */
 	private String scode = null;
+	/**
+	 * 出发城市名
+	 */
 	private String sname = null;
+	/**
+	 * 到达城市代码
+	 */
 	private String ecode = null;
+	/**
+	 * 到达城市名字
+	 */
 	private String ename = null;
+	/**
+	 * 航空公司代码
+	 */
 	private String acode = null;
+	/**
+	 * 航空公司名字
+	 */
 	private String aname = null;
+	/**
+	 * 出发时间的年
+	 */
 	private int mYear;
+	/**
+	 * 出发时间的月
+	 */
 	private int mMonth;
+	/**
+	 * 出发时间的日
+	 */
 	private int mDay;
 
 	/**
-	 * 程序主入口
+	 * 该方法为单程查询的入口方法，为输入框、按键准备相应的处理方法
 	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -122,9 +184,16 @@ public class SearchSimple extends Activity {
 	}
 
 	/**
-	 * 返回参数方法接口
-	 */
-	@Override
+	 * 返回参数方法接口，当从查询机场或航空公司后返回时调用的方法
+	 * @param requestCode 请求码，当为SCITY_REQUEST_CODE时，为从查询起飞机场返回，当为ECITY_REQUEST_CODE<br>
+	 * 						为从查询到达机场返回，当为AIRLINES_REQUEST_CODE时，为从查询航空公司返回
+	 * @param resultCode 结果码，在此方法中没有用到
+	 * @param data 返回的数据Intent，从Intent中取回返回的数据
+	 * @see #SCITY_REQUEST_CODE
+	 * @see #ECITY_REQUEST_CODE
+	 * @see #AIRLINES_REQUEST_CODE
+	 */	
+	@Override	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (data != null) {
 			Bundle bundle = data.getExtras();
@@ -148,7 +217,9 @@ public class SearchSimple extends Activity {
 	}
 
 	/**
-	 * 时间显示监听
+	 * 时间显示监听,为当时间选择时准备的监听。<br>
+	 * 当选择时间时，调用方法updateDisplay作处理
+	 * @see #updateDisplay()
 	 */
 	private DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
 
@@ -175,7 +246,8 @@ public class SearchSimple extends Activity {
 	}
 
 	/**
-	 * 操作时间返回的数据
+	 * 操作时间返回的数据<br>
+	 * 当操作时间选择时，调用的方法，配值给时间字段，更新起飞时间输入框
 	 */
 	private void updateDisplay() {
 		String month;
@@ -197,8 +269,8 @@ public class SearchSimple extends Activity {
 	/**
 	 * 显示提示界面方法
 	 * 
-	 * @param type
-	 * @param message
+	 * @param type 显示类型，短显示还是长显示
+	 * @param message 显示的文字说明
 	 */
 	protected void showToastCollectioned(int type, String message) {
 		View view = inflateView(R.layout.toast);
@@ -213,8 +285,8 @@ public class SearchSimple extends Activity {
 	/**
 	 * 显示提示界面
 	 * 
-	 * @param resource
-	 * @return
+	 * @param resource 配置文字对应的代码
+	 * @return 提示界面
 	 */
 	private View inflateView(int resource) {
 		LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);

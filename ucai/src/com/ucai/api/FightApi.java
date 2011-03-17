@@ -19,13 +19,19 @@ import com.ucai.po.SeatClass;
 import com.ucai.po.Segment;
 
 /**
- * 航空查询api
+ * 航空查询api，主要是调用机票查询跟分页查询api
  * 
  * @author lin
  * 
  */
 public class FightApi {
+	/**
+	 * 机票查询远程地址
+	 */
 	private static final String BASE_URL = "http://www.ecook.cn/accuracy/filghtInfoJsonServlet";
+	/**
+	 * 分页查询远程地址
+	 */
 	private static final String CACHE_URL = "http://www.ecook.cn/accuracy/filghtInfoByPageJsonServlet";
 
 	/**
@@ -73,7 +79,9 @@ public class FightApi {
 	}
 
 	/**
-	 * 分页查询 String tid 查询ID String pn 查询页面
+	 * 分页查询数据流
+	 * @param  tid 查询ID 
+	 * @param  pn 查询页面
 	 */
 	public InputStream openViewConn(String tid, String pn) {
 		InputStream is = null;
@@ -104,13 +112,15 @@ public class FightApi {
 	}
 
 	/**
-	 * 查询缓存数年据
+	 * 查询分页缓存数据，首先通过openViewConn（String ,String）获取分页缓存数据，<br>
+	 * 然后通JSONObject解释出相应的数据
 	 * 
 	 * @param tid
 	 *            缓存ID
 	 * @param pn
 	 *            第几页
 	 * @return 航班信息对象
+	 * @see #openViewConn(String, String)
 	 */
 	public Flight getCacheFlightPo(String tid, String pn) {
 		try {
@@ -156,6 +166,16 @@ public class FightApi {
 		return null;
 	}
 
+	/**
+	 * 作为查询航程方法，SearchFightView便是通过该方法查询到远程服务器的航程数据
+	 * @param startcity 出发城市
+	 * @param endcity 到达城市
+	 * @param date 出发日期
+	 * @param airway 航空公司
+	 * @param flightNo 航班号
+	 * @return 航程对象
+	 * @see com.ucai.ui.SearchFightView
+	 */
 	public Flight getFlightPo(String startcity, String endcity, String date,
 			String airway, String flightNo) {
 		try {
@@ -203,11 +223,11 @@ public class FightApi {
 	}
 
 	/**
-	 * json转换成对应对象方法
+	 * json转换成对应航程信息对象方法
 	 * 
-	 * @param json
-	 * @return
-	 * @throws JSONException
+	 * @param json json对象
+	 * @return 航程信息对象
+	 * @throws JSONException 当无法解释为json字符串时
 	 */
 	private static Segment jsonToSegment(JSONObject json) throws JSONException {
 		Segment contentBean = new Segment();
@@ -234,11 +254,11 @@ public class FightApi {
 	}
 
 	/**
-	 * json转换成对应对象方法
+	 * json转换成对应仓位信息对象方法
 	 * 
-	 * @param json
-	 * @return
-	 * @throws JSONException
+	 * @param json json对象
+	 * @return 仓位对象
+	 * @throws JSONException 当无法解释为json字符串时
 	 */
 	private static SeatClass jsonToSeatClass(JSONObject json)
 			throws JSONException {
