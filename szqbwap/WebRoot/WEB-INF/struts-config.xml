@@ -8,6 +8,7 @@
 	<form-beans>
 		<form-bean name="page" type="com.szqb.bean.Page" />
 		<form-bean name="content" type="com.szqb.bean.Content" />
+		<form-bean name="refresh" type="com.szqb.bean.Refresh" />
 	</form-beans>
 
 	<action-mappings>
@@ -21,6 +22,11 @@
 			scope="request" validate="false">
 			<forward name="success" path="/jsp/content.jsp" />
 		</action>	
+		<action path="/refreshPage"
+			type="org.apache.struts.beanaction.BeanAction" name="refresh"
+			scope="request" validate="false">
+			<forward name="success" path="/index.jsp" />
+		</action>
 	</action-mappings>
 	<message-resources parameter="MessageResources" />	
 </struts-config>

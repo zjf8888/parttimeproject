@@ -32,21 +32,28 @@ public class QbExp {
 	static String mi = "html/2011-03/28/";
 	static String end = "node_2.htm";
 
+	public static void setMi(String mi) {
+		QbExp.mi = mi;
+	}
+
 	public void run() {
 		expIndex();
 		new Thread() {
 			public void run() {
 				try {
 					while (true) {
-						Thread.sleep(1800000);
-						expIndex();						
+						System.out.println("---------------------------");
+						Thread.sleep(1000000);
+						expIndex();
+						System.out.println("---------------------------");
 					}
-				}catch (Exception e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
-		};
+		}.start();
 	}
+
 	private String getNowUrl() {
 		String html = getHtml(url);
 		Parser parser;
@@ -55,15 +62,15 @@ public class QbExp {
 			NodeFilter[] nodeFilter = new NodeFilter[2];
 			NodeFilter filterLink = new NodeClassFilter(MetaTag.class);
 			NodeFilter style = new HasAttributeFilter("HTTP-EQUIV", "REFRESH");
-			nodeFilter[0]=filterLink;
-			nodeFilter[1]=style;
+			nodeFilter[0] = filterLink;
+			nodeFilter[1] = style;
 			AndFilter andFilter = new AndFilter(nodeFilter);
 			NodeList nodes = parser.extractAllNodesThatMatch(andFilter);
-			if(nodes.size()>0){
-				Tag me=(Tag) nodes.elementAt(0);				
-                String url = me.toHtml();
-                String[] meta=url.split("URL=");
-                String [] u=meta[1].split("node_2.htm");
+			if (nodes.size() > 0) {
+				Tag me = (Tag) nodes.elementAt(0);
+				String url = me.toHtml();
+				String[] meta = url.split("URL=");
+				String[] u = meta[1].split("node_2.htm");
 				return u[0];
 			}
 		} catch (ParserException e) {
@@ -73,17 +80,18 @@ public class QbExp {
 	}
 
 	private void expIndex() {
+		String middle = getNowUrl();
+		if (middle == null || middle.length() < 1)
+			return;
+		if (middle.equals(mi)) {
+			System.out.println("is true");
+			return;
+		}
 		List<Title> list = new ArrayList<Title>();
 		Map<String, Page> pageList = new TreeMap<String, Page>();
 		Map<String, Content> contentList = new TreeMap<String, Content>();
 		IndexBean.setContentList(contentList);
-		String middle=getNowUrl();
 		System.out.println(mi);
-		if(middle.equals(mi)){
-			return;
-		}else{
-			mi=middle;
-		}
 		try {
 			String html = getHtml(url + middle + end);
 			Parser parser = new Parser(html);
@@ -183,6 +191,7 @@ public class QbExp {
 								.toHtml());
 					}
 				}
+				mi = middle;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -210,10 +219,10 @@ public class QbExp {
 		InputStream is = id.downloadFile(imgUrl);
 		try {
 			NewScaleImage scImage = new NewScaleImage(is);
-			int width=scImage.getWidth();
-			int hight=scImage.getHeight();
-			double r=1.0*255/width;
-			int h=(int) (hight*r);
+			int width = scImage.getWidth();
+			int hight = scImage.getHeight();
+			double r = 1.0 * 255 / width;
+			int h = (int) (hight * r);
 			BufferedImage phoneImage = scImage.scaleImage(255, h);
 			// BufferedImage bimage1 = scImage.getBufferedImage(is2);
 			byte[] phoneb = ImageDeal.imageToBytes(phoneImage, "jpg");
